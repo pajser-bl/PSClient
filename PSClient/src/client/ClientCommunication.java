@@ -11,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 
 public class ClientCommunication {
-//rtyh
 	Socket socket;
 	BufferedReader input;
 	PrintWriter output;
