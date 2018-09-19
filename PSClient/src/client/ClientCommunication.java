@@ -18,9 +18,9 @@ public class ClientCommunication {
 	
 	public ClientCommunication(String host, int port) {
 		try {
-		socket = new Socket(host, port);
-		input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+			socket = new Socket(host, port);
+			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 		}
 		catch(Exception e) {
 			System.out.println("Veza nije uspostavljena !");

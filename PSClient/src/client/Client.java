@@ -15,8 +15,13 @@ public class Client {
 			Properties props=new Properties();
 			FileInputStream fIS=new FileInputStream("client.conf");
 			props.load(fIS);
-			ClientCommunication clientCommunication=new ClientCommunication(props.getProperty("server_ip"),Integer.parseInt(props.getProperty("server_port")));
+			ClientCommunication clientCommunication=new ClientCommunication(props.getProperty("client.server_ip"),Integer.parseInt(props.getProperty("client.server_port")));
 			RequestFunctionality requestFunctionality=new RequestFunctionality(clientCommunication);
+		
+			
+			
+			for(String s:requestFunctionality.login("a","a"))
+				System.out.println(s);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
