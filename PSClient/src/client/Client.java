@@ -16,7 +16,7 @@ public class Client {
 			FileInputStream fIS=new FileInputStream("client.conf");
 			props.load(fIS);
 			ClientCommunication clientCommunication=new ClientCommunication(props.getProperty("server_ip"),Integer.parseInt(props.getProperty("server_port")));
-			
+			RequestFunctionality requestFunctionality=new RequestFunctionality(clientCommunication);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,6 +25,8 @@ public class Client {
 		
 		//call gui
 		
+		
+		//test
 		
 		
 	}
