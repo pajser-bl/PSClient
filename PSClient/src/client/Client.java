@@ -28,8 +28,17 @@ public class Client {
 				//System.out.println(s);
 			//for(String s:requestFunctionality.newCredentials("2", "b", "b"))
 				//System.out.println(s);
-			for(String s:requestFunctionality.deleteUser("2"))
+//			for(String s:requestFunctionality.deleteUser("2"))
+//				System.out.println(s);
+
+//			for(String s:requestFunctionality.updateClient("2", "D", "D", "3456"))
+//			System.out.println(s);
+			
+			for(String s:requestFunctionality.deleteClient("1"))
 				System.out.println(s);
+			
+//			for(String s:requestFunctionality.viewClient("3"))
+//			System.out.println(s);
 			for(String s:requestFunctionality.logout())
 				System.out.println(s);
 		} catch (IOException e) {
