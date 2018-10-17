@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="PSClient/src"/>
+	<classpathentry kind="lib" path="PSClient/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="PSClient/lib/jaxb-api-2.4.0-b180725.0427.jar"/>
+	<classpathentry kind="lib" path="PSClient/lib/mysql-connector-java-8.0.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
