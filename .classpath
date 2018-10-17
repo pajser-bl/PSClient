@@ -5,5 +5,9 @@
 	<classpathentry kind="lib" path="PSClient/lib/gson-2.8.5.jar"/>
 	<classpathentry kind="lib" path="PSClient/lib/jaxb-api-2.4.0-b180725.0427.jar"/>
 	<classpathentry kind="lib" path="PSClient/lib/mysql-connector-java-8.0.12.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="output" path="PSClient/bin"/>
+=======
+	<classpathentry kind="output" path="bin"/>
+>>>>>>> branch 'master' of https://github.com/pajser-bl/PSClient
 </classpath>
