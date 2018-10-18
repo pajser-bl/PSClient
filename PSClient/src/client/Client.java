@@ -34,7 +34,7 @@ public class Client {
 //			for(String s:requestFunctionality.updateClient("2", "D", "D", "3456"))
 //			System.out.println(s);
 			
-			for(String s:requestFunctionality.deleteClient("1"))
+			for(String s:requestFunctionality.deleteClient("2"))
 				System.out.println(s);
 			
 //			for(String s:requestFunctionality.viewClient("3"))
