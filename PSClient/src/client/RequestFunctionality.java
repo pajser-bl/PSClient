@@ -1,8 +1,6 @@
 package client;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RequestFunctionality {
 	private ClientCommunication clientCommunication;
@@ -80,7 +78,6 @@ public class RequestFunctionality {
 		Request request = new Request("DELETE CREDENTIALS", arguments);
 		return clientCommunication.sendRequest(request);
 	}
-<<<<<<< HEAD
 
 	public ArrayList<String> viewClient(String client_ID) {
 		ArrayList<String> arguments = new ArrayList<>();
@@ -118,7 +115,6 @@ public class RequestFunctionality {
 	
 	
 
-=======
 	public ArrayList<String> viewIntervention(String intervention_ID){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
@@ -134,5 +130,4 @@ public class RequestFunctionality {
 		Request request= new Request ("NEW INTERVENTION",arguments);
 		return clientCommunication.sendRequest(request);
 	}
->>>>>>> branch 'master' of https://github.com/pajser-bl/PSClient
 }
