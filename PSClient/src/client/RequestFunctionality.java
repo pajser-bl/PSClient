@@ -130,4 +130,37 @@ public class RequestFunctionality {
 		Request request= new Request ("NEW INTERVENTION",arguments);
 		return clientCommunication.sendRequest(request);
 	}
+	
+	public ArrayList<String> viewSubscription(String subscription_ID) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(subscription_ID);
+		Request request = new Request("VIEW SUBSCRIPTION", arguments);
+		return clientCommunication.sendRequest(request);
+	}
+	
+	public ArrayList<String> newSubscription(String client_ID, String start_date, String end_date) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(client_ID);
+		arguments.add(start_date);
+		arguments.add(end_date);
+		Request request = new Request("NEW SUBSCRIPTION", arguments);
+		return clientCommunication.sendRequest(request);
+	}
+	
+	public ArrayList<String> updateSubscription(String subscription_ID,String client_ID, String start_date, String end_date) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(subscription_ID);
+		arguments.add(client_ID);
+		arguments.add(start_date);
+		arguments.add(end_date);
+		Request request = new Request("UPDATE SUBSCRIPTION", arguments);
+		return clientCommunication.sendRequest(request);
+	}
+	
+	public ArrayList<String> deleteSubscription(String subscription_ID) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(subscription_ID);
+		Request request = new Request("DELETE SUBSCRIPTION", arguments);
+		return clientCommunication.sendRequest(request);
+	}
 }
