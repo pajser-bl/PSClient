@@ -17,7 +17,9 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> logout() {
+	public ArrayList<String> logout(int user_ID) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(""+user_ID);
 		Request request = new Request("LOGOUT", null);
 		return clientCommunication.sendRequest(request);
 	}

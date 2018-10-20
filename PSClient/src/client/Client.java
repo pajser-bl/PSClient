@@ -39,6 +39,8 @@ public class Client {
 			
 //			for(String s:requestFunctionality.viewClient("3"))
 //			System.out.println(s);
+			
+			
 			for(String s:requestFunctionality.logout())
 				System.out.println(s);
 		} catch (IOException e) {
