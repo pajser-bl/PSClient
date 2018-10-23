@@ -44,7 +44,7 @@ public class Client {
 //				System.out.println(s);
 //			for(String s:requestFunctionality.viewIntervention("1"))
 //				System.out.println(s);
-
+			while(true) {}
 			
 //			for(String s:requestFunctionality.viewSubscription("3"))
 //				System.out.println(s);
@@ -54,8 +54,8 @@ public class Client {
 //			System.out.println(s);
 //			for(String s:requestFunctionality.deleteSubscription("3"))
 //				System.out.println(s);
-			for(String s:requestFunctionality.logout("1"))
-				System.out.println(s);
+//			for(String s:requestFunctionality.logout("1"))
+//				System.out.println(s);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
