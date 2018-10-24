@@ -1,0 +1,36 @@
+.loginbutton{ 
+				-fx-background-radius: 5em; 
+               /*-fx-min-width:260px;*/
+                -fx-background-color: transparent;
+                -fx-background-image: url("/resources/images/prijava_default.png");
+                /*-fx-min-height: 80px; 
+                -fx-max-width: 260px; 
+                -fx-max-height:80px;*/
+             	-fx-background-position: center;
+				-fx-background-repeat: no-repeat;
+				-fx-background-size: 100% 100%
+
+                
+}
+
+.button:hover {
+    -fx-background-image: url("/resources/images/prijava_hover.png");
+    -fx-background-position:center;
+	-fx-background-repeat:no-repeat;
+	-fx-background-size: 100% 100%
+       
+}
+
+
+.button:pressed {
+-fx-background-image: url("/resources/images/prijava_clicked.png");
+-fx-background-position: left top, center;
+-fx-background-repeat: no-repeat;
+-fx-background-size: 100% 100%
+
+}
+
+
+ /* .field {
+	-fx-background-image: url("/application/Field.png")
+}*/
