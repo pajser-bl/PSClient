@@ -114,15 +114,13 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	
-	
-
 	public ArrayList<String> viewIntervention(String intervention_ID){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
 		Request request = new Request("VIEW INTERVENTION",arguments);
 		return clientCommunication.sendRequest(request);
 	}
+	
 	public ArrayList<String> newIntervention(String id_client, String id_vehicle, String id_user_opened, String opened_on ){
 		ArrayList<String> arguments=new ArrayList<>();
 		arguments.add(id_client);
@@ -154,6 +152,7 @@ public class RequestFunctionality {
 		Request request = new Request("DELETE INTERVENTION", arguments);
 		return clientCommunication.sendRequest(request);
 	}
+	
 	public ArrayList<String> closeIntervention(String intervention_ID, String ID_closed,  String closed_on, String remark, String closed){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);

@@ -13,7 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="450.0" maxWidth="460.0" minHeight="450.0" minWidth="460.0" prefHeight="450.0" prefWidth="460.0" styleClass="login" stylesheets="@/css/login.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.LoginController">
+<BorderPane maxHeight="450.0" maxWidth="460.0" minHeight="450.0" minWidth="460.0" prefHeight="450.0" prefWidth="460.0" 
+			styleClass="login" stylesheets="@/css/login.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+			fx:controller="control.LoginController">
    <center>
       <GridPane prefHeight="470.0" prefWidth="358.0" styleClass="login" stylesheets="@/css/login.css" vgap="10.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -37,13 +39,16 @@
                 <RowConstraints maxHeight="190.4000152587891" minHeight="10.0" prefHeight="175.2000183105469" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="248.0" styleClass="loginbutton" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button id="loginButton" onAction="#login" mnemonicParsing="false" prefHeight="30.0" prefWidth="248.0"
+                  		  styleClass="loginbutton" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField opacity="0.5" prefHeight="40.0" prefWidth="248.0" promptText="Korisničko ime" styleClass="field" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <PasswordField opacity="0.5" prefHeight="40.0" prefWidth="248.0" promptText="Lozinka" styleClass="field" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="username" opacity="0.5" prefHeight="40.0" prefWidth="248.0" promptText="Korisničko ime" 
+                  			 styleClass="field" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="password" opacity="0.5" prefHeight="40.0" prefWidth="248.0" promptText="Lozinka" 
+                  				 styleClass="field" stylesheets="@/css/loginbutton.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
@@ -56,7 +61,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/resources/images/prijava_na_sistem"/>
+                        <Image url="@/resources/images/prijava_na_sistem.png"/>
                      </image>
                      <HBox.margin>
                         <Insets left="20.0" top="35.0" />
@@ -69,7 +74,7 @@
                <children>
                   <ImageView fitHeight="84.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/images/login_logo" />
+                        <Image url="@resources/images/login_logo.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="10.0" top="10.0" />
