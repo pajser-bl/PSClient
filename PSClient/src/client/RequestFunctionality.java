@@ -3,13 +3,8 @@ package client;
 import java.util.ArrayList;
 
 public class RequestFunctionality {
-	private ClientCommunication clientCommunication;
-
-	public RequestFunctionality(ClientCommunication clientCommunication) {
-		this.clientCommunication = clientCommunication;
-	}
-
-	public ArrayList<String> login(String username, String password) {
+	
+	public static ArrayList<String> login(ClientCommunication clientCommunication, String username, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(username);
 		arguments.add(password);
@@ -17,15 +12,15 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> logout(String user_ID) {
+	public static ArrayList<String> logout(ClientCommunication clientCommunication, String user_ID) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(""+user_ID);
+		arguments.add("" + user_ID);
 		Request request = new Request("LOGOUT", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> newUser(String name, String surname, String dateOfBirth, String type,
-			String qualification) {
+	public static ArrayList<String> newUser(ClientCommunication clientCommunication, String name, String surname, String dateOfBirth, String type,
+											String qualification) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
 		arguments.add(surname);
@@ -36,8 +31,8 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> updateUser(String userID, String name, String surname, String dateOfBirth, String type,
-			String qualification) {
+	public static ArrayList<String> updateUser(ClientCommunication clientCommunication, String userID, String name, String surname,
+			 								   String dateOfBirth, String type, String qualification) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		arguments.add(name);
@@ -49,14 +44,14 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> deleteUser(String userID) {
+	public static ArrayList<String> deleteUser(ClientCommunication clientCommunication, String userID) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		Request request = new Request("DELETE USER", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> newCredentials(String userID, String username, String password) {
+	public static ArrayList<String> newCredentials(ClientCommunication clientCommunication, String userID, String username, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		arguments.add(username);
@@ -65,7 +60,7 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> updateCredentials(String userID, String username, String password) {
+	public static ArrayList<String> updateCredentials(ClientCommunication clientCommunication, String userID, String username, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		arguments.add(username);
@@ -74,21 +69,21 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> deleteCredentials(String userID) {
+	public static ArrayList<String> deleteCredentials(ClientCommunication clientCommunication, String userID) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		Request request = new Request("DELETE CREDENTIALS", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> viewClient(String client_ID) {
+	public static ArrayList<String> viewClient(ClientCommunication clientCommunication, String client_ID) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_ID);
 		Request request = new Request("VIEW CLIENT", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 
-	public ArrayList<String> newClient(String name, String surname,String phone_number) {
+	public static ArrayList<String> newClient(ClientCommunication clientCommunication, String name, String surname,String phone_number) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
 		arguments.add(surname);
@@ -97,7 +92,8 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> updateClient(String client_ID, String name, String surname, String phone_number){
+	public static ArrayList<String> updateClient(ClientCommunication clientCommunication, String client_ID, String name, String surname,
+												 String phone_number){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_ID);
 		arguments.add(name);
@@ -107,21 +103,22 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> deleteClient(String client_ID){
+	public static ArrayList<String> deleteClient(ClientCommunication clientCommunication, String client_ID){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_ID);
 		Request request = new Request("DELETE CLIENT", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> viewIntervention(String intervention_ID){
+	public static ArrayList<String> viewIntervention(ClientCommunication clientCommunication, String intervention_ID){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
 		Request request = new Request("VIEW INTERVENTION",arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> newIntervention(String id_client, String id_vehicle, String id_user_opened, String opened_on ){
+	public static ArrayList<String> newIntervention(ClientCommunication clientCommunication, String id_client, String id_vehicle,
+													String id_user_opened, String opened_on ){
 		ArrayList<String> arguments=new ArrayList<>();
 		arguments.add(id_client);
 		arguments.add(id_vehicle);
@@ -131,7 +128,9 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public  ArrayList<String> updateIntervention(String id_intervention,String id_client, String id_vehicle, String id_user_opened,String id_user_closed, String opened_on, String closed_on, String remark, String closed ){
+	public static ArrayList<String> updateIntervention(ClientCommunication clientCommunication, String id_intervention, String id_client, 
+													   String id_vehicle, String id_user_opened, String id_user_closed, String opened_on,
+													   String closed_on, String remark, String closed){
 		ArrayList<String> arguments=new ArrayList<>();
 		arguments.add(id_intervention);
 		arguments.add(id_client);
@@ -146,14 +145,15 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> deleteIntervention(String intervention_ID){
+	public static ArrayList<String> deleteIntervention(ClientCommunication clientCommunication, String intervention_ID){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
 		Request request = new Request("DELETE INTERVENTION", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> closeIntervention(String intervention_ID, String ID_closed,  String closed_on, String remark, String closed){
+	public static ArrayList<String> closeIntervention(ClientCommunication clientCommunication, String intervention_ID, String ID_closed,
+											   		  String closed_on, String remark, String closed){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
 		arguments.add(ID_closed);
@@ -164,14 +164,14 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> viewSubscription(String subscription_ID) {
+	public static ArrayList<String> viewSubscription(ClientCommunication clientCommunication, String subscription_ID) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(subscription_ID);
 		Request request = new Request("VIEW SUBSCRIPTION", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> newSubscription(String client_ID, String start_date, String end_date) {
+	public static ArrayList<String> newSubscription(ClientCommunication clientCommunication, String client_ID, String start_date, String end_date) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_ID);
 		arguments.add(start_date);
@@ -180,7 +180,8 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> updateSubscription(String subscription_ID,String client_ID, String start_date, String end_date) {
+	public static ArrayList<String> updateSubscription(ClientCommunication clientCommunication, String subscription_ID, String client_ID,
+													   String start_date, String end_date) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(subscription_ID);
 		arguments.add(client_ID);
@@ -190,14 +191,15 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> deleteSubscription(String subscription_ID) {
+	public static ArrayList<String> deleteSubscription(ClientCommunication clientCommunication, String subscription_ID) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(subscription_ID);
 		Request request = new Request("DELETE SUBSCRIPTION", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public ArrayList<String> newFieldReport(String intervention_ID,String user_ID,String assistance, String time,  String remark) {
+	public static ArrayList<String> newFieldReport(ClientCommunication clientCommunication, String intervention_ID, String user_ID,
+												   String assistance, String time,  String remark) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_ID);
 		arguments.add(user_ID);
