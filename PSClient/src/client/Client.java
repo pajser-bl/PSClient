@@ -1,16 +1,13 @@
 package client;
 
-import com.sun.tools.script.shell.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Client extends Application {
 	
-	private Stage primaryStage;
 	public static ClientCommunication clientCommunication;
 		
 	public void start(Stage primaryStage) {

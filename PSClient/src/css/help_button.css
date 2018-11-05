@@ -1,0 +1,29 @@
+.helpbutton { 
+	-fx-background-radius: 5em; 
+	-fx-min-width:120px;
+	-fx-background-color: transparent;
+	-fx-background-image: url("/resources/images/help_default.png");
+	-fx-min-height: 100px;
+	-fx-max-width: 120px; 
+	-fx-max-height: 100px;
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 100% 100%
+}
+
+.button:hover {
+	-fx-background-image: url("/resources/images/help_hover.png");
+	-fx-background-position:center;
+	-fx-background-repeat:no-repeat;
+	-fx-background-size: 100% 100%
+       
+}
+
+.button:pressed {
+	-fx-background-image: url("/resources/images/help_clicked.png");
+	-fx-background-position: left top, center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 100% 100%
+}
+
+

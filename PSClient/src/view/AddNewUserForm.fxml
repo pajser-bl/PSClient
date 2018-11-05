@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="33.0" prefWidth="600.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" styleClass="root" stylesheets="@/css/background.css">
+                     <children>
+                        <Label text="Podaci o novom korisniku:" textFill="#2a90a8">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+               </children></VBox>
+            <VBox prefHeight="161.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css">
+               <children>
+                  <GridPane hgap="5.0" prefHeight="160.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Ime korisnika:" textFill="#21947b">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <Label text="Prezime korisnika:" textFill="#21947b" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <Label text="Stručna sprema:" textFill="#21947b" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <TextField maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Vozačka dozvola:" textFill="#21947b" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField maxWidth="200.0" minWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" />
+                        <TextField maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox prefWidth="150.0" promptText="Izaberi" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="13.0" prefWidth="800.0">
+               <children>
+                  <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="22.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css">
+                     <children>
+                        <Label text="Podaci o novom korisničkom nalogu:" textFill="#2a90a8">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </HBox>
+               </children></VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="85.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css">
+               <children>
+                  <GridPane hgap="5.0" vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Nivo pristupa:" textFill="#21947b">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <Label text="Lozinka:" textFill="#21947b" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
+                        <TextField maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox prefWidth="150.0" promptText="Izaberi" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="134.0" prefHeight="20.0" prefWidth="800.0">
+               <children>
+                  <HBox minHeight="30.0" prefHeight="30.0" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button maxWidth="162.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="162.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Potvrdi">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

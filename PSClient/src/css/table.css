@@ -1,0 +1,51 @@
+.root {
+	-fx-background-color: #020A0D;
+}
+
+.table-view {
+	-fx-background-color: #020A0D;
+}
+
+.table-view:focused {
+	-fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+	-fx-background-color: linear-gradient(#072830 0%,#072830  100%);
+}
+
+.table-view .column-header-background .label{
+	-fx-background-color: transparent;
+	-fx-text-fill: #36778E  ;
+}
+
+.table-view .column-header {
+	-fx-background-color: #072830;
+}
+
+
+.table-view .table-cell {
+	-fx-text-fill: #164E5B  ;
+}
+
+.table-row-cell{
+	-fx-background-color: #072830,  #1A5563;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd{
+	-fx-background-color:  #1A5563 , #1A5563  ;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-padding: 0.0em; /* 0 */  
+}
+
+.table-row-cell:selected {
+	-fx-background-color: #051521 ;
+	-fx-background-insets: 0;
+	-fx-background-radius: 1;
+}
+
+.table-view > .column-header-background > .show-hide-columns-button {
+    -fx-background-color: #051521
+}
