@@ -235,7 +235,7 @@
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="pregledaj_korisnike" mnemonicParsing="false" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
+                  <Button fx:id="showUsers" onAction="#showUsers" mnemonicParsing="false" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
                </children>
             </VBox>
             <VBox prefHeight="91.0" prefWidth="295.0">
@@ -267,6 +267,6 @@
       </VBox>
    </right>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
