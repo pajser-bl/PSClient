@@ -11,19 +11,14 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 
 public class ClientCommunication {
-	Socket socket;
-	BufferedReader input;
-	PrintWriter output;
+	private Socket socket;
+	private BufferedReader input;
+	private PrintWriter output;
 	
-	public ClientCommunication(String host, int port) {
-		try {
-			socket = new Socket(host, port);
-			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-		}
-		catch(Exception e) {
-			System.out.println("Veza nije uspostavljena !");
-		}
+	public ClientCommunication(String host, int port) throws Exception {
+		socket = new Socket(host, port);
+		input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 	}
 	
 	public ArrayList<String> sendRequest(Request request) {
@@ -35,5 +30,9 @@ public class ClientCommunication {
 			System.out.println("Greska kod odogvora");
 			return null;
 		}
+	}
+	
+	public boolean isConnected() {
+		return socket.isConnected();
 	}
 }

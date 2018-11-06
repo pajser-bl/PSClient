@@ -14,25 +14,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import java.util.ArrayList;
 
 public class LoginController implements Initializable {
 
 		public TextField username;
-		public PasswordField password;
+		private PasswordField password;
+		private Button loginButton;
 		
 		public void initialize(URL location, ResourceBundle resource) {
-			Client.clientCommunication = new ClientCommunication("192.168.89.74", 9000);
+			try {
+				Client.clientCommunication = new ClientCommunication("192.168.89.74", 9000);
+			} catch(Exception e) {
+				System.out.println("Veza sa serverom nije uspostavljena");
+			}
 		}
 		
 		public void login(ActionEvent loginEvent) throws Exception {
 			Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
-			System.out.println("asdasdasdasd");
 			Scene userScene = new Scene(userView);
 			ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
-			System.out.println(reply.get(0));
 			if(reply.get(0).equals("LOGIN OK")) {
-				System.out.println(reply.get(0));
 				Node source = (Node) loginEvent.getSource();
 				Stage mainStage = (Stage) source.getScene().getWindow();
 				mainStage.hide();

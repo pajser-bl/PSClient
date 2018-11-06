@@ -230,7 +230,7 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="dodaj_korisnika" mnemonicParsing="false" styleClass="dodajbutton" stylesheets="@/css/add_new_user_button.css"/>
+                  <Button fx:id="addNewUserButton" onAction="#addNewUser" mnemonicParsing="false" styleClass="dodajbutton" stylesheets="@/css/add_new_user_button.css"/>
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
