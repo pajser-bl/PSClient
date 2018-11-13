@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utility.ErrorBox;
+import utility.MessageBox;
 
 public class Client extends Application {
 	
@@ -13,7 +13,7 @@ public class Client extends Application {
 		
 	public void start(Stage primaryStage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setTitle("Road Runner");
 			primaryStage.show();

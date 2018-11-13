@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import utility.ChoiceBox;
-import utility.ErrorBox;
+import utility.MessageBox;
 import utility.Parser;
 
 public class AddNewUserController {
@@ -32,7 +32,7 @@ public class AddNewUserController {
 																	  (String) userType.getValue(), qualification.getValue() + ", "
 																	  + licence.getText());
 		} catch(Exception e) {
-			ErrorBox.displayError(e.toString());
+			MessageBox.displayMessage("Greska", e.toString());
 		}
 	}
 }

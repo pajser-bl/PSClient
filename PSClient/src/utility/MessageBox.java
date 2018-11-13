@@ -9,12 +9,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ErrorBox {
+public class MessageBox {
 
-	public static void displayError(String message) {
+	public static void displayMessage(String title, String message) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("Greska");
+		window.setTitle(title);
 		window.setResizable(false);
 		window.setMaximized(false);
 		

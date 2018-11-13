@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utility.MessageBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class LoginController{
 					Client.clientCommunication.getSocket().close();
 				}
 			} catch(Exception e) {
-				System.out.println("Veza sa serverom nije uspostavljena");
+				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
 			}
 		}
 }
