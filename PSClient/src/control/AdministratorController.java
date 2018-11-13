@@ -34,6 +34,8 @@ public class AdministratorController {
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
-		} catch(Exception e) {}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
