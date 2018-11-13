@@ -9,6 +9,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import com.google.gson.reflect.TypeToken;
+
+import utility.MessageBox;
+
 import com.google.gson.Gson;
 
 public class ClientCommunication {
@@ -18,7 +21,7 @@ public class ClientCommunication {
 	
 	public ClientCommunication(String host, int port) throws Exception {
 		socket = new Socket();
-		socket.connect(new InetSocketAddress("192.168.1.1", 9000), 250);
+		socket.connect(new InetSocketAddress("10.99.173.198", 9000), 5000);
 		input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 	}
@@ -29,7 +32,7 @@ public class ClientCommunication {
 			return new Gson().fromJson(input.readLine(), new TypeToken<ArrayList<String>>(){}.getType());
 		}
 		catch(Exception e) {
-			System.out.println("Greska kod odogvora");
+			MessageBox.displayMessage("Greska", "Server nije odgovorio");
 			return null;
 		}
 	}

@@ -20,13 +20,15 @@ public class RequestFunctionality {
 	}
 
 	public static ArrayList<String> newUser(ClientCommunication clientCommunication, String name, String lastName, String dateOfBirth, String type,
-											String qualification) {
+											String qualification, String userName, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
 		arguments.add(lastName);
 		arguments.add(dateOfBirth);
 		arguments.add(type);
 		arguments.add(qualification);
+		arguments.add(userName);
+		arguments.add(password);
 		Request request = new Request("NEW USER", arguments);
 		return clientCommunication.sendRequest(request);
 	}

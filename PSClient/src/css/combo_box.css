@@ -30,7 +30,7 @@
 
 .combo-box-base {
 	-fx-background-color:#164E5B;
-	-fx-padding: #164E5B;
+	-fx-padding: 4 0 4 5;
 }
 
 .combo-box-popup .list-cell {    
