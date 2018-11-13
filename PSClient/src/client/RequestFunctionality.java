@@ -19,11 +19,11 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public static ArrayList<String> newUser(ClientCommunication clientCommunication, String name, String surname, String dateOfBirth, String type,
+	public static ArrayList<String> newUser(ClientCommunication clientCommunication, String name, String lastName, String dateOfBirth, String type,
 											String qualification) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
-		arguments.add(surname);
+		arguments.add(lastName);
 		arguments.add(dateOfBirth);
 		arguments.add(type);
 		arguments.add(qualification);
@@ -31,12 +31,12 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public static ArrayList<String> updateUser(ClientCommunication clientCommunication, String userID, String name, String surname,
+	public static ArrayList<String> updateUser(ClientCommunication clientCommunication, String userID, String name, String lastName,
 			 								   String dateOfBirth, String type, String qualification) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userID);
 		arguments.add(name);
-		arguments.add(surname);
+		arguments.add(lastName);
 		arguments.add(dateOfBirth);
 		arguments.add(type);
 		arguments.add(qualification);
@@ -83,21 +83,21 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public static ArrayList<String> newClient(ClientCommunication clientCommunication, String name, String surname,String phone_number) {
+	public static ArrayList<String> newClient(ClientCommunication clientCommunication, String name, String lastName,String phone_number) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
-		arguments.add(surname);
+		arguments.add(lastName);
 		arguments.add(phone_number);
 		Request request = new Request("NEW CLIENT", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 	
-	public static ArrayList<String> updateClient(ClientCommunication clientCommunication, String client_ID, String name, String surname,
+	public static ArrayList<String> updateClient(ClientCommunication clientCommunication, String client_ID, String name, String lastName,
 												 String phone_number){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_ID);
 		arguments.add(name);
-		arguments.add(surname);
+		arguments.add(lastName);
 		arguments.add(phone_number);
 		Request request = new Request("UPDATE CLIENT", arguments);
 		return clientCommunication.sendRequest(request);
