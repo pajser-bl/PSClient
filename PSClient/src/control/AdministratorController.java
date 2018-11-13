@@ -14,8 +14,8 @@ import javafx.stage.Stage;
 public class AdministratorController {
 
 	@FXML Button addNewUserButton;
-	@FXML Button showUsers;
 	@FXML AnchorPane anchor;
+	@FXML Button showUsers;
 	
 	public void addNewUser(ActionEvent event) {
 		try {
