@@ -14,16 +14,14 @@ import javafx.stage.Stage;
 public class AdministratorController {
 
 	@FXML Button addNewUserButton;
-	@FXML AnchorPane table;
+	@FXML AnchorPane anchor;
 	
 	public void addNewUser(ActionEvent event) {
-		Stage addNewUserStage = new Stage();
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"));
-			addNewUserStage.setScene(new Scene(root));
-			addNewUserStage.setTitle("Road Runner");
-			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
-			addNewUserStage.show();
+			if(anchor.getChildren().size() != 0)
+				anchor.getChildren().remove(0);
+			anchor.getChildren().add(root);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -33,7 +31,9 @@ public class AdministratorController {
 	public void showUsers(ActionEvent event) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/UserTableForm.fxml"));
-			table.getChildren().add(root);
+			if(anchor.getChildren().size() != 0)
+				anchor.getChildren().remove(0);
+			anchor.getChildren().add(root);
 		} catch(Exception e) {}
 	}
 }
