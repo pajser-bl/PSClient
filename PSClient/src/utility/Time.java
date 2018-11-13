@@ -1,11 +1,11 @@
-package client;
+package utility;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TimeUtility {
+public class Time {
 	public static LocalDateTime getLDTNow() {
 		return LocalDateTime.now();
 	}
