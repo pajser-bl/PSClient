@@ -26,7 +26,6 @@ public class LoginController{
 			try {
 				Client.clientCommunication = new ClientCommunication("192.168.1.11", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
-				System.out.println(username.getText() + "    " + password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
 					Scene userScene = new Scene(userView);
