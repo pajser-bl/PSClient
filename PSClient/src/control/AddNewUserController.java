@@ -36,6 +36,7 @@ public class AddNewUserController {
 			else MessageBox.displayMessage("Greska", reply.get(1));
 		} catch(Exception e) {
 			MessageBox.displayMessage("Greska", e.toString());
+			e.printStackTrace();
 		}
 	}
 }

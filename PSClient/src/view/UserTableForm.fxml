@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.UserTableController">
    <right>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -29,15 +29,16 @@
          <children>
             <Pane prefHeight="479.0" prefWidth="886.0" styleClass="root2" stylesheets="@../css/background.css">
                <children>
-                  <ScrollPane prefHeight="589.0" prefWidth="992.0" style="-fx-background-color: #020A0D;" styleClass="root2" stylesheets="@/css/scroll_bar.css">
+                  <ScrollPane prefHeight="589.0" prefWidth="994.0" style="-fx-background-color: #020A0D;" styleClass="root2" stylesheets="@/css/scroll_bar.css">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="983.0" styleClass="root2" stylesheets="@../css/background.css">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="984.0" styleClass="root2" stylesheets="@../css/background.css">
                            <children>
-                              <TableView layoutX="-3.0" prefHeight="570.4" prefWidth="983.2" stylesheets="@/css/table.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView layoutX="-3.0" prefHeight="570.4" prefWidth="984.0" stylesheets="@/css/table.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                     <TableColumn prefWidth="75.0" text="ID" />
-                                  <TableColumn prefWidth="75.0" text="Ime" />
-                                  <TableColumn prefWidth="75.0" text="Prezime" />
+                                    <TableColumn prefWidth="75.0" text="Ime" />
+                                    <TableColumn prefWidth="75.0" text="Prezime" />
+                                  <TableColumn prefWidth="75.0" text="Korisničko ime" />
                                     <TableColumn prefWidth="75.0" text="Nivo pristupa" />
                                     <TableColumn prefWidth="75.0" text="Stanje" />
                                 </columns>
@@ -76,14 +77,25 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Izmijeni detalje " textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="changePasswordButton" onAction="#passwordChange" maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Promjeni šifru" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Pregledaj nalog" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children></HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
