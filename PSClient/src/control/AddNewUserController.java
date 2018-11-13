@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import utility.ChoiceBox;
 import utility.ErrorBox;
 import utility.Parser;
 
@@ -32,7 +33,6 @@ public class AddNewUserController {
 																	  + licence.getText());
 		} catch(Exception e) {
 			ErrorBox.displayError(e.toString());
-			e.printStackTrace();
 		}
 	}
 }
