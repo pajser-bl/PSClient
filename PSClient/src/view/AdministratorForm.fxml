@@ -17,9 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0"
-			styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
-			fx:controller="control.AdministratorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.AdministratorController">
    <top>
       <HBox prefHeight="143.0" prefWidth="1200.0" styleClass="root" stylesheets="@/css/background.css" BorderPane.alignment="CENTER">
          <children>
@@ -230,19 +228,15 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="addNewUserButton" onAction="#addNewUser" mnemonicParsing="false" styleClass="dodajbutton" stylesheets="@/css/add_new_user_button.css"/>
+                  <Button fx:id="addNewUserButton" mnemonicParsing="false" onAction="#addNewUser" styleClass="dodajbutton" stylesheets="@/css/add_new_user_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="showUsers" onAction="#showUsers" mnemonicParsing="false" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
+                  <Button fx:id="showUsers" mnemonicParsing="false" onAction="#showUsers" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
                </children>
             </VBox>
-            <VBox prefHeight="91.0" prefWidth="295.0">
-               <children>
-                  <Button fx:id="sesije" mnemonicParsing="false" styleClass="sesijabutton" stylesheets="@/css/session_button.css" />
-               </children>
-            </VBox>
+            <VBox prefHeight="91.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
