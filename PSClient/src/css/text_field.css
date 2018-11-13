@@ -1,4 +1,4 @@
-.text_feild {
+.text_field {
     -fx-background-color: 
         linear-gradient(#f2f2f2, #d6d6d6),
         linear-gradient(#164E5B 0%, #164E5B 20%,#164E5B 100%),
@@ -9,4 +9,5 @@
     -fx-background-radius: 0,7,0;
     -fx-background-insets: 0,0,0;
     -fx-text-fill: #164E5B;
+    -fx-prompt-text-fill: #526A74;
 }

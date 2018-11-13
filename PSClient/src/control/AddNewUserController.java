@@ -33,6 +33,7 @@ public class AddNewUserController {
 																	  + licence.getText());
 		} catch(Exception e) {
 			MessageBox.displayMessage("Greska", e.toString());
+			e.printStackTrace();
 		}
 	}
 }

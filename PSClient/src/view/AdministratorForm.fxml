@@ -236,7 +236,6 @@
                   <Button fx:id="showUsers" mnemonicParsing="false" onAction="#showUsers" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
                </children>
             </VBox>
-            <VBox prefHeight="91.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
@@ -261,6 +260,6 @@
       </VBox>
    </right>
    <center>
-      <AnchorPane fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

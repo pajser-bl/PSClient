@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" styleClass="root2" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.AddNewUserController">
+<BorderPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.AddNewUserController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,9 +37,9 @@
                      </padding>
                   </HBox>
                </children></VBox>
-            <VBox prefHeight="201.0" prefWidth="1200.0" styleClass="root" stylesheets="@/css/background.css">
+            <VBox prefHeight="208.0" prefWidth="1190.0" styleClass="root" stylesheets="@/css/background.css">
                <children>
-                  <GridPane hgap="5.0" prefHeight="160.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css" vgap="10.0">
+                  <GridPane hgap="5.0" prefHeight="206.0" prefWidth="1190.0" styleClass="root" stylesheets="@/css/background.css" vgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -82,7 +82,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <TextField fx:id="LastName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="lastName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Vozačka dozvola:" textFill="#21947b" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets />
@@ -94,15 +94,18 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="name" maxWidth="200.0" minWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" />
-                        <TextField fx:id="driversLicence" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Kategorija" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ComboBox fx:id="qualification" prefWidth="150.0" promptText="Izaberi" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="name" maxWidth="200.0" minWidth="200.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="licence" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="Kategorija" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="qualification" prefWidth="150.0" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         		  <items>
                         		  	<FXCollections fx:factory="observableArrayList">
           								<String fx:value="VSS" />
           								<String fx:value="SSS" />
         							</FXCollections>
                         		  </items>
+                        		  <value>
+									<String fx:value="VSS" />
+								  </value>
                         </ComboBox>
                         <Label text="Datum rođenja:" textFill="#21947b" GridPane.rowIndex="2">
                            <padding>
@@ -112,14 +115,14 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="dateOfBirth" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="DD.MM.GG." styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="dateOfBirth" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" promptText="DD.MM.GG." styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
             <VBox prefHeight="13.0" prefWidth="800.0">
                <children>
-                  <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" />
+                  <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="1200.0" />
                </children>
             </VBox>
             <VBox prefHeight="22.0" prefWidth="800.0">
@@ -136,7 +139,7 @@
                      </padding>
                   </HBox>
                </children></VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="85.0" prefWidth="800.0" styleClass="root" stylesheets="@/css/background.css">
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="122.0" prefWidth="1190.0" styleClass="root" stylesheets="@/css/background.css">
                <children>
                   <GridPane hgap="5.0" vgap="10.0">
                      <columnConstraints>
@@ -170,8 +173,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="password" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="userType" prefWidth="150.0" promptText="Izaberi" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1">
+                        <TextField fx:id="password" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="userType" prefWidth="150.0" stylesheets="@/css/combo_box.css" GridPane.columnIndex="1">
                         	<items>
                         		<FXCollections fx:factory="observableArrayList">
           							<String fx:value="Administrator" />
@@ -180,6 +183,9 @@
           							<String fx:value="Terenski radnik" />
         						</FXCollections>
                         	</items>
+                        	<value>
+								<String fx:value="Administrator" />
+							</value>
                         </ComboBox>
                         <Label text="Lozinka:" textFill="#21947b" GridPane.rowIndex="2">
                            <padding>
@@ -189,28 +195,36 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@/css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="userName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="134.0" prefHeight="20.0" prefWidth="800.0">
                <children>
-                  <HBox minHeight="30.0" prefHeight="30.0" />
+                  <HBox minHeight="30.0" prefHeight="62.0" prefWidth="1190.0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="1190.0">
                <children>
-                  <Button fx:id="createNewUser" maxWidth="162.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="30.0" prefWidth="162.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Potvrdi">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
+                  <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1190.0">
+                     <children>
+                        <Button fx:id="createNewUser" maxWidth="162.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="30.0" prefWidth="162.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Potvrdi">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
+         <opaqueInsets>
+            <Insets left="10.0" top="10.0" />
+         </opaqueInsets>
       </VBox>
    </center>
+   <padding>
+      <Insets left="10.0" top="10.0" />
+   </padding>
 </BorderPane>
