@@ -24,7 +24,6 @@ public class AdministratorController {
 			addNewUserStage.setTitle("Road Runner");
 			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
 			addNewUserStage.show();
-			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
