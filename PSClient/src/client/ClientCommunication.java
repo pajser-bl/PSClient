@@ -37,6 +37,10 @@ public class ClientCommunication {
 		}
 	}
 	
+	public void logout(Request request) {
+		output.println(new Gson().toJson(request));
+	}
+	
 	public Socket getSocket() {
 		return socket;
 	}

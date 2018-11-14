@@ -19,6 +19,7 @@ public class Parser {
 			Integer.parseInt(parsedDate[i]);
 		String formatedDate = parsedDate[2];
 		formatedDate += "-" + parsedDate[1] + "-" + parsedDate[0];
+		System.out.println(formatedDate);
 		return formatedDate;
 	}
 	

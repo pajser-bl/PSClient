@@ -27,7 +27,7 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="-1.0" />
                            </HBox.margin>
                            <image>
                               <Image url="@/resources/images/admin_avatar.png" />
@@ -161,33 +161,11 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
-                                             <children>
-                                                <ImageView fitHeight="28.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@/resources/images/clock.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="28.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@/resources/images/date.png" />
-                                                   </image>
-                                                </ImageView>
-                                                
-                                             </children>
                                           </GridPane>
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="2.0" prefWidth="178.0" />
-                                    <Separator prefHeight="0.0" prefWidth="178.0" />
-                                    <HBox prefHeight="26.0" prefWidth="178.0">
-                                       <children>
-                                          <Label prefHeight="14.0" prefWidth="116.0" text="Stanje intervencija:" textFill="#19715f">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
+                                    <HBox prefHeight="26.0" prefWidth="178.0" />
                                     <VBox prefHeight="46.0" prefWidth="178.0">
                                        <children>
                                           <GridPane alignment="CENTER" hgap="3.0" vgap="4.0">
@@ -201,18 +179,6 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@/resources/images/circle_blue.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                                                   <image>
-                                                      <Image url="@/resources/images/circle_red.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Label prefHeight="18.0" prefWidth="88.0" text="zatvorenih" textFill="#19715f" GridPane.columnIndex="2" />
-                                                <Label prefHeight="18.0" prefWidth="86.0" text="otvorenih" textFill="#19715f" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <TextField fx:id="plavo" style="-fx-background-color: transparent;" GridPane.columnIndex="1" />
                                                 <TextField fx:id="crveno" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
@@ -253,7 +219,7 @@
             </VBox>
             <VBox prefHeight="50.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="exitButton" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@/css/exit_button.css" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@/css/exit_button.css" />
                </children>
             </VBox>
          </children>

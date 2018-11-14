@@ -2,6 +2,7 @@ package control;
 
 import client.Client;
 import client.ClientCommunication;
+import client.User;
 import client.RequestFunctionality;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,8 @@ public class LoginController{
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
+					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4));
+					System.out.println(Client.user.toString());
 					Scene userScene = new Scene(userView);
 					Node source = (Node) loginEvent.getSource();
 					Stage mainStage = (Stage) source.getScene().getWindow();

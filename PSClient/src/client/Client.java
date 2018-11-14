@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 public class Client extends Application {
 	
 	public static ClientCommunication clientCommunication;
+	public static User user;
 		
 	public void start(Stage primaryStage) {
 		try {
