@@ -13,10 +13,10 @@ public class ChoiceBox {
 	
 	private static boolean answer = false;
 
-	public static boolean displayChoice(String message) {
+	public static boolean displayChoice(String title, String message) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setTitle("Greska");
+		window.setTitle(title);
 		window.setResizable(false);
 		window.setMaximized(false);
 			

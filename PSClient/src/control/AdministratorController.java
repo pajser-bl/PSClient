@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utility.ChoiceBox;
 import utility.MessageBox;
 
 public class AdministratorController {
@@ -60,14 +61,15 @@ public class AdministratorController {
 	}
 	
 	public void logout(ActionEvent logout) {
-		try {
-			RequestFunctionality.logout(Client.clientCommunication, Client.user.getUserId());
-			Client.clientCommunication.getSocket().close();
-			Node source = (Node) logout.getSource();
-			Stage mainStage = (Stage) source.getScene().getWindow();
-			mainStage.close();
-		} catch(Exception e) {
-			MessageBox.displayMessage("Greska", "Greska kod logouta");
-		}
+		if(ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?") == true)
+			try {
+				RequestFunctionality.logout(Client.clientCommunication, Client.user.getUserId());
+				Client.clientCommunication.getSocket().close();
+				Node source = (Node) logout.getSource();
+				Stage mainStage = (Stage) source.getScene().getWindow();
+				mainStage.close();
+			} catch(Exception e) {
+				MessageBox.displayMessage("Greska", "Greska kod logouta");
+			}
 	}
 }
