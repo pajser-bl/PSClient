@@ -46,4 +46,8 @@ public class LoginController{
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
 			}
 		}
+		
+		public void logout() {
+			
+		}
 }
