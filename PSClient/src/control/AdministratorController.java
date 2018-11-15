@@ -4,7 +4,6 @@ import client.Client;
 import client.RequestFunctionality;
 import client.User;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utility.ChoiceBox;
@@ -41,7 +41,6 @@ public class AdministratorController {
 	public void showUsers(ActionEvent event) {
 		if(users.isEmpty()) {
 			ArrayList<String> reply = RequestFunctionality.getUsers(Client.clientCommunication, Client.user.getUserId());
-			createUsers(reply);
 			for(int i = 2; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] userData = reply.get(i).split(":");
 				users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
@@ -57,10 +56,6 @@ public class AdministratorController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void createUsers(ArrayList<String> serverReply) {
-		
 	}
 	
 	public void logout(ActionEvent logout) {

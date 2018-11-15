@@ -60,7 +60,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Izbriši nalog" textAlignment="CENTER">
+                        <Button fx:id="deleteUserButton" onAction="#deleteUser" maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Izbriši nalog" textAlignment="CENTER">
                            <font>
                               <Font size="15.0" />
                            </font>
