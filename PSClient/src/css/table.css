@@ -11,7 +11,7 @@
 }
 
 .table-view .column-header-background {
-	-fx-background-color: linear-gradient(#072830 0%,#072830  100%);
+	-fx-background-color: linear-gradient(#0E1A24   0%, #0E1A24  100%); /* #072830*/
 }
 
 .table-view .column-header-background .label{
@@ -25,17 +25,17 @@
 
 
 .table-view .table-cell {
-	-fx-text-fill: #164E5B  ;
+	-fx-text-fill: #8FB6C5;
 }
 
-.table-row-cell{
-	-fx-background-color: #072830,  #1A5563;
+.table-row-cell:odd{
+	-fx-background-color: #072830,  #072830;
 	-fx-background-insets: 0, 0 0 1 0;
 	-fx-padding: 0.0em; /* 0 */
 }
 
-.table-row-cell:odd{
-	-fx-background-color:  #1A5563 , #1A5563  ;
+.table-row-cell:even{
+	-fx-background-color:  #0E1A24 , #0E1A24 ; /*#194A5D */
 	-fx-background-insets: 0, 0 0 1 0;
 	-fx-padding: 0.0em; /* 0 */  
 }
