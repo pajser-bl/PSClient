@@ -25,12 +25,11 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				Client.clientCommunication = new ClientCommunication("10.99.173.198", 9000);
+				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
-					System.out.println(Client.user.toString());
 					Scene userScene = new Scene(userView);
 					Node source = (Node) loginEvent.getSource();
 					Stage mainStage = (Stage) source.getScene().getWindow();
@@ -41,7 +40,7 @@ public class LoginController{
 					mainStage.show();
 				} else {
 					Client.clientCommunication.getSocket().close();
-					MessageBox.displayMessage("Greska", reply.get(1));
+					MessageBox.displayMessage("Greska", reply.get(0));
 				}
 			} catch(Exception e) {
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
