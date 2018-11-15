@@ -25,7 +25,7 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				Client.clientCommunication = new ClientCommunication("192.168.1.11", 500);
+				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
