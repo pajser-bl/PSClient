@@ -22,6 +22,7 @@ public class ChoiceBox {
 			
 		Label label = new Label(message);
 		Button yesButton = new Button("Da");
+		yesButton.setDefaultButton(true);
 		yesButton.getStylesheets().add("css/profile_button.css");
 		yesButton.getStyleClass().add("profilbutton");
 		yesButton.setOnAction(e -> {

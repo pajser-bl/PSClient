@@ -4,6 +4,9 @@ import client.Client;
 import client.RequestFunctionality;
 import client.User;
 import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +24,7 @@ public class AdministratorController {
 	@FXML Button showUsers;
 	@FXML Button logoutButton;
 	@FXML AnchorPane anchor;
-	private ArrayList<User> users = new ArrayList<User>();
+	private static ArrayList<User> users = new ArrayList<User>();
 	
 	public void addNewUser(ActionEvent event) {
 		try {
@@ -41,7 +44,7 @@ public class AdministratorController {
 			createUsers(reply);
 			for(int i = 2; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] userData = reply.get(i).split(":");
-				users.add(new User(userData[0], userData[1], userData[2], userData[3]));
+				users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
 			}
 			for(int i = 0; i < users.size(); i++)
 				System.out.println(users.get(i).toString());
@@ -71,5 +74,9 @@ public class AdministratorController {
 			} catch(Exception e) {
 				MessageBox.displayMessage("Greska", "Greska kod logouta");
 			}
+	}
+	
+	public static ObservableList<User> getUsers() {
+		return FXCollections.observableArrayList(users);
 	}
 }
