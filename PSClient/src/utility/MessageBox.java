@@ -19,6 +19,7 @@ public class MessageBox {
 		
 		Label label = new Label(message);
 		Button closeButton = new Button("U redu");
+		closeButton.setDefaultButton(true);
 		closeButton.getStylesheets().add("css/profile_button.css");
 		closeButton.getStyleClass().add("profilbutton");
 		closeButton.setOnAction(e -> window.close());
