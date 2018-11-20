@@ -36,7 +36,7 @@ public class AddNewUserController {
 				MessageBox.displayMessage("Potvrda", "Korisnik uspjesno kreiran");
 				AdministratorController.getUsers().add(new User(reply.get(1), name.getText(), lastName.getText(), userType.getValue(),
 													   userName.getText()));
-				userName.clear(); lastName.clear(); password.clear(); licence.clear(); dateOfBirth.clear(); userName.clear();
+				name.clear(); lastName.clear(); password.clear(); licence.clear(); dateOfBirth.clear(); userName.clear();
 			} else MessageBox.displayMessage("Greska", reply.get(1));
 		} catch(Exception e) {
 			MessageBox.displayMessage("Greska", e.toString());

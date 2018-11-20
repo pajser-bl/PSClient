@@ -2,7 +2,7 @@ package utility;
 
 import exception.EmptyFieldException;
 import exception.ContainsNumberException;
-import exception.NotANumberException;
+import exception.DateException;
 
 public class Parser {
 
@@ -13,13 +13,15 @@ public class Parser {
 		return formatedDate;
 	}
 	
-	public static String parseDate(String date) throws NotANumberException{
+	public static String parseDate(String date) throws DateException{
 		String[] parsedDate = date.split("\\.");
-		//for(int i = 0; i < 3; i++)
-			//Integer.parseInt(parsedDate[i]);
+		if(Integer.parseInt(parsedDate[0]) < 1 || Integer.parseInt(parsedDate[0]) > 31) {
+			throw new DateException("Dan mora biti izmedju 1 i 30");
+		} else if(Integer.parseInt(parsedDate[1]) < 1 || Integer.parseInt(parsedDate[1]) > 12) {
+			throw new DateException("Mjesec mora biti izmedju 1 i 12");
+		}
 		String formatedDate = parsedDate[2];
 		formatedDate += "-" + parsedDate[1] + "-" + parsedDate[0];
-		System.out.println(formatedDate);
 		return formatedDate;
 	}
 	

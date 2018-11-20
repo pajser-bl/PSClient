@@ -28,13 +28,22 @@ public class LoginController{
 				Client.clientCommunication = new ClientCommunication("192.168.0.70", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
-					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
-					Scene userScene = new Scene(userView);
 					Node source = (Node) loginEvent.getSource();
 					Stage mainStage = (Stage) source.getScene().getWindow();
+					if(reply.get(4).equals("Operater")) {
+						System.out.println("1111111");
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperatorForm.fxml"));
+						Scene userScene = new Scene(userView);
+						mainStage.setScene(userScene);
+						System.out.println("2222222");
+					}
+					else {
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
+						Scene userScene = new Scene(userView);
+						mainStage.setScene(userScene);
+					}
 					mainStage.hide();
-					mainStage.setScene(userScene);
 					mainStage.setResizable(false);
 					mainStage.setMaximized(true);
 					mainStage.show();

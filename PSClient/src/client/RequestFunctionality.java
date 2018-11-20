@@ -60,28 +60,12 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public static ArrayList<String> newCredentials(ClientCommunication clientCommunication, String userId, String username, String password) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(userId);
-		arguments.add(username);
-		arguments.add(password);
-		Request request = new Request("NEW CREDENTIALS", arguments);
-		return clientCommunication.sendRequest(request);
-	}
-
 	public static ArrayList<String> updateCredentials(ClientCommunication clientCommunication, String userId, String username, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);
 		arguments.add(username);
 		arguments.add(password);
 		Request request = new Request("UPDATE PASSWORD", arguments);
-		return clientCommunication.sendRequest(request);
-	}
-
-	public static ArrayList<String> deleteCredentials(ClientCommunication clientCommunication, String userId) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(userId);
-		Request request = new Request("DELETE CREDENTIALS", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 

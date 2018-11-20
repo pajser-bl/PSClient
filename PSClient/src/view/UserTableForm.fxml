@@ -15,8 +15,8 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="900.0" maxWidth="1400.0"
-	minHeight="900.0" minWidth="1400.0" prefHeight="900.0"
-	prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1"
+	minHeight="450.0" minWidth="800.0" prefHeight="450.0"
+	prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1"
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="control.UserTableController">
 	<right>
@@ -41,11 +41,11 @@
 							stylesheets="@/css/scroll_bar.css">
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0"
-									prefHeight="719.0" prefWidth="1387.0" styleClass="root2"
+									prefHeight="300.0" prefWidth="450.0" styleClass="root2"
 									stylesheets="@../css/background.css">
 									<children>
 										<TableView fx:id="userTable" layoutX="-3.0"
-											prefHeight="719.2" prefWidth="1387.2"
+											prefHeight="250.0" prefWidth="400.0"
 											stylesheets="@/css/table.css" tableMenuButtonVisible="true"
 											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
