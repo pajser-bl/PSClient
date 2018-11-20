@@ -60,12 +60,11 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 
-	public static ArrayList<String> updateCredentials(ClientCommunication clientCommunication, String userId, String username, String password) {
+	public static ArrayList<String> changePassword(ClientCommunication clientCommunication, String userId, String password) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);
-		arguments.add(username);
 		arguments.add(password);
-		Request request = new Request("UPDATE PASSWORD", arguments);
+		Request request = new Request("CHANGE PASSWORD", arguments);
 		return clientCommunication.sendRequest(request);
 	}
 

@@ -1,4 +1,8 @@
 package utility;
+import java.util.ArrayList;
+
+import client.Client;
+import client.RequestFunctionality;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +16,8 @@ import javafx.stage.Stage;
 
 public class PasswordChangeBox {
 
+	private static TextField pswField;
+	
 	public static void passwordChange() {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
@@ -22,7 +28,6 @@ public class PasswordChangeBox {
 		Label lblUser = new Label("Nova lozinka:");
 		lblUser.setTextFill(Color.web("#21947b"));
 		
-		TextField pswField = new TextField();
 		pswField.getStylesheets().add("css/text_field.css");
 		pswField.getStyleClass().add("text_field");
 		
@@ -46,5 +51,18 @@ public class PasswordChangeBox {
 		Scene scene = new Scene(mainLayout, 450, 150);
 		window.setScene(scene);
 		window.showAndWait();
+	}
+	
+	public void sendRequest() {
+		if(pswField.getText().isEmpty()) {
+			MessageBox.displayMessage("Greska", "Morate unijeti novu lozinku");
+		} 
+		else {
+			ArrayList<String> reply = RequestFunctionality.changePassword(Client.clientCommunication, Client.user.getUserId(),
+																		  pswField.getText());
+			if(reply.get(0).equals("CHANGE PASSWORD FAIELD"))
+				MessageBox.displayMessage("Greska", reply.get(1));
+			else MessageBox.displayMessage("Potvrda" , "Lozinka uspjesno promjenjena.");
+		}
 	}
 }

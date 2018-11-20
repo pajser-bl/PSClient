@@ -138,7 +138,7 @@
 	<padding>
 		<Insets left="50.0" right="1.0" top="40.0" />
 	</padding>
-<BorderPane maxHeight="900.0" maxWidth="1400.0" minHeight="900.0" minWidth="1400.0" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.UserTableController">
+<BorderPane maxHeight="900.0" maxWidth="1400.0" minHeight="900.0" minWidth="1400.0" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <GridPane prefHeight="798.0" prefWidth="1799.0" BorderPane.alignment="CENTER">
         <columnConstraints>
