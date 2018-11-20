@@ -21,7 +21,7 @@ public class ClientCommunication {
 	
 	public ClientCommunication(String ip, int port) throws Exception {
 		socket = new Socket();
-		socket.connect(new InetSocketAddress(ip, port), 2500);
+		socket.connect(new InetSocketAddress(ip, port), 5000);
 		input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 	}

@@ -40,14 +40,10 @@ public class LoginController{
 					mainStage.show();
 				} else {
 					Client.clientCommunication.getSocket().close();
-					MessageBox.displayMessage("Greska", reply.get(0));
+					MessageBox.displayMessage("Greska", reply.get(1));
 				}
 			} catch(Exception e) {
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
 			}
-		}
-		
-		public void logout() {
-			
 		}
 }

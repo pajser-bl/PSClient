@@ -16,7 +16,6 @@ public class RequestFunctionality {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(user_Id);
 		Request request = new Request("LOGOUT", arguments);
-		System.out.println(request.toString());
 		clientCommunication.logout(request);
 	}
 

@@ -41,12 +41,14 @@ public class AdministratorController {
 	public void showUsers(ActionEvent event) {
 		if(users.isEmpty()) {
 			ArrayList<String> reply = RequestFunctionality.getUsers(Client.clientCommunication, Client.user.getUserId());
-			for(int i = 2; i < Integer.parseInt(reply.get(1)); i++) {
-				String[] userData = reply.get(i).split(":");
-				users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
+			if(reply.get(0).equals("VIEW USERS NOT OK"))
+				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
+			else {
+				for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+					String[] userData = reply.get(i + 2).split(":");
+					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
+				}
 			}
-			for(int i = 0; i < users.size(); i++)
-				System.out.println(users.get(i).toString());
 		}
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/UserTableForm.fxml"));

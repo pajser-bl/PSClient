@@ -32,7 +32,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="719.0" prefWidth="1387.0" styleClass="root2" stylesheets="@../css/background.css">
                            <children>
-                              <TableView fx:id="userTable" layoutX="-15.0" layoutY="14.0" prefHeight="719.2" prefWidth="1387.2" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="userTable" layoutX="-3.0" prefHeight="719.2" prefWidth="1387.2" stylesheets="@/css/table.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
@@ -43,11 +43,8 @@
                                     <String fx:value="root" />
                                     <String fx:value="show-hide-columns-button" />
                                     <String fx:value="table-cell" />
+                                    <String fx:value="table-view" />
                                  </styleClass>
-                                 <stylesheets>
-                                    <URL value="@../css/table_menu.css" />
-                                    <URL value="@../css/table.css" />
-                                 </stylesheets>
                               </TableView>
                            </children>
                         </AnchorPane>
@@ -62,10 +59,12 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="202.0" prefWidth="200.0">
                      <children>
-                        <Button maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Izbriši nalog" textAlignment="CENTER">
+                        <Button maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Izbriši nalog" textAlignment="CENTER"/>
+                        <Button fx:id="deleteUserButton" onAction="#deleteUser" maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Izbriši nalog" textAlignment="CENTER">
                            <font>
                               <Font size="20.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
