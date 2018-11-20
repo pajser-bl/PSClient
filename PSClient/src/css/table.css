@@ -20,7 +20,7 @@
 }
 
 .table-view .column-header {
-	-fx-background-color: #072830;
+	-fx-background-color: #010C16   ;
 }
 
 
@@ -29,7 +29,7 @@
 }
 
 .table-row-cell:odd{
-	-fx-background-color: #072830,  #072830;
+	-fx-background-color: #072830, #072830;
 	-fx-background-insets: 0, 0 0 1 0;
 	-fx-padding: 0.0em; /* 0 */
 }

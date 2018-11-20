@@ -32,7 +32,7 @@ public class ClientCommunication {
 			return new Gson().fromJson(input.readLine(), new TypeToken<ArrayList<String>>(){}.getType());
 		}
 		catch(Exception e) {
-			MessageBox.displayMessage("Greska", "Veza sa serverom je prekinuta.");
+			MessageBox.displayMessage("Greska!", "Server nije odgovorio!");
 			return null;
 		}
 	}

@@ -16,7 +16,7 @@ public class Client extends Application {
 		
 	public void start(Stage primaryStage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/view/OperaterSessionTableForm.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setTitle("Road Runner");
 			primaryStage.setOnCloseRequest(e -> {
@@ -26,7 +26,7 @@ public class Client extends Application {
 			primaryStage.show();
 		}
 		catch(Exception e) {
-			e.printStackTrace();;
+			e.printStackTrace();
 		}
 	}
 	

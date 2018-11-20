@@ -15,8 +15,8 @@ public class Parser {
 	
 	public static String parseDate(String date) throws NotANumberException{
 		String[] parsedDate = date.split("\\.");
-		for(int i = 0; i < 3; i++)
-			Integer.parseInt(parsedDate[i]);
+		//for(int i = 0; i < 3; i++)
+			//Integer.parseInt(parsedDate[i]);
 		String formatedDate = parsedDate[2];
 		formatedDate += "-" + parsedDate[1] + "-" + parsedDate[0];
 		System.out.println(formatedDate);

@@ -18,7 +18,6 @@
 	-fx-background-size: 100% 100%      
 }
 
-
 .button:pressed {
 	-fx-background-image: url("/resources/images/exit_clicked.png");
 	-fx-background-position: left top, center;

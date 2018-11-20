@@ -8,7 +8,6 @@
 	-fx-background-size: 100% 100%
 }
 
-
 .root3 {
 	-fx-background-color:
 		linear-gradient(#DF7401, #DF7401),
@@ -36,17 +35,14 @@
 	    -fx-text-fill: #DF7401;
 }
 
-
 .root6 {
 	-fx-background-image: url("/resources/images/background_3.png");
 	-fx-background-size: 100% 100%
 }
-
 .root7 {
 	-fx-background-image: url("/resources/images/background_4.png");
 	-fx-background-size: 100% 100%
 }
-
 
 .root8 {
 	-fx-background-image: url("/resources/images/background_5.png");
