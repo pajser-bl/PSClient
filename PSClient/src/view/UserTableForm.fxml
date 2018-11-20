@@ -58,7 +58,11 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="202.0" prefWidth="200.0">
                      <children>
+<<<<<<< HEAD
                         <Button maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Izbriši nalog" textAlignment="CENTER">
+=======
+                        <Button fx:id="deleteUserButton" onAction="#deleteUser" maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="profilbutton" stylesheets="@/css/profile_button.css" text="Izbriši nalog" textAlignment="CENTER">
+>>>>>>> branch 'master' of https://github.com/pajser-bl/PSClient
                            <font>
                               <Font size="20.0" />
                            </font>
