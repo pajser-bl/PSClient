@@ -249,7 +249,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1190.0">
                                  <children>
-                                    <Button fx:id="createNewUser" maxWidth="162.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="30.0" prefWidth="162.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Potvrdi">
+                                    <Button fx:id="createNewUser" defaultButton="true" maxWidth="162.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="30.0" prefWidth="162.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Potvrdi">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
