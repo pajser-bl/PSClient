@@ -36,7 +36,7 @@ public class LoginController{
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
 					Client.login = true;
 					if(reply.get(4).equals("Operater")) {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperatorForm.fxml"));
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"));
 						Scene userScene = new Scene(userView);
 						mainStage.setScene(userScene);
 					}
