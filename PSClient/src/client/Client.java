@@ -13,6 +13,7 @@ public class Client extends Application {
 	
 	public static ClientCommunication clientCommunication;
 	public static User user;
+	public static boolean login = false;
 		
 	public void start(Stage primaryStage) {
 		try {
@@ -33,15 +34,15 @@ public class Client extends Application {
 	public static void logout(Stage primaryStage) {
 		if(clientCommunication != null) {
 			if(clientCommunication.getSocket() != null) {
-				if(clientCommunication.getSocket().isConnected()) {
+				if(clientCommunication.getSocket().isConnected() && Client.login == true) {
 					if(ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?") == true)
 						try {
 							RequestFunctionality.logout(Client.clientCommunication, Client.user.getUserId());
-						//Client.clientCommunication.getSocket().close();
-						//System.out.println("Javis eseee");
-						primaryStage.close();
+							Client.clientCommunication.getSocket().close();
+							primaryStage.close();
 						} catch(Exception e) {
 							MessageBox.displayMessage("Greska", "Greska kod logouta");
+							primaryStage.close();
 						}
 				} else primaryStage.close();
 			} else primaryStage.close();
