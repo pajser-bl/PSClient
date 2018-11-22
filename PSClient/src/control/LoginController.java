@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import utility.MessageBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginController{
@@ -24,19 +25,17 @@ public class LoginController{
 		@FXML Button loginButton;
 		
 		public void login(ActionEvent loginEvent) {
+			Node source = (Node) loginEvent.getSource();
+			Stage mainStage = (Stage) source.getScene().getWindow();
 			try {
-				Client.clientCommunication = new ClientCommunication("192.168.3.110", 9000);
+				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
-					Node source = (Node) loginEvent.getSource();
-					Stage mainStage = (Stage) source.getScene().getWindow();
 					if(reply.get(4).equals("Operater")) {
-						System.out.println("1111111");
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperatorForm.fxml"));
 						Scene userScene = new Scene(userView);
 						mainStage.setScene(userScene);
-						System.out.println("2222222");
 					}
 					else {
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
@@ -51,6 +50,10 @@ public class LoginController{
 					Client.clientCommunication.getSocket().close();
 					MessageBox.displayMessage("Greska", reply.get(1));
 				}
+			} catch(IOException e) {
+				e.printStackTrace();
+				MessageBox.displayMessage("Greska", "Loadanje FXML-a nije uspjelo");
+				Client.logout(mainStage);
 			} catch(Exception e) {
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
 			}
