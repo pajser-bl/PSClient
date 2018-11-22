@@ -59,7 +59,7 @@ public class UserTableController implements Initializable{
 	public void showUser(ActionEvent event) {
 		try {
 			User user = (User) userTable.getSelectionModel().getSelectedItem();
-			Parent profileView = FXMLLoader.load(getClass().getResource("/view/OperatorForm.fxml"));
+			Parent profileView = FXMLLoader.load(getClass().getResource("/view/ProfilForm.fxml"));
 			Scene profileScene = new Scene(profileView);
 			Stage profileWindow = new Stage();
 			profileWindow.setScene(profileScene);

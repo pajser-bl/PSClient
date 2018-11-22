@@ -12,6 +12,8 @@ public class ProfilController{
 	@FXML static Label type;
 	
 	public static void showProfile(String nameInput, String lastNameInput, String usernameInput, String qulaificationInput, String typeInput) {
+		System.out.println(name.getText());
+		System.out.println(nameInput);
 		name.setText(nameInput);
 		lastName.setText(lastNameInput);
 		username.setText(usernameInput);
