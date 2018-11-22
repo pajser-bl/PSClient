@@ -47,8 +47,8 @@ public class LoginController{
 					mainStage.setMaximized(true);
 					mainStage.show();
 				} else {
-					Client.clientCommunication.getSocket().close();
 					MessageBox.displayMessage("Greska", reply.get(1));
+					Client.logout(mainStage);
 				}
 			} catch(IOException e) {
 				e.printStackTrace();
