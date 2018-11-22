@@ -82,7 +82,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button maxHeight="66.0" maxWidth="173.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
+                              <Button fx:id="ProfileButton"  onAction="#showUser" maxHeight="66.0" maxWidth="173.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
