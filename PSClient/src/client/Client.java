@@ -36,8 +36,9 @@ public class Client extends Application {
 				if(clientCommunication.getSocket().isConnected()) {
 					if(ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?") == true)
 						try {
-						RequestFunctionality.logout(Client.clientCommunication, Client.user.getUserId());
-						Client.clientCommunication.getSocket().close();
+							RequestFunctionality.logout(Client.clientCommunication, Client.user.getUserId());
+						//Client.clientCommunication.getSocket().close();
+						//System.out.println("Javis eseee");
 						primaryStage.close();
 						} catch(Exception e) {
 							MessageBox.displayMessage("Greska", "Greska kod logouta");

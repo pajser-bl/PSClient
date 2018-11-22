@@ -30,6 +30,8 @@ public class LoginController{
 			try {
 				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
+				for(int i = 0; i < reply.size(); i++)
+					System.out.println(reply.get(i));
 				if(reply.get(0).equals("LOGIN OK")) {
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
 					if(reply.get(4).equals("Operater")) {
@@ -55,7 +57,9 @@ public class LoginController{
 				MessageBox.displayMessage("Greska", "Loadanje FXML-a nije uspjelo");
 				Client.logout(mainStage);
 			} catch(Exception e) {
+				e.printStackTrace();
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
+				Client.logout(mainStage);
 			}
 		}
 }
