@@ -41,9 +41,21 @@
 }
 
 .table-row-cell:selected {
-	-fx-background-color: #051521 ;
+	-fx-background-color: #7DB028;
 	-fx-background-insets: 0;
 	-fx-background-radius: 1;
+}
+
+ .table-row-cell:odd .text {
+       -fx-fill: #8FB6C5;
+}
+
+ .table-row-cell:even .text {
+       -fx-fill: #8FB6C5;
+}
+
+ .table-row-cell:selected .text {
+       -fx-fill: #072830;
 }
 
 .table-view > .column-header-background > .show-hide-columns-button {

@@ -25,7 +25,7 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				Client.clientCommunication = new ClientCommunication("192.168.0.70", 9000);
+				Client.clientCommunication = new ClientCommunication("192.168.3.110", 9000);
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));

@@ -190,7 +190,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="202.0" prefWidth="200.0">
                      <children>
-                        <Button maxHeight="75.0" maxWidth="167.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="167.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Izbriši nalog" textAlignment="CENTER">
+                        <Button contentDisplay="CENTER" maxHeight="75.0" maxWidth="179.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="179.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Dodaj novu" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font></Button>
@@ -198,7 +198,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="changePasswordButton" maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" onAction="#passwordChange" prefHeight="30.0" prefWidth="180.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Promjeni šifru" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="changePasswordButton" maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" onAction="#passwordChange" prefHeight="30.0" prefWidth="180.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -207,15 +207,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Button maxHeight="66.0" maxWidth="173.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="173.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                      </children></HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />

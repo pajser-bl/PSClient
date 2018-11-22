@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class PasswordChangeBox {
 
-	private static TextField pswField;
+	private static TextField pswField = new TextField();
 	
 	public static void passwordChange() {
 		Stage window = new Stage();
@@ -60,7 +60,7 @@ public class PasswordChangeBox {
 		else {
 			ArrayList<String> reply = RequestFunctionality.changePassword(Client.clientCommunication, Client.user.getUserId(),
 																		  pswField.getText());
-			if(reply.get(0).equals("CHANGE PASSWORD FAIELD"))
+			if(reply.get(0).equals("CHANGE PASSWORD FAILED"))
 				MessageBox.displayMessage("Greska", reply.get(1));
 			else MessageBox.displayMessage("Potvrda" , "Lozinka uspjesno promjenjena.");
 		}
