@@ -40,14 +40,15 @@ public class UserTableController implements Initializable{
 	public void deleteUser(ActionEvent event) {
 		ArrayList<String> reply = RequestFunctionality.deleteUser(Client.clientCommunication,
 																  userTable.getSelectionModel().getSelectedItem().getUserId());
-		if(reply.get(0) == "DELETE USER OK") {
-			AdministratorController.getUsers().remove(userTable.getSelectionModel().getSelectedItem());
+		if(reply.get(0).equals("DELETE USER OK")) {
+			AdministratorController.getUsers().remove(userTable.getSelectionModel().getSelectedItem().getUserId());
+			userTable.setItems(AdministratorController.getUsers());
 			MessageBox.displayMessage("Administrator", "Korisnik uspjesno obrisan");
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
 	public void passwordChange(ActionEvent event) {
-		PasswordChangeBox.passwordChange();
+		PasswordChangeBox.passwordChange(userTable.getSelectionModel().getSelectedItem().getUserId());
 	}
 	
 	public TableView<User> getUserTable() {

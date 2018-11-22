@@ -29,12 +29,12 @@ public class LoginController{
 			Stage mainStage = (Stage) source.getScene().getWindow();
 			try {
 				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
-				Client.login = true;
 				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
 				for(int i = 0; i < reply.size(); i++)
 					System.out.println(reply.get(i));
 				if(reply.get(0).equals("LOGIN OK")) {
 					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
+					Client.login = true;
 					if(reply.get(4).equals("Operater")) {
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperatorForm.fxml"));
 						Scene userScene = new Scene(userView);
