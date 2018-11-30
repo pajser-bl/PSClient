@@ -121,9 +121,9 @@
                               <Insets left="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="name" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="lastName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="username" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="name" GridPane.columnIndex="1" />
+                        <Label fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Tip korisnika:" textFill="#21947b" GridPane.rowIndex="3">
                            <font>
                               <Font size="20.0" />
@@ -148,8 +148,8 @@
                               <Insets left="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="type" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="qualification" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="type" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="qualification" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />

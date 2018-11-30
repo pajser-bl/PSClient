@@ -20,6 +20,7 @@ public class Client extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setTitle("Road Runner");
+			primaryStage.setResizable(false);
 			primaryStage.setOnCloseRequest(e -> {
 				e.consume();
 				logout(primaryStage);

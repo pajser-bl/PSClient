@@ -53,6 +53,13 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
+	public static ArrayList<String> getUser(ClientCommunication clientCommunication, String userId){
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(userId);
+		Request request = new Request("VIEW USER", arguments);
+		return clientCommunication.sendRequest(request);
+	}
+	
 	public static ArrayList<String> getUsers(ClientCommunication clientCommunication, String userId){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);

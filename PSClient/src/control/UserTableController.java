@@ -3,6 +3,10 @@ package control;
 import client.Client;
 import client.RequestFunctionality;
 import client.User;
+import exception.EmptyFieldException;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -58,14 +62,22 @@ public class UserTableController implements Initializable{
 	
 	public void showUser(ActionEvent event) {
 		try {
-			User user = (User) userTable.getSelectionModel().getSelectedItem();
-			Parent profileView = FXMLLoader.load(getClass().getResource("/view/ProfilForm.fxml"));
+			if(userTable.getSelectionModel().isEmpty())
+				throw (new EmptyFieldException());
+			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
+			ArrayList<String> reply = RequestFunctionality.getUser(Client.clientCommunication, id);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfilForm.fxml"));
+			
+			Parent profileView = loader.load();
+			ProfilController p = loader.getController();
+			p.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
 			Scene profileScene = new Scene(profileView);
 			Stage profileWindow = new Stage();
 			profileWindow.setScene(profileScene);
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
-			ProfilController.showProfile(user.getName(), user.getLastName(), user.getUserName(), "asdasdas", user.getType());
 			profileWindow.show();
+		} catch (EmptyFieldException e) {
+			MessageBox.displayMessage("Greska", "Odaberite Korisnika");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
