@@ -228,28 +228,25 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="intervencije" mnemonicParsing="false" styleClass="aktivnikorisnicibutton" stylesheets="@../css/supervisor_active_users_button.css" />
+                  <Button fx:id="intervencije" mnemonicParsing="false" styleClass="stanjebutton" stylesheets="@../css/field_techician_state_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="mapa" mnemonicParsing="false" styleClass="klijentibutton" stylesheets="@../css/supervisor_clients_button.css" />
+                  <Button fx:id="mapa" mnemonicParsing="false" styleClass="mapabutton" stylesheets="@../css/field_techician_map_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="91.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="sesije" mnemonicParsing="false" styleClass="Ssesijebutton" stylesheets="@../css/supervisor_sessions_button.css" />
+                  <Button fx:id="vozila" mnemonicParsing="false" styleClass="reportbutton" stylesheets="@../css/field_technician_field_report_button.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="vozila" mnemonicParsing="false" styleClass="Sintervencijabutton" stylesheets="@../css/supervisor_interventions_button.css" />
+                  <Button mnemonicParsing="false" styleClass="sesijabutton" stylesheets="@../css/field_tehnician_session_button.css" />
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0">
-               <children>
-                  <Button mnemonicParsing="false" styleClass="pregledajizjestajebutton" stylesheets="@../css/supervisor_view_reports_button.css" />
-               </children></VBox>
+            <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
          </children>
       </VBox>

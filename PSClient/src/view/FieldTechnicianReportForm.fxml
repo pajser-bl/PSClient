@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="800.0" maxWidth="794.0" minHeight="950.0" minWidth="794.0" prefHeight="800.0" prefWidth="794.0" styleClass="root7" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Pane prefHeight="30.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="793.0">
+               <children>
+                  <Label prefHeight="45.0" prefWidth="254.0" text="Terenski izvještaj" textAlignment="CENTER" textFill="#2a90a8">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children></Pane>
+   </top>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <VBox prefHeight="1026.4" prefWidth="538.4" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="133.0" prefWidth="539.0">
+               <children>
+                  <GridPane prefHeight="122.0" prefWidth="538.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="173.7333923339844" prefWidth="259.0000244140625" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="20.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="ID intervencije:" textFill="#21947b" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Datum:" textFill="#21947b" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Vrijeme:" textFill="#21947b" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="36.0" prefWidth="278.0" text="--------------------------" textFill="#2a90a8" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Label" textFill="#21947b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Label" textFill="#21947b" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Label" textFill="#21947b" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="142.0" prefWidth="539.0">
+               <children>
+                  <GridPane prefHeight="130.0" prefWidth="539.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="362.79999389648435" prefWidth="972.9333404541015" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane prefHeight="110.0" prefWidth="540.0" GridPane.rowIndex="1">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Registarski broj:" textFill="#21947b">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Proizvođač:" textFill="#21947b" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Godina proizvodnje:" textFill="#21947b" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="36.0" prefWidth="271.0" text="--------------------------" textFill="#2a90a8" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Label" textFill="#21947b" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Label" textFill="#21947b" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Label" textFill="#21947b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Vrsta usluge:" textFill="#21947b" GridPane.rowIndex="3">
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="45.0" prefWidth="200.0" styleClass="combo-box" stylesheets="@../css/combo_box.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                        <Label prefHeight="22.0" prefWidth="218.0" text="Podaci o vozilu:" textFill="#2a90a8">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="481.0" prefWidth="538.0">
+               <children>
+                  <GridPane prefHeight="337.0" prefWidth="767.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="362.79999389648435" prefWidth="972.9333404541015" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="724.5999835968017" minHeight="10.0" prefHeight="285.3333740234375" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="275.1999877929687" minHeight="39.46662597656251" prefHeight="39.46662597656251" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="275.1999877929687" minHeight="50.0" prefHeight="60.40001220703121" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Opis problema:" textFill="#2a90a8">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Button maxWidth="195.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="195.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pošalji" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <ScrollPane prefHeight="87.0" prefWidth="539.0" styleClass="scroll-bar" stylesheets="@../css/scroll_bar.css" GridPane.rowIndex="1">
+                           <content>
+                              <TextArea prefHeight="198.0" prefWidth="731.0" style="-fx-background-color: #081128;" styleClass="content" stylesheets="@../css/text_area.css" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

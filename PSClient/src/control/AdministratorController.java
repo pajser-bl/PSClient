@@ -41,7 +41,7 @@ public class AdministratorController implements Initializable{
 	
 	public void addNewUser(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/AdministratorAddNewUserForm.fxml"));
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
@@ -64,7 +64,7 @@ public class AdministratorController implements Initializable{
 			}
 		}
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/UserTableForm.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/AdministratorUserTableForm.fxml"));
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
