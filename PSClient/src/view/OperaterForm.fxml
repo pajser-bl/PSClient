@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -136,6 +137,9 @@
                </children>
             </HBox>
          </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="50.0" radius="24.5" width="50.0" />
+         </effect>
       </HBox>
    </top>
    <left>
@@ -249,6 +253,9 @@
             <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
          </children>
+         <effect>
+            <DropShadow height="0.0" radius="4.75" />
+         </effect>
       </VBox>
    </left>
    <right>
@@ -266,6 +273,9 @@
                </children>
             </VBox>
          </children>
+         <effect>
+            <DropShadow height="0.0" radius="4.75" />
+         </effect>
       </VBox>
    </right>
    <center>
