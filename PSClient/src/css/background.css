@@ -54,6 +54,10 @@
 	-fx-background-size: 100% 100%
 }
 
+.root10 {
+	-fx-background-image: url("/resources/images/3.png");
+	-fx-background-size: 100% 100%
+}
 
 .split-pane-divider {
 	-fx-padding: 0 1 0 1 ;
