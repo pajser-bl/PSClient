@@ -1,7 +1,7 @@
 //ispod je kod koji omogucava da ivice svijetle
 //treba da se uklone i ivice od prozora
 
-package control;
+/*package control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,4 +55,4 @@ package control;
 
 public class NotificationController {
 
-}
+}*/
