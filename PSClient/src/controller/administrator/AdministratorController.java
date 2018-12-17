@@ -1,4 +1,4 @@
-package control;
+package controller.administrator;
 
 import client.User;
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ public class AdministratorController {
 	@FXML Button addNewUserButton;
 	@FXML Button showUsers;
 	@FXML Button logoutButton;
+	@FXML Button refreshButton;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML AnchorPane anchor;
@@ -36,8 +37,7 @@ public class AdministratorController {
 	
 	public void addNewUser(ActionEvent event) {
 		try {
-			AdministratorResources adminResources = new AdministratorResources(resources, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"), adminResources);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"));
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
@@ -59,7 +59,8 @@ public class AdministratorController {
 			}
 		}
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/UserTableForm.fxml"));
+			AdministratorResources adminResources = new AdministratorResources(resources, users);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/UserTableForm.fxml"), adminResources);
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);

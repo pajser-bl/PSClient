@@ -1,4 +1,4 @@
-package control;
+package controller;
 
 import client.ClientCommunication;
 import client.User;
@@ -29,12 +29,12 @@ public class LoginController{
 				if(reply.get(0).equals("LOGIN OK")) {
 					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
 					if(reply.get(4).equals("Operater")) {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"), resources);
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/operater/OperaterForm.fxml"), resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);
-					}
-					else {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"), resources);
+					} else {
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/administrator/AdministratorForm.fxml"), 
+								resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);
 					}
@@ -46,10 +46,10 @@ public class LoginController{
 					resources.getClientCommunication().closeConnection();
 					MessageBox.displayMessage("Greska", reply.get(1));
 				}
-			} catch(ConnectionTimeoutException e) {
+			} catch (ConnectionTimeoutException e) {
 				e.printStackTrace();
 				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena.");
-			} catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				resources.getClientCommunication().closeConnection();
 			}

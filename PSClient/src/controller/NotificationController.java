@@ -1,3 +1,4 @@
+package controller;
 //ispod je kod koji omogucava da ivice svijetle
 //treba da se uklone i ivice od prozora
 

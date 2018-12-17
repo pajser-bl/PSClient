@@ -28,8 +28,7 @@ public class Client extends Application {
 			mainStage.setTitle("Road Runner");
 			mainStage.setResizable(false);
 			mainStage.show();
-		}
-		catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
