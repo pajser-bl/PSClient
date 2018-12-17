@@ -1,4 +1,4 @@
-package controller;
+package controller.operater;
 
 import utility.ChoiceBox;
 import utility.ClientResources;
@@ -44,7 +44,7 @@ public class OperaterController {
 	
 	public void showInterventions(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/OperaterInterventionsForm.fxml"), resources);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), resources);
 			anchor.getChildren().add(root);
 		} catch(Exception e) {
 			e.printStackTrace();
