@@ -60,6 +60,11 @@ public class RequestFunctionality {
 		return clientCommunication.sendRequest(request);
 	}
 	
+	public static ArrayList<String> viewActiveUsers(ClientCommunication clientCommunication){
+		Request request = new Request("VIEW ACTIVE USERS", null);
+		return clientCommunication.sendRequest(request);
+	}
+	
 	public static ArrayList<String> getUsers(ClientCommunication clientCommunication, String userId){
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);

@@ -17,7 +17,7 @@ public class Client extends Application {
 		
 	public void start(Stage primaryStage) {
 		try {
-		Parent root = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.setTitle("Road Runner");
 			primaryStage.setResizable(false);

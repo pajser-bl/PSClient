@@ -18,49 +18,73 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoginController{
+public class LoginController {
 
-		@FXML TextField username;
-		@FXML PasswordField password;
-		@FXML Button loginButton;
-		
-		public void login(ActionEvent loginEvent) {
-			Node source = (Node) loginEvent.getSource();
-			Stage mainStage = (Stage) source.getScene().getWindow();
-			try {
-				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
-				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
-				for(int i = 0; i < reply.size(); i++)
-					System.out.println(reply.get(i));
-				if(reply.get(0).equals("LOGIN OK")) {
-					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
-					Client.login = true;
-					if(reply.get(4).equals("Operater")) {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"));
-						Scene userScene = new Scene(userView);
-						mainStage.setScene(userScene);
-					}
-					else {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
-						Scene userScene = new Scene(userView);
-						mainStage.setScene(userScene);
-					}
-					mainStage.hide();
-					mainStage.setResizable(false);
-					mainStage.setMaximized(true);
-					mainStage.show();
-				} else {
-					MessageBox.displayMessage("Greska", reply.get(1));
-					Client.logout(mainStage);
+	@FXML
+	TextField username;
+	@FXML
+	PasswordField password;
+	@FXML
+	Button loginButton;
+
+	public void login(ActionEvent loginEvent) {
+		Node source = (Node) loginEvent.getSource();
+		Stage mainStage = (Stage) source.getScene().getWindow();
+		try {
+			Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
+			ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(),
+					password.getText());
+			for (int i = 0; i < reply.size(); i++)
+				System.out.println(reply.get(i));
+			if (reply.get(0).equals("LOGIN OK")) {
+				Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
+				Client.login = true;
+				// if(.equals("Operater")) {
+				switch (reply.get(4)) {
+				case "Operater": {
+					Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"));
+					Scene userScene = new Scene(userView);
+					mainStage.setScene(userScene);
+					break;
 				}
-			} catch(IOException e) {
-				e.printStackTrace();
-				MessageBox.displayMessage("Greska", "Loadanje FXML-a nije uspjelo");
-				Client.logout(mainStage);
-			} catch(Exception e) {
-				e.printStackTrace();
-				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
+				// else if(reply.get(4).equals("Administrator")){
+				case "Administrator": {
+					Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
+					Scene userScene = new Scene(userView);
+					mainStage.setScene(userScene);
+					break;
+				}
+				// else if(reply.get(4).equals("Supervizor")){
+				case "Supervizor": {
+					Parent userView = FXMLLoader.load(getClass().getResource("/view/SupervisorForm.fxml"));
+					Scene userScene = new Scene(userView);
+					mainStage.setScene(userScene);
+					break;
+				}
+				// else if(reply.get(4).equals("Terenski radnik")){
+				case "Terenski radnik": {
+					Parent userView = FXMLLoader.load(getClass().getResource("/view/FieldTechnicianForm.fxml"));
+					Scene userScene = new Scene(userView);
+					mainStage.setScene(userScene);
+					break;
+				}
+				}
+				mainStage.hide();
+				mainStage.setResizable(false);
+				mainStage.setMaximized(true);
+				mainStage.show();
+			} else {
+				MessageBox.displayMessage("Greska", reply.get(1));
 				Client.logout(mainStage);
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			MessageBox.displayMessage("Greska", "Loadanje FXML-a nije uspjelo");
+			Client.logout(mainStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
+			Client.logout(mainStage);
 		}
+	}
 }
