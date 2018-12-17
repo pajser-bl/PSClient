@@ -1,11 +1,13 @@
-package control;
+package controller.operater;
 
 import utility.ChoiceBox;
 import utility.ClientResources;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import client.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ public class OperaterController {
 	@FXML Button vehiclesButton;
 	@FXML Button helpButton;
 	@FXML Button logoutButton;
+	@FXML BorderPane mainLayout;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML AnchorPane anchor;
@@ -41,7 +44,7 @@ public class OperaterController {
 	
 	public void showInterventions(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/OperaterInterventionsForm.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), resources);
 			anchor.getChildren().add(root);
 		} catch(Exception e) {
 			e.printStackTrace();

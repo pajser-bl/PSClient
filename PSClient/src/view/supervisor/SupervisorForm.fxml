@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.OperaterController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1200.0" styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SupervisorController">
    <top>
       <HBox prefHeight="143.0" prefWidth="1200.0" styleClass="root" stylesheets="@/css/background.css" BorderPane.alignment="CENTER">
          <children>
@@ -84,12 +84,12 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label text="Ime:" textFill="#19715f">
+                                                <Label fx:id="name" text="Ime:" textFill="#19715f">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Prezime" textFill="#19715f" GridPane.rowIndex="1">
+                                                <Label fx:id="lastName" text="Prezime" textFill="#19715f" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -138,7 +138,7 @@
             </HBox>
          </children>
          <effect>
-            <DropShadow blurType="GAUSSIAN" height="50.0" radius="24.5" width="50.0" />
+            <DropShadow height="50.0" radius="24.5" width="50.0" />
          </effect>
       </HBox>
    </top>
@@ -232,25 +232,28 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="intervencije" mnemonicParsing="false" styleClass="intervencijabutton" stylesheets="@../css/operater_interventions_button.css" />
+                  <Button fx:id="activeUsers" onAction="#showActiveUsers" mnemonicParsing="false" styleClass="aktivnikorisnicibutton" stylesheets="@../css/supervisor_active_users_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="mapa" mnemonicParsing="false" styleClass="mapabutton" stylesheets="@../css/operater_map_button.css" />
+                  <Button fx:id="mapa" mnemonicParsing="false" styleClass="klijentibutton" stylesheets="@../css/supervisor_clients_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="91.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="sesije" mnemonicParsing="false" styleClass="sesijabutton" stylesheets="@../css/operater_session_button.css" />
+                  <Button fx:id="sesije" mnemonicParsing="false" styleClass="Ssesijebutton" stylesheets="@../css/supervisor_sessions_button.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="vozila" mnemonicParsing="false" styleClass="vozilabutton" stylesheets="@../css/operater_vehicle_button.css" />
+                  <Button fx:id="vozila" mnemonicParsing="false" styleClass="Sintervencijabutton" stylesheets="@../css/supervisor_interventions_button.css" />
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
+            <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="pregledajizjestajebutton" stylesheets="@../css/supervisor_view_reports_button.css" />
+               </children></VBox>
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
          </children>
          <effect>
@@ -259,7 +262,7 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="root" stylesheets="@../css/background.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" styleClass="root" stylesheets="@./css/background.css" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="180.0" prefWidth="100.0" spacing="5.0" />
             <VBox prefHeight="73.0" prefWidth="120.0">
@@ -269,12 +272,12 @@
             </VBox>
             <VBox prefHeight="50.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@../css/exit_button.css" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@../css/exit_button.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="300.0" prefHeight="50.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="logoutButton1" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../css/refresh_button.css" />
+                  <Button fx:id="refreshButton" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../css/refresh_button.css" />
                </children>
             </VBox>
          </children>

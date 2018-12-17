@@ -69,5 +69,4 @@ public class ClientResources extends ResourceBundle{
 	public Enumeration<String> getKeys() {
 		return null;
 	}
-
 }

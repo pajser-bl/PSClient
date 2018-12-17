@@ -1,6 +1,7 @@
-package control;
+package controller.administrator;
 
 import client.User;
+import controller.ProfilController;
 import exception.EmptyFieldException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -60,7 +61,6 @@ public class UserTableController {
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
 			ArrayList<String> reply = resources.getClientCommunication().getUser(id);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfilForm.fxml"));
-			
 			Parent profileView = loader.load();
 			ProfilController controller = loader.getController();
 			controller.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
