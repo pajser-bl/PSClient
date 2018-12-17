@@ -1,19 +1,11 @@
 package control;
 
-import client.Client;
-import client.RequestFunctionality;
 import client.User;
 import exception.EmptyFieldException;
-
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,16 +14,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utility.AdministratorResources;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
 
-public class UserTableController implements Initializable{
+public class UserTableController {
 
 	@FXML TableView<User> userTable;
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
+	@FXML AdministratorResources resources;
 	
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	public void initialize() {
 		TableColumn<User, String> idColumn = new TableColumn<User, String>("ID");
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		TableColumn<User, String> nameColumn = new TableColumn<User, String>("Ime");
@@ -43,21 +37,20 @@ public class UserTableController implements Initializable{
 		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, userNameColumn, typeColumn);
-		userTable.setItems(AdministratorController.getUsers());
+		userTable.setItems(resources.getObservableUsers());
 	}
 	
 	public void deleteUser(ActionEvent event) {
-		ArrayList<String> reply = RequestFunctionality.deleteUser(Client.clientCommunication,
-																  userTable.getSelectionModel().getSelectedItem().getUserId());
+		ArrayList<String> reply = resources.getClientCommunication().deleteUser(userTable.getSelectionModel().getSelectedItem().getUserId());
 		if(reply.get(0).equals("DELETE USER OK")) {
-			AdministratorController.getUsers().remove(userTable.getSelectionModel().getSelectedItem().getUserId());
-			userTable.setItems(AdministratorController.getUsers());
+			resources.getUsers().remove(userTable.getSelectionModel().getSelectedItem());
+			userTable.setItems(resources.getObservableUsers());
 			MessageBox.displayMessage("Administrator", "Korisnik uspjesno obrisan");
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
 	public void passwordChange(ActionEvent event) {
-		PasswordChangeBox.passwordChange(userTable.getSelectionModel().getSelectedItem().getUserId());
+		PasswordChangeBox.passwordChange(userTable.getSelectionModel().getSelectedItem().getUserId(), resources);
 	}
 	
 	public void showUser(ActionEvent event) {
@@ -65,12 +58,12 @@ public class UserTableController implements Initializable{
 			if(userTable.getSelectionModel().isEmpty())
 				throw (new EmptyFieldException());
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
-			ArrayList<String> reply = RequestFunctionality.getUser(Client.clientCommunication, id);
+			ArrayList<String> reply = resources.getClientCommunication().getUser(id);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfilForm.fxml"));
 			
 			Parent profileView = loader.load();
-			ProfilController p = loader.getController();
-			p.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
+			ProfilController controller = loader.getController();
+			controller.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
 			Scene profileScene = new Scene(profileView);
 			Stage profileWindow = new Stage();
 			profileWindow.setScene(profileScene);

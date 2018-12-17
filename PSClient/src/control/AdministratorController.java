@@ -1,30 +1,20 @@
 package control;
 
-import client.Client;
-import client.RequestFunctionality;
 import client.User;
-
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import utility.AdministratorResources;
 import utility.ChoiceBox;
+import utility.ClientResources;
 import utility.MessageBox;
 
-public class AdministratorController implements Initializable{
+public class AdministratorController {
 
 	@FXML Button addNewUserButton;
 	@FXML Button showUsers;
@@ -32,28 +22,33 @@ public class AdministratorController implements Initializable{
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML AnchorPane anchor;
-	private static ArrayList<User> users = new ArrayList<User>();
+	@FXML ClientResources resources;
+	private ArrayList<User> users = new ArrayList<User>();
 
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		name.setText("Ime:" + Client.user.getName());
-		lastName.setText("Prezime: " + Client.user.getLastName());
+	@FXML public void initialize() {
+		name.setText("Ime:" + resources.getUser().getName());
+		lastName.setText("Prezime: " + resources.getUser().getLastName());
+		resources.getStage().setOnCloseRequest(e -> {
+			e.consume();
+			close();
+		});
 	}
 	
 	public void addNewUser(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"));
+			AdministratorResources adminResources = new AdministratorResources(resources, users);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"), adminResources);
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void showUsers(ActionEvent event) {
 		if(users.isEmpty()) {
-			ArrayList<String> reply = RequestFunctionality.getUsers(Client.clientCommunication, Client.user.getUserId());
+			ArrayList<String> reply = resources.getClientCommunication().getUsers(resources.getUser().getUserId());
 			if(reply.get(0).equals("VIEW USERS NOT OK"))
 				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
 			else {
@@ -68,18 +63,21 @@ public class AdministratorController implements Initializable{
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void logout(ActionEvent logout) {
-		Node source = (Node) logout.getSource();
-		Stage mainStage = (Stage) source.getScene().getWindow();
-		Client.logout(mainStage);
+
+	public void logout(ActionEvent event) {
+		close();
 	}
 	
-	public static ObservableList<User> getUsers() {
-		return FXCollections.observableArrayList(users);
+	public void close() {
+		boolean answer = ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?");
+		if(answer) {
+			resources.getClientCommunication().logout(resources.getUser().getUserId());
+			resources.getClientCommunication().closeConnection();
+			resources.getStage().hide();
+		}
 	}
 }

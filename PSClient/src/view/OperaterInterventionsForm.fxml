@@ -142,7 +142,7 @@
 </BorderPane>
 -->
 
-<BorderPane maxHeight="900.0" maxWidth="1400.0" minHeight="900.0" minWidth="1400.0" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.UserTableController">
+<BorderPane maxHeight="900.0" maxWidth="1400.0" minHeight="900.0" minWidth="1400.0" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.InterventionsController">
    <right>
       <GridPane prefHeight="798.0" prefWidth="1799.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -198,7 +198,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="changePasswordButton" maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" onAction="#passwordChange" prefHeight="30.0" prefWidth="180.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="changePasswordButton" maxHeight="66.0" maxWidth="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -1,21 +1,18 @@
 package control;
 
-import client.Client;
 import client.ClientCommunication;
 import client.User;
-import client.RequestFunctionality;
+import exception.ConnectionTimeoutException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import utility.ClientResources;
 import utility.MessageBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginController{
@@ -23,44 +20,38 @@ public class LoginController{
 		@FXML TextField username;
 		@FXML PasswordField password;
 		@FXML Button loginButton;
+		@FXML ClientResources resources;
 		
 		public void login(ActionEvent loginEvent) {
-			Node source = (Node) loginEvent.getSource();
-			Stage mainStage = (Stage) source.getScene().getWindow();
 			try {
-				Client.clientCommunication = new ClientCommunication("127.0.0.1", 9000);
-				ArrayList<String> reply = RequestFunctionality.login(Client.clientCommunication, username.getText(), password.getText());
-				for(int i = 0; i < reply.size(); i++)
-					System.out.println(reply.get(i));
+				resources.setClientCommunication(new ClientCommunication("192.168.0.176", 9000));
+				ArrayList<String> reply = resources.getClientCommunication().login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
-					Client.user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5));
-					Client.login = true;
+					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
 					if(reply.get(4).equals("Operater")) {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"));
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/OperaterForm.fxml"), resources);
 						Scene userScene = new Scene(userView);
-						mainStage.setScene(userScene);
+						resources.getStage().setScene(userScene);
 					}
 					else {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"));
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/AdministratorForm.fxml"), resources);
 						Scene userScene = new Scene(userView);
-						mainStage.setScene(userScene);
+						resources.getStage().setScene(userScene);
 					}
-					mainStage.hide();
-					mainStage.setResizable(false);
-					mainStage.setMaximized(true);
-					mainStage.show();
+					resources.getStage().hide();
+					resources.getStage().setResizable(false);
+					resources.getStage().setMaximized(true);
+					resources.getStage().show();
 				} else {
+					resources.getClientCommunication().closeConnection();
 					MessageBox.displayMessage("Greska", reply.get(1));
-					Client.logout(mainStage);
 				}
-			} catch(IOException e) {
+			} catch(ConnectionTimeoutException e) {
 				e.printStackTrace();
-				MessageBox.displayMessage("Greska", "Loadanje FXML-a nije uspjelo");
-				Client.logout(mainStage);
+				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena.");
 			} catch(Exception e) {
 				e.printStackTrace();
-				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena");
-				Client.logout(mainStage);
+				resources.getClientCommunication().closeConnection();
 			}
 		}
 }

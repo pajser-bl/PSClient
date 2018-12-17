@@ -2,13 +2,13 @@ package exception;
 
 public class DateException extends Exception{
 
-	private String error;
+	private String message;
 	
-	public DateException(String error) {
-		this.error = error;
+	public DateException(String message) {
+		this.message = message;
 	}
 	
 	public String toString() {
-		return error;
+		return message;
 	}
 }

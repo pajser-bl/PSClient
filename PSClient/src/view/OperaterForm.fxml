@@ -83,12 +83,12 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label text="Ime:" textFill="#19715f">
+                                                <Label fx:id="name" text="Ime:" textFill="#19715f">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Prezime" textFill="#19715f" GridPane.rowIndex="1">
+                                                <Label fx:id="lastName" text="Prezime" textFill="#19715f" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -228,22 +228,22 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="intervencije" mnemonicParsing="false" styleClass="intervencijabutton" stylesheets="@../css/interventions_button.css" />
+                  <Button fx:id="interventionsButton" onAction="#showInterventions" mnemonicParsing="false" styleClass="intervencijabutton" stylesheets="@../css/interventions_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="mapa" mnemonicParsing="false" styleClass="mapabutton" stylesheets="@../css/map_button.css" />
+                  <Button fx:id="mapButton" onAction="#showMap" mnemonicParsing="false" styleClass="mapabutton" stylesheets="@../css/map_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="91.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="sesije" mnemonicParsing="false" styleClass="sesijabutton" stylesheets="@../css/operater_session_button.css" />
+                  <Button fx:id="sessionButton" onAction="#showSession" mnemonicParsing="false" styleClass="sesijabutton" stylesheets="@../css/operater_session_button.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="vozila" mnemonicParsing="false" styleClass="vozilabutton" stylesheets="@../css/vehicle_button.css" />
+                  <Button fx:id="vehiclesButton" onAction="#showVehicles" mnemonicParsing="false" styleClass="vozilabutton" stylesheets="@../css/vehicle_button.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
@@ -262,13 +262,13 @@
             </VBox>
             <VBox prefHeight="50.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@/css/exit_button.css" />
+                  <Button fx:id="logoutButton" onAction="#logout" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@/css/exit_button.css" />
                </children>
             </VBox>
          </children>
       </VBox>
    </right>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
