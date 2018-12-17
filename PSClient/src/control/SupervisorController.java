@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import client.Client;
-import client.RequestFunctionality;
 import client.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utility.MessageBox;
 
-public class SupervisorController implements Initializable {
+/*public class SupervisorController implements Initializable {
 	@FXML
 	Label name;
 	@FXML Label lastName;
@@ -61,5 +60,4 @@ public class SupervisorController implements Initializable {
 		Stage mainStage = (Stage) source.getScene().getWindow();
 		Client.logout(mainStage);
 	}
-
-}
+}*/
