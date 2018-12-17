@@ -1,0 +1,7 @@
+.text_field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0,0,0;
+    -fx-text-fill: #164E5B;
+    -fx-prompt-text-fill: #263238;
+}

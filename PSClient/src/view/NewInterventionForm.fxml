@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" styleClass="root7" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="634.1333129882812" minWidth="380.0" prefWidth="634.1333129882812" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="505.8666870117188" prefWidth="505.8666870117188" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane alignment="CENTER" prefHeight="738.0" prefWidth="500.0" styleClass="root" stylesheets="@../application.css" GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="349.0" fitWidth="507.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Background5.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <GridPane hgap="5.0" prefHeight="738.0" prefWidth="609.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="310.0" prefWidth="310.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="241.33334350585943" prefWidth="241.33334350585943" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Informacije o klijentu:" textFill="#2a90a8">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Ime:" textFill="#21947b" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Prezime:" textFill="#21947b" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Broj telefona:" textFill="#21947b" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <TextField maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <Label text="Informacije o vozilu:" textFill="#2a90a8" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Registarski broj:" textFill="#21947b" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Proizvođač:" textFill="#21947b" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Model:" textFill="#21947b" GridPane.rowIndex="8">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Godina proizvodnje:" textFill="#21947b" GridPane.rowIndex="9">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <ComboBox maxHeight="45.0" maxWidth="200.0" minHeight="45.0" minWidth="200.0" prefHeight="45.0" prefWidth="200.0" promptText="Izaberi" styleClass="combo-box" stylesheets="@../css/combo_box.css" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <Label text="Terenski radnik" textFill="#21947b" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Potvrdi" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="185.0" layoutY="117.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <TextField layoutX="185.0" layoutY="258.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <TextField layoutX="185.0" layoutY="293.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <TextField layoutX="185.0" layoutY="258.0" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" styleClass="text_field" stylesheets="@../css/text_field.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </center>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <Pane prefHeight="30.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

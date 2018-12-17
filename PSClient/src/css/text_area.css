@@ -1,0 +1,6 @@
+.text-area .content{
+  -fx-highlight-fill: #0B4759  ;
+  -fx-highlight-text-fill: #071519;
+  -fx-text-fill: #0B4759;
+  -fx-background-color: #8AAAB3;
+}

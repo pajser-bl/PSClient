@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="294.79999389648435" minHeight="10.0" prefHeight="60.19999694824219" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="294.79999389648435" minHeight="10.0" prefHeight="135.20000152587892" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="294.79999389648435" minHeight="10.0" prefHeight="154.00000610351566" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="417.4000061035156" minHeight="10.0" prefHeight="285.9999938964844" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="621.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../resources/images/banner.png" />
+               </image>
+               <effect>
+                  <Reflection bottomOpacity="0.55" fraction="1.0" topOpacity="0.98" />
+               </effect>
+            </ImageView>
+            <GridPane GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="choicebutton" stylesheets="@../css/choice_green_button.css" text="Dostupan">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="choicebutton" stylesheets="@../css/choice_red_button.css" text="Nedostupan">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <GridPane prefHeight="81.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="36.0" prefWidth="96.0" text="Label" textFill="#21947b" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Vaše trenutno stanje je:" textFill="#21947b">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <Label prefHeight="99.0" prefWidth="600.0" text="Pritiskom na Dostupan/Nedostupan mijenjate svoje stanje aktivnosti." textFill="#21947b" wrapText="true" GridPane.rowIndex="1">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -85,7 +85,7 @@
          <children>
             <HBox alignment="BOTTOM_LEFT" prefHeight="38.0" prefWidth="67.0">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="69.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/images/login_logo.png" />
                      </image>

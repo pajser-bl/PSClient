@@ -1,10 +1,10 @@
-.pregledajbutton { 
+.klijentibutton{ 
 	-fx-background-radius: 5em; 
 	-fx-min-width:303px;
 	-fx-background-color: transparent;
-	-fx-background-image: url("/resources/images/view_users_default.png");
-	-fx-min-height: 101px;
-	-fx-max-width: 303px;
+	-fx-background-image: url("/resources/images/supervisor_clients_button_default.png");
+	-fx-min-height: 101px; 
+	-fx-max-width: 303px; 
 	-fx-max-height: 101px;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
@@ -12,14 +12,14 @@
 }
 
 .button:hover {
-	-fx-background-image: url("/resources/images/view_users_hover.png");
+	-fx-background-image: url("/resources/images/supervisor_clients_button_hover.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 100% 100%
+	-fx-background-size: 100% 100%      
 }
 
 .button:pressed {
-	-fx-background-image: url("/resources/images/view_users_clicked.png");
+	-fx-background-image: url("/resources/images/supervisor_clients_button_clicked.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 100% 100%

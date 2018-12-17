@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -136,6 +137,9 @@
                </children>
             </HBox>
          </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="50.0" radius="24.5" spread="0.21" width="50.0" />
+         </effect>
       </HBox>
    </top>
    <left>
@@ -194,18 +198,21 @@
                </children></VBox>
             <VBox prefHeight="75.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="addNewUserButton" mnemonicParsing="false" onAction="#addNewUser" styleClass="dodajbutton" stylesheets="@/css/add_new_user_button.css" />
+                  <Button fx:id="addNewUserButton" mnemonicParsing="false" onAction="#addNewUser" styleClass="dodajbutton" stylesheets="@../css/administrator_add_new_user_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="82.0" prefWidth="295.0">
                <children>
-                  <Button fx:id="showUsers" mnemonicParsing="false" onAction="#showUsers" styleClass="pregledajbutton" stylesheets="@/css/view_users.css" />
+                  <Button fx:id="showUsers" mnemonicParsing="false" onAction="#showUsers" styleClass="pregledajbutton" stylesheets="@../css/administrator_view_users.css" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="185.0" prefHeight="82.0" prefWidth="295.0" />
             <VBox layoutX="10.0" layoutY="268.0" prefHeight="91.0" prefWidth="295.0" />
          </children>
+         <effect>
+            <DropShadow height="0.0" radius="4.75" />
+         </effect>
       </VBox>
    </left>
    <right>
@@ -214,18 +221,26 @@
             <VBox prefHeight="180.0" prefWidth="100.0" spacing="5.0" />
             <VBox prefHeight="73.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="helpButton" mnemonicParsing="false" styleClass="helpbutton" stylesheets="@/css/help_button.css" />
+                  <Button fx:id="helpButton" mnemonicParsing="false" styleClass="helpbutton" stylesheets="@../css/help_button.css" />
                </children>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="120.0">
                <children>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@/css/exit_button.css" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@../css/exit_button.css" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="273.0" prefHeight="50.0" prefWidth="120.0">
+               <children>
+                  <Button fx:id="refreshButton" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../css/refresh_button.css" />
                </children>
             </VBox>
          </children>
+         <effect>
+            <DropShadow height="0.0" radius="4.75" />
+         </effect>
       </VBox>
    </right>
    <center>
-      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
