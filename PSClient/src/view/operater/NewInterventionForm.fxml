@@ -18,7 +18,8 @@
 <BorderPane maxHeight="800.0" maxWidth="1200.0"
 	minHeight="800.0" minWidth="1200.0" prefHeight="800.0"
 	prefWidth="1200.0" styleClass="root7"
-	stylesheets="@../../application.css"
+	stylesheets="@/css/background.css"
+	fx:controller="controller.operater.NewInterventionController"
 	xmlns="http://javafx.com/javafx/10.0.1"
 	xmlns:fx="http://javafx.com/fxml/1">
 	<center>
@@ -52,7 +53,7 @@
 								<ImageView fitHeight="349.0" fitWidth="507.0"
 									pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@../../Background5.png" />
+										<Image url="@../../resources/images/background_5.png" />
 									</image>
 								</ImageView>
 							</children>
@@ -131,6 +132,7 @@
 							</font>
 						</Label>
 						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientName"
 							prefWidth="300.0" styleClass="text_field"
 							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
 							GridPane.rowIndex="1">
@@ -139,6 +141,7 @@
 							</font>
 						</TextField>
 						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientLastName"
 							prefWidth="300.0" styleClass="text_field"
 							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
 							GridPane.rowIndex="2">
@@ -147,6 +150,7 @@
 							</font>
 						</TextField>
 						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientPhoneNumber"
 							prefWidth="300.0" styleClass="text_field"
 							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
 							GridPane.rowIndex="3">
@@ -200,6 +204,7 @@
 							</font>
 						</Label>
 						<ComboBox maxHeight="45.0" maxWidth="200.0"
+							fx:id="fieldTechnician"
 							minHeight="45.0" minWidth="200.0" prefHeight="45.0"
 							prefWidth="200.0" promptText="Izaberi" styleClass="combo-box"
 							stylesheets="@../../css/combo_box.css" GridPane.columnIndex="1"
@@ -214,6 +219,7 @@
 							</font>
 						</Label>
 						<Button mnemonicParsing="false" styleClass="commonbutton"
+							onAction="#openNewIntervention"
 							stylesheets="@../../css/common_button.css" text="Potvrdi"
 							GridPane.columnIndex="1" GridPane.rowIndex="12">
 							<GridPane.margin>
@@ -224,6 +230,7 @@
 							</font>
 						</Button>
 						<TextField layoutX="185.0" layoutY="117.0"
+							fx:id="licencePlate"
 							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
 							styleClass="text_field" stylesheets="@../../css/text_field.css"
 							GridPane.columnIndex="1" GridPane.rowIndex="7">
@@ -232,6 +239,7 @@
 							</font>
 						</TextField>
 						<TextField layoutX="185.0" layoutY="258.0"
+							fx:id="manufacturer"
 							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
 							styleClass="text_field" stylesheets="@../../css/text_field.css"
 							GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -240,6 +248,7 @@
 							</font>
 						</TextField>
 						<TextField layoutX="185.0" layoutY="293.0"
+							fx:id="model"
 							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
 							styleClass="text_field" stylesheets="@../../css/text_field.css"
 							GridPane.columnIndex="1" GridPane.rowIndex="9">
@@ -248,6 +257,7 @@
 							</font>
 						</TextField>
 						<TextField layoutX="185.0" layoutY="258.0"
+							fx:id="yearMade"
 							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
 							styleClass="text_field" stylesheets="@../../css/text_field.css"
 							GridPane.columnIndex="1" GridPane.rowIndex="6">

@@ -7,6 +7,11 @@ public class Event {
 	private LocalDateTime timeStamp;
 	private String action;
 	
+	public Event(String action) {
+		timeStamp = LocalDateTime.now();
+		this.action = action;
+	}
+	
 	public String toString() {
 		return timeStamp.toString() + ": " + action + "\n";
 	}

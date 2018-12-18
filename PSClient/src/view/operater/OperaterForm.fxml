@@ -298,22 +298,23 @@
 				</VBox>
 				<VBox prefHeight="82.0" prefWidth="295.0">
 					<children>
-						<Button fx:id="mapa" mnemonicParsing="false"
+						<Button fx:id="mapButton" mnemonicParsing="false"
 							styleClass="mapabutton"
 							stylesheets="@../../css/operater_map_button.css" />
 					</children>
 				</VBox>
 				<VBox prefHeight="91.0" prefWidth="295.0">
 					<children>
-						<Button fx:id="sesije" mnemonicParsing="false"
-							styleClass="sesijabutton"
+						<Button fx:id="sessionButton" mnemonicParsing="false"
+							styleClass="sesijabutton" onAction="#showSession"
 							stylesheets="@../../css/operater_session_button.css" />
 					</children>
 				</VBox>
 				<VBox layoutX="10.0" layoutY="110.0" prefHeight="75.0"
 					prefWidth="295.0">
 					<children>
-						<Button fx:id="vozila" mnemonicParsing="false"
+						<Button fx:id="FieldTechniciansButton" mnemonicParsing="false"
+							onAction="#showFieldTechnicians"
 							styleClass="vozilabutton"
 							stylesheets="@../../css/operater_vehicle_button.css" />
 					</children>
