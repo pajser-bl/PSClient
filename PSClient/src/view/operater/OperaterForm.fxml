@@ -103,12 +103,12 @@
 																	prefHeight="30.0" vgrow="SOMETIMES" />
 															</rowConstraints>
 															<children>
-																<Label text="Ime:" textFill="#19715f">
+																<Label fx:id="name" text="Ime: " textFill="#19715f">
 																	<font>
 																		<Font size="14.0" />
 																	</font>
 																</Label>
-																<Label text="Prezime" textFill="#19715f"
+																<Label fx:id="lastName" text="Prezime: " textFill="#19715f"
 																	GridPane.rowIndex="1">
 																	<font>
 																		<Font size="14.0" />

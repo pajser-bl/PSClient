@@ -34,7 +34,7 @@ public class AddNewUserController {
 			if (reply.get(0).equals("ADD USER OK")) {
 				MessageBox.displayMessage("Potvrda", "Korisnik uspjesno kreiran");
 				resources.getUsers().add(new User(reply.get(1), name.getText(), lastName.getText(), userType.getValue(),
-						userName.getText()));
+				userName.getText()));
 				name.clear();
 				lastName.clear();
 				password.clear();

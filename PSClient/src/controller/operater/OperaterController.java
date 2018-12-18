@@ -34,14 +34,13 @@ public class OperaterController {
 	@FXML ClientResources resources;
 	
 	@FXML public void initialize() {
-		/*session = new Session();
-		name.setText("Ime:" + resources.getUser().getName());
+		session = new Session();
+		name.setText("Ime: " + resources.getUser().getName());
 		lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
-		});*/
-		session = TestingClass.generateSession();
+		});
 	}
 	
 	public void showSession(ActionEvent event) {
@@ -64,7 +63,7 @@ public class OperaterController {
 	}
 	
 	public void showFieldTechnicians(ActionEvent event) {
-		Request request = new Request("VIEW FIELDTECHNICIANS", new ArrayList<String>());
+		Request request = new Request("VIEW FIELD TECHNITIANS", new ArrayList<String>());
 		ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
 		for(int i = 0; i < reply.size(); i++)
 			System.out.println(reply.get(i));

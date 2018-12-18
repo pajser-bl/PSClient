@@ -27,7 +27,7 @@ public class AdministratorController {
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
-		name.setText("Ime:" + resources.getUser().getName());
+		name.setText("Ime: " + resources.getUser().getName());
 		lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
@@ -36,8 +36,9 @@ public class AdministratorController {
 	}
 	
 	public void addNewUser(ActionEvent event) {
+		AdministratorResources adminResources = new AdministratorResources(resources, users);
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);
 			anchor.getChildren().add(root);
