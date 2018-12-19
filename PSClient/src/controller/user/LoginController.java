@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import client.ClientCommunication;
 import client.User;
@@ -30,6 +30,11 @@ public class LoginController{
 					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
 					if(reply.get(4).equals("Operater")) {
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/operater/OperaterForm.fxml"), resources);
+						Scene userScene = new Scene(userView);
+						resources.getStage().setScene(userScene);
+					} else if(reply.get(4).equals("Terenski radnik")) {
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/FieldTechnicianForm.fxml"),
+								resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);
 					} else {

@@ -21,9 +21,13 @@ public class NewInterventionController {
 	@FXML ClientResources resources;
 	
 	public void openNewIntervention(ActionEvent event) {
-		if(clientName.getText().isEmpty() || clientLastName.getText().isEmpty() || clientPhoneNumber.getText().isEmpty() ||
+		System.out.println(licencePlate.getText());
+		System.out.println(manufacturer.getText());
+		System.out.println(model.getText());
+		System.out.println(yearMade.getText());
+		/*if(clientName.getText().isEmpty() || clientLastName.getText().isEmpty() || clientPhoneNumber.getText().isEmpty() ||
 				licencePlate.getText().isEmpty())
 			MessageBox.displayMessage("Greska", "Obiljezena polja moraju biti popunjena");
-		ArrayList<String> reply = new ArrayList<>();
+		ArrayList<String> reply = new ArrayList<>();*/
 	}
 }

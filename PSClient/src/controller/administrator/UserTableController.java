@@ -1,7 +1,7 @@
 package controller.administrator;
 
 import client.User;
-import controller.ProfilController;
+import controller.user.ProfilController;
 import exception.EmptyFieldException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;

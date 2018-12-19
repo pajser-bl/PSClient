@@ -131,33 +131,6 @@
 								<Font size="25.0" />
 							</font>
 						</Label>
-						<TextField maxWidth="300.0" minWidth="300.0"
-							fx:id="clientName"
-							prefWidth="300.0" styleClass="text_field"
-							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
-						<TextField maxWidth="300.0" minWidth="300.0"
-							fx:id="clientLastName"
-							prefWidth="300.0" styleClass="text_field"
-							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
-						<TextField maxWidth="300.0" minWidth="300.0"
-							fx:id="clientPhoneNumber"
-							prefWidth="300.0" styleClass="text_field"
-							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
-							GridPane.rowIndex="3">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
 						<Label text="Informacije o vozilu:" textFill="#2a90a8"
 							GridPane.rowIndex="5">
 							<font>
@@ -203,12 +176,6 @@
 								<Font size="25.0" />
 							</font>
 						</Label>
-						<ComboBox maxHeight="45.0" maxWidth="200.0"
-							fx:id="fieldTechnician"
-							minHeight="45.0" minWidth="200.0" prefHeight="45.0"
-							prefWidth="200.0" promptText="Izaberi" styleClass="combo-box"
-							stylesheets="@../../css/combo_box.css" GridPane.columnIndex="1"
-							GridPane.rowIndex="11" />
 						<Label text="Terenski radnik" textFill="#21947b"
 							GridPane.rowIndex="11">
 							<GridPane.margin>
@@ -218,8 +185,77 @@
 								<Font size="25.0" />
 							</font>
 						</Label>
+						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientName"
+							prefWidth="300.0" styleClass="text_field"
+							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
+							GridPane.rowIndex="1">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientLastName"
+							prefWidth="300.0" styleClass="text_field"
+							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
+							GridPane.rowIndex="2">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField maxWidth="300.0" minWidth="300.0"
+							fx:id="clientPhoneNumber"
+							prefWidth="300.0" styleClass="text_field"
+							stylesheets="@../../css/text_field.css" GridPane.columnIndex="1"
+							GridPane.rowIndex="3">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField layoutX="185.0" layoutY="258.0"
+							fx:id="licencePlate"
+							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
+							styleClass="text_field" stylesheets="@../../css/text_field.css"
+							GridPane.columnIndex="1" GridPane.rowIndex="6">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField layoutX="185.0" layoutY="117.0"
+							fx:id="manufacturer"
+							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
+							styleClass="text_field" stylesheets="@../../css/text_field.css"
+							GridPane.columnIndex="1" GridPane.rowIndex="7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField layoutX="185.0" layoutY="258.0"
+							fx:id="model"
+							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
+							styleClass="text_field" stylesheets="@../../css/text_field.css"
+							GridPane.columnIndex="1" GridPane.rowIndex="8">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<TextField layoutX="185.0" layoutY="293.0"
+							fx:id="yearMade"
+							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
+							styleClass="text_field" stylesheets="@../../css/text_field.css"
+							GridPane.columnIndex="1" GridPane.rowIndex="9">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</TextField>
+						<ComboBox maxHeight="45.0" maxWidth="200.0"
+							fx:id="fieldTechnician"
+							minHeight="45.0" minWidth="200.0" prefHeight="45.0"
+							prefWidth="200.0" promptText="Izaberi" styleClass="combo-box"
+							stylesheets="@../../css/combo_box.css" GridPane.columnIndex="1"
+							GridPane.rowIndex="11" />
 						<Button mnemonicParsing="false" styleClass="commonbutton"
-							onAction="#openNewIntervention"
+							onAction="#openNewIntervention" defaultButton="true"
 							stylesheets="@../../css/common_button.css" text="Potvrdi"
 							GridPane.columnIndex="1" GridPane.rowIndex="12">
 							<GridPane.margin>
@@ -229,42 +265,6 @@
 								<Font size="20.0" />
 							</font>
 						</Button>
-						<TextField layoutX="185.0" layoutY="117.0"
-							fx:id="licencePlate"
-							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
-							styleClass="text_field" stylesheets="@../../css/text_field.css"
-							GridPane.columnIndex="1" GridPane.rowIndex="7">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
-						<TextField layoutX="185.0" layoutY="258.0"
-							fx:id="manufacturer"
-							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
-							styleClass="text_field" stylesheets="@../../css/text_field.css"
-							GridPane.columnIndex="1" GridPane.rowIndex="8">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
-						<TextField layoutX="185.0" layoutY="293.0"
-							fx:id="model"
-							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
-							styleClass="text_field" stylesheets="@../../css/text_field.css"
-							GridPane.columnIndex="1" GridPane.rowIndex="9">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
-						<TextField layoutX="185.0" layoutY="258.0"
-							fx:id="yearMade"
-							maxWidth="300.0" minWidth="300.0" prefWidth="300.0"
-							styleClass="text_field" stylesheets="@../../css/text_field.css"
-							GridPane.columnIndex="1" GridPane.rowIndex="6">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</TextField>
 					</children>
 				</GridPane>
 			</children>

@@ -19,10 +19,10 @@
 
 <BorderPane maxHeight="400.0" maxWidth="500.0"
 	minHeight="400.0" minWidth="500.0" prefHeight="400.0" prefWidth="500.0"
-	styleClass="login" stylesheets="@../css/login.css"
+	styleClass="login" stylesheets="@../../css/login.css"
 	xmlns="http://javafx.com/javafx/10.0.1"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.LoginController">
+	fx:controller="controller.user.LoginController">
 	<center>
 		<GridPane prefHeight="470.0" prefWidth="358.0" vgap="10.0"
 			BorderPane.alignment="CENTER">
@@ -75,7 +75,7 @@
 						<Button id="loginButton" defaultButton="true"
 							maxWidth="258.0" mnemonicParsing="false" onAction="#login"
 							opacity="0.5" prefHeight="50.0" prefWidth="258.0"
-							styleClass="loginbutton" stylesheets="@../css/loginbutton.css"
+							styleClass="loginbutton" stylesheets="@../../css/loginbutton.css"
 							text="Prijava" textFill="#26859c" GridPane.rowIndex="3">
 							<cursor>
 								<Cursor fx:constant="HAND" />
@@ -89,7 +89,7 @@
 						</Button>
 						<TextField fx:id="username" opacity="0.5"
 							prefHeight="40.0" prefWidth="248.0" promptText="Korisničko ime"
-							styleClass="field" stylesheets="@../css/login_text_field.css"
+							styleClass="field" stylesheets="@../../css/login_text_field.css"
 							GridPane.rowIndex="1">
 							<font>
 								<Font size="25.0" />
@@ -100,7 +100,7 @@
 						</TextField>
 						<PasswordField fx:id="password" opacity="0.5"
 							prefHeight="40.0" prefWidth="248.0" promptText="Lozinka"
-							styleClass="field" stylesheets="@../css/login_text_field.css"
+							styleClass="field" stylesheets="@../../css/login_text_field.css"
 							GridPane.rowIndex="2">
 							<font>
 								<Font size="25.0" />
@@ -135,7 +135,7 @@
 						<ImageView fitHeight="35.0" fitWidth="69.0"
 							opacity="0.5" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@../resources/images/login_logo.png" />
+								<Image url="@../../resources/images/login_logo.png" />
 							</image>
 							<HBox.margin>
 								<Insets bottom="5.0" />

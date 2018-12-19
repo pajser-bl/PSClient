@@ -118,14 +118,28 @@
 														<Font size="25.0" />
 													</font>
 												</Label>
-												<TextField fx:id="lastName" maxWidth="200.0"
-													minWidth="200.0" prefWidth="200.0" styleClass="text_field"
-													stylesheets="@/css/text_field.css" GridPane.columnIndex="1"
-													GridPane.rowIndex="1" />
+												<TextField fx:id="name" maxWidth="300.0"
+													minWidth="300.0" prefHeight="42.0" prefWidth="300.0"
+													styleClass="text_field"
+													stylesheets="@../../css/text_field.css"
+													GridPane.columnIndex="1">
+													<font>
+														<Font size="20.0" />
+													</font>
+												</TextField>
 												<TextField fx:id="lastName" maxWidth="200.0"
 													minWidth="300.0" prefWidth="300.0" styleClass="text_field"
 													stylesheets="@../../css/text_field.css"
 													GridPane.columnIndex="1" GridPane.rowIndex="1">
+													<font>
+														<Font size="20.0" />
+													</font>
+												</TextField>
+												<TextField fx:id="dateOfBirth" maxWidth="200.0"
+													minWidth="300.0" prefWidth="200.0" promptText="DD.MM.GG."
+													styleClass="text_field"
+													stylesheets="@../../css/text_field.css"
+													GridPane.columnIndex="1" GridPane.rowIndex="2">
 													<font>
 														<Font size="20.0" />
 													</font>
@@ -142,24 +156,6 @@
 														<Font size="25.0" />
 													</font>
 												</Label>
-												<TextField fx:id="name" maxWidth="300.0"
-													minWidth="300.0" prefHeight="42.0" prefWidth="300.0"
-													styleClass="text_field"
-													stylesheets="@../../css/text_field.css"
-													GridPane.columnIndex="1">
-													<font>
-														<Font size="20.0" />
-													</font>
-												</TextField>
-												<TextField fx:id="licence" maxWidth="200.0"
-													minWidth="300.0" prefWidth="200.0" promptText="Kategorija"
-													styleClass="text_field"
-													stylesheets="@../../css/text_field.css"
-													GridPane.columnIndex="1" GridPane.rowIndex="4">
-													<font>
-														<Font size="20.0" />
-													</font>
-												</TextField>
 												<ComboBox fx:id="qualification" minHeight="45.0"
 													minWidth="200.0" prefHeight="45.0" prefWidth="200.0"
 													promptText="Izaberi" stylesheets="@../../css/combo_box.css"
@@ -175,6 +171,15 @@
 														<String fx:value="VSS" />
 													</value>
 												</ComboBox>
+												<TextField fx:id="licence" maxWidth="200.0"
+													minWidth="300.0" prefWidth="200.0" promptText="Kategorija"
+													styleClass="text_field"
+													stylesheets="@../../css/text_field.css"
+													GridPane.columnIndex="1" GridPane.rowIndex="4">
+													<font>
+														<Font size="20.0" />
+													</font>
+												</TextField>
 												<Label text="Datum rođenja:" textFill="#21947b"
 													GridPane.rowIndex="2">
 													<padding>
@@ -184,15 +189,6 @@
 														<Font size="25.0" />
 													</font>
 												</Label>
-												<TextField fx:id="dateOfBirth" maxWidth="200.0"
-													minWidth="300.0" prefWidth="200.0" promptText="DD.MM.GG."
-													styleClass="text_field"
-													stylesheets="@../../css/text_field.css"
-													GridPane.columnIndex="1" GridPane.rowIndex="2">
-													<font>
-														<Font size="20.0" />
-													</font>
-												</TextField>
 											</children>
 										</GridPane>
 									</children>
@@ -265,14 +261,6 @@
 														<Font size="25.0" />
 													</font>
 												</Label>
-												<TextField fx:id="password" maxWidth="200.0"
-													minWidth="300.0" prefWidth="200.0" styleClass="text_field"
-													stylesheets="@../../css/text_field.css"
-													GridPane.columnIndex="1" GridPane.rowIndex="2">
-													<font>
-														<Font size="20.0" />
-													</font>
-												</TextField>
 												<ComboBox fx:id="userType" minHeight="45.0"
 													minWidth="200.0" prefHeight="45.0" prefWidth="200.0"
 													stylesheets="@../../css/combo_box.css"
@@ -290,6 +278,22 @@
 														<String fx:value="Administrator" />
 													</value>
 												</ComboBox>
+												<TextField fx:id="userName" maxWidth="200.0"
+													minWidth="300.0" prefWidth="200.0" styleClass="text_field"
+													stylesheets="@../../css/text_field.css"
+													GridPane.columnIndex="1" GridPane.rowIndex="1">
+													<font>
+														<Font size="20.0" />
+													</font>
+												</TextField>
+												<TextField fx:id="password" maxWidth="200.0"
+													minWidth="300.0" prefWidth="200.0" styleClass="text_field"
+													stylesheets="@../../css/text_field.css"
+													GridPane.columnIndex="1" GridPane.rowIndex="2">
+													<font>
+														<Font size="20.0" />
+													</font>
+												</TextField>
 												<Label text="Lozinka:" textFill="#21947b"
 													GridPane.rowIndex="2">
 													<padding>
@@ -299,14 +303,6 @@
 														<Font size="25.0" />
 													</font>
 												</Label>
-												<TextField fx:id="userName" maxWidth="200.0"
-													minWidth="300.0" prefWidth="200.0" styleClass="text_field"
-													stylesheets="@../../css/text_field.css"
-													GridPane.columnIndex="1" GridPane.rowIndex="1">
-													<font>
-														<Font size="20.0" />
-													</font>
-												</TextField>
 											</children>
 										</GridPane>
 									</children>
