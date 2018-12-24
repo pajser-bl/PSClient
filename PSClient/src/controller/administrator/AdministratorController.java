@@ -16,39 +16,40 @@ import utility.MessageBox;
 
 public class AdministratorController {
 
+	@FXML AnchorPane workSpace;
+	@FXML ClientResources resources;
 	@FXML Button addNewUserButton;
-	@FXML Button showUsers;
+	@FXML Button helpButton;
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
+	@FXML Button showUsers;
 	@FXML Label name;
 	@FXML Label lastName;
-	@FXML AnchorPane anchor;
-	@FXML ClientResources resources;
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
-		name.setText("Ime: " + resources.getUser().getName());
+		/*name.setText("Ime: " + resources.getUser().getName());
 		lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
-		});
+		});*/
 	}
 	
 	public void addNewUser(ActionEvent event) {
 		AdministratorResources adminResources = new AdministratorResources(resources, users);
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
-			if(anchor.getChildren().size() != 0)
-				anchor.getChildren().remove(0);
-			anchor.getChildren().add(root);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/noveForme/NewUserTableForm.fxml"), adminResources);
+			if(workSpace.getChildren().size() != 0)
+				workSpace.getChildren().remove(0);
+			workSpace.getChildren().add(root);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void showUsers(ActionEvent event) {
-		if(users.isEmpty()) {
+		/*if(users.isEmpty()) {
 			ArrayList<String> reply = resources.getClientCommunication().getUsers(resources.getUser().getUserId());
 			if(reply.get(0).equals("VIEW USERS NOT OK"))
 				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
@@ -58,13 +59,13 @@ public class AdministratorController {
 					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
 				}
 			}
-		}
+		}*/
 		try {
-			AdministratorResources adminResources = new AdministratorResources(resources, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/UserTableForm.fxml"), adminResources);
-			if(anchor.getChildren().size() != 0)
-				anchor.getChildren().remove(0);
-			anchor.getChildren().add(root);
+			//AdministratorResources adminResources = new AdministratorResources(resources, users);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/NewUserTableForm.fxml")); //treba dodati Admin resurse poslije testiranja
+			if(workSpace.getChildren().size() != 0)
+				workSpace.getChildren().remove(0);
+			workSpace.getChildren().add(root);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

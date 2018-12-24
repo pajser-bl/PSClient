@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utility.MessageBox;
 
-/*public class SupervisorController implements Initializable {
+public class SupervisorController {
 	@FXML
 	Label name;
 	@FXML Label lastName;
@@ -27,15 +27,13 @@ import utility.MessageBox;
 	@FXML AnchorPane anchor;
 	private static ArrayList<User> activeUsers = new ArrayList<User>();
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	/*public void initialize(URL location, ResourceBundle resources) {
 		name.setText("Ime:" + Client.user.getName());
 		lastName.setText("Prezime: " + Client.user.getLastName());
-	}
+	}*/
 
 	public void showActiveUsers(ActionEvent event) {
-		//OVO NE RADI SREDI!
-		ArrayList<String> reply = RequestFunctionality.viewActiveUsers(Client.clientCommunication);
+		/*ArrayList<String> reply = RequestFunctionality.viewActiveUsers(Client.clientCommunication);
 		System.out.println(reply);
 		if (reply.get(0).equals("VIEW ONLINE USERS OK")) {
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
@@ -52,12 +50,12 @@ import utility.MessageBox;
 			anchor.getChildren().add(root);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	public void logout(ActionEvent logout) {
-		Node source = (Node) logout.getSource();
+		/*Node source = (Node) logout.getSource();
 		Stage mainStage = (Stage) source.getScene().getWindow();
-		Client.logout(mainStage);
+		Client.logout(mainStage);*/
 	}
-}*/
+}

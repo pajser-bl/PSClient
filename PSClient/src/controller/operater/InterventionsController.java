@@ -17,6 +17,7 @@ import utility.ClientResources;
 
 public class InterventionsController {
 	
+	@FXML BorderPane mainPane;
 	@FXML AnchorPane anchor;
 	@FXML TableView<Intervention> interventionsTable;
 	@FXML ClientResources resources;

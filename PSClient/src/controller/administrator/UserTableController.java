@@ -24,6 +24,7 @@ public class UserTableController {
 	@FXML TableView<User> userTable;
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
+	@FXML Button profileButton;
 	@FXML AdministratorResources resources;
 	
 	public void initialize() {
@@ -38,7 +39,7 @@ public class UserTableController {
 		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, userNameColumn, typeColumn);
-		userTable.setItems(resources.getObservableUsers());
+		//userTable.setItems(resources.getObservableUsers());
 	}
 	
 	public void deleteUser(ActionEvent event) {

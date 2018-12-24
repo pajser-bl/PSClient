@@ -34,13 +34,13 @@ public class OperaterController {
 	@FXML ClientResources resources;
 	
 	@FXML public void initialize() {
-		session = new Session();
+		/*session = new Session();
 		name.setText("Ime: " + resources.getUser().getName());
 		lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
-		});
+		});*/
 	}
 	
 	public void showSession(ActionEvent event) {
