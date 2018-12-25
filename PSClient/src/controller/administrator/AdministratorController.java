@@ -28,12 +28,12 @@ public class AdministratorController {
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
-		/*name.setText("Ime: " + resources.getUser().getName());
+		name.setText("Ime: " + resources.getUser().getName());
 		lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
-		});*/
+		});
 	}
 	
 	public void addNewUser(ActionEvent event) {
@@ -49,7 +49,7 @@ public class AdministratorController {
 	}
 	
 	public void showUsers(ActionEvent event) {
-		/*if(users.isEmpty()) {
+		if(users.isEmpty()) {
 			ArrayList<String> reply = resources.getClientCommunication().getUsers(resources.getUser().getUserId());
 			if(reply.get(0).equals("VIEW USERS NOT OK"))
 				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
@@ -59,10 +59,10 @@ public class AdministratorController {
 					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
 				}
 			}
-		}*/
+		}
 		try {
-			//AdministratorResources adminResources = new AdministratorResources(resources, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/NewUserTableForm.fxml")); //treba dodati Admin resurse poslije testiranja
+			AdministratorResources adminResources = new AdministratorResources(resources, users);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/NewUserTableForm.fxml"), adminResources);
 			if(workSpace.getChildren().size() != 0)
 				workSpace.getChildren().remove(0);
 			workSpace.getChildren().add(root);

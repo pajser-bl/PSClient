@@ -2,7 +2,6 @@ package client;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +22,7 @@ public class Client extends Application {
 			double width = screenResolution.getWidth();
 			double height = screenResolution.getHeight();
 			ClientResources resources = new ClientResources(mainStage, clientCommunication, user, width, height);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/NewAdministratorForm.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/user/LoginForm.fxml"));
 			mainStage.setScene(new Scene(root));
 			mainStage.setTitle("Road Runner");
 			mainStage.setMaximized(true);
