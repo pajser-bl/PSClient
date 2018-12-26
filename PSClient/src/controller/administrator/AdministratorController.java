@@ -6,9 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import utility.AdministratorResources;
 import utility.ChoiceBox;
 import utility.ClientResources;
@@ -39,10 +42,11 @@ public class AdministratorController {
 	public void addNewUser(ActionEvent event) {
 		AdministratorResources adminResources = new AdministratorResources(resources, users);
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/noveForme/NewUserTableForm.fxml"), adminResources);
-			if(workSpace.getChildren().size() != 0)
-				workSpace.getChildren().remove(0);
-			workSpace.getChildren().add(root);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
+			Stage addNewUserStage = new Stage();
+			addNewUserStage.setScene(new Scene(root));
+			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
+			addNewUserStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
