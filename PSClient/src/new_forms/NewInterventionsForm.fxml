@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="new_forms.NewInterventionsController">
+	<children>
+		<AnchorPane fx:id="tablePane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<TableView fx:id="interventionsTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				</TableView>
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="optionsPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<HBox alignment="CENTER_LEFT" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="openNewInterventionButton" mnemonicParsing="false" onAction="#openNewIntervention" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Nova Intervencija" textAlignment="CENTER" wrapText="true">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+						<Button fx:id="viewInterventionButton" mnemonicParsing="false" onAction="#viewIntervention" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+					</children>
+				</HBox>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>

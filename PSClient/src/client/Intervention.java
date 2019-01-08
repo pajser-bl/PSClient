@@ -5,20 +5,20 @@ import java.time.LocalDateTime;
 public class Intervention {
 
 	private String id;
-	private String clientId;
+	private String client;
 	private String vehicleId;
-	private String userOpenedId;
-	private String userClosedId;
+	private String userOpened;
+	private String userClosed;
 	private LocalDateTime openedOn;
 	private LocalDateTime closedOn;
 	private boolean closed;
 	private String remark;
 	
-	public Intervention(String clientId, String vehicleId, String userOpenedId) {
+	public Intervention(String client, String vehicleId, String userOpenedId) {
 		id = "0";
-		this.clientId = clientId;
+		this.client = client;
 		this.vehicleId = vehicleId;
-		this.userOpenedId = userOpenedId;
+		this.userOpened = userOpenedId;
 		openedOn = LocalDateTime.now();
 		closed = false;
 	}
@@ -26,10 +26,10 @@ public class Intervention {
 	public Intervention(String id, String clientId, String vehicleId, String userOpenedId, String userClosedId, LocalDateTime openedOn,
 			LocalDateTime closedOn, boolean closed, String remark) {
 		this.id = id;
-		this.clientId = clientId;
+		this.client = clientId;
 		this.vehicleId = vehicleId;
-		this.userOpenedId = userOpenedId;
-		this.userClosedId = userClosedId;
+		this.userOpened = userOpenedId;
+		this.userClosed = userClosedId;
 		this.openedOn = openedOn;
 		this.closedOn = closedOn;
 		this.closed = closed;
@@ -44,12 +44,12 @@ public class Intervention {
 		this.id = id;
 	}
 
-	public String getClientId() {
-		return clientId;
+	public String getClient() {
+		return client;
 	}
 
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
+	public void setClient(String client) {
+		this.client = client;
 	}
 
 	public String getVehicleId() {
@@ -60,20 +60,20 @@ public class Intervention {
 		this.vehicleId = vehicleId;
 	}
 
-	public String getUserOpenedId() {
-		return userOpenedId;
+	public String getUserOpened() {
+		return userOpened;
 	}
 
-	public void setUserOpenedId(String userOpenedId) {
-		this.userOpenedId = userOpenedId;
+	public void setUserOpened(String userOpened) {
+		this.userOpened = userOpened;
 	}
 
-	public String getUserClosedId() {
-		return userClosedId;
+	public String getUserClosed() {
+		return userClosed;
 	}
 
-	public void setUserClosedId(String userClosedId) {
-		this.userClosedId = userClosedId;
+	public void setUserClosedId(String userClosed) {
+		this.userClosed = userClosed;
 	}
 
 	public LocalDateTime getOpenedOn() {
