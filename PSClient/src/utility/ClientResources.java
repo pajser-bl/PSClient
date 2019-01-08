@@ -46,10 +46,6 @@ public class ClientResources extends ResourceBundle{
 		this.user = user;
 	}
 	
-	public double getScreenHeight() {
-		return screenHeight;
-	}
-	
 	public void setScreenWidth(double width) {
 		this.screenHeight = width;
 	}
@@ -60,6 +56,10 @@ public class ClientResources extends ResourceBundle{
 	
 	public void setScreenHeight(double height) {
 		this.screenHeight = height;
+	}
+	
+	public double getScreenHeight() {
+		return screenHeight;
 	}
 	
 	protected Object handleGetObject(String key) {

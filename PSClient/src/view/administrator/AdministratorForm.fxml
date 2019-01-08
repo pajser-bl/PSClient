@@ -310,7 +310,7 @@
 				</VBox>
 			</right>
 			<center>
-				<AnchorPane fx:id="anchor" prefHeight="200.0"
+				<AnchorPane fx:id="workSpace" prefHeight="200.0"
 					prefWidth="200.0" BorderPane.alignment="CENTER" />
 			</center>
 		</BorderPane>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="new_forms.NewUserTableController">
+	<children>
+		<AnchorPane fx:id="tablePane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<TableView fx:id="userTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				</TableView>
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="optionsPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<HBox alignment="CENTER_LEFT" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="profileButton" mnemonicParsing="false" onAction="#showUser" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Pregledaj" textAlignment="CENTER" wrapText="true">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+						<Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#passwordChange" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Promjeni šifru" textAlignment="CENTER" wrapText="true">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+						<Button fx:id="deleteUserButton" mnemonicParsing="false" onAction="#deleteUser" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Izbriši nalog" textAlignment="CENTER">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+					</children>
+				</HBox>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>
