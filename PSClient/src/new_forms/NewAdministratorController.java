@@ -39,11 +39,11 @@ public class NewAdministratorController {
 		AnchorPane.setRightAnchor(workspacePane, resources.getScreenWidth() * 0.1);
 		AnchorPane.setTopAnchor(optionsPane, resources.getScreenHeight() * 0.2);
 		AnchorPane.setLeftAnchor(optionsPane, resources.getScreenWidth() * 0.9);
-		addNewUserButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1);
-		showUsersButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1);
-		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.1);
-		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.1);
-		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.1);
+		addNewUserButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
+		showUsersButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
+		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
 	}
 	
 	public void showUsers(ActionEvent event) {
