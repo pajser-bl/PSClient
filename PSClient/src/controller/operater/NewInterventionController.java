@@ -12,9 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import utility.FieldTechnitiansListResources;
+import utility.OperaterResources;
 import utility.MessageBox;
-import utility.UsersListResources;
+import utility.AdministratorResources;
 
 public class NewInterventionController {
 
@@ -26,7 +26,7 @@ public class NewInterventionController {
 	@FXML AnchorPane vehicleInformationLabels;
 	@FXML AnchorPane vehicleInformationInput;
 	@FXML ComboBox<String> fieldTechnicians;
-	@FXML FieldTechnitiansListResources resources;
+	@FXML OperaterResources resources;
 	@FXML Button submitButton;
 	@FXML TextField name;
 	@FXML TextField lastName;

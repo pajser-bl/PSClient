@@ -14,7 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.UsersListResources;
+import utility.AdministratorResources;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
 
@@ -23,7 +23,7 @@ public class UserTableController {
 	@FXML TableView<User> userTable;
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
-	@FXML UsersListResources resources;
+	@FXML AdministratorResources resources;
 	
 	public void initialize() {
 		TableColumn<User, String> idColumn = new TableColumn<User, String>("ID");

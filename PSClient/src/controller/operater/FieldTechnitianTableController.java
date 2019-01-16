@@ -5,12 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import utility.FieldTechnitiansListResources;
-import utility.UsersListResources;
+import utility.OperaterResources;
+import utility.AdministratorResources;
 
 public class FieldTechnitianTableController {
 
-	@FXML FieldTechnitiansListResources resources;
+	@FXML OperaterResources resources;
 	@FXML TableView<FieldTechnitian> FieldTechnicianTable;
 	
 	@FXML public void initialize() {

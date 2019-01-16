@@ -16,7 +16,7 @@ public class PasswordChangeBox {
 
 	private static TextField pswField = new TextField();
 	
-	public static void passwordChange(String userId, UsersListResources resources) {
+	public static void passwordChange(String userId, AdministratorResources resources) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Promjena lozinke");
@@ -52,7 +52,7 @@ public class PasswordChangeBox {
 		window.showAndWait();
 	}
 	
-	public static void sendRequest(Stage window, String userId, UsersListResources resources) {
+	public static void sendRequest(Stage window, String userId, AdministratorResources resources) {
 		if(pswField.getText().isEmpty()) {
 			MessageBox.displayMessage("Greska", "Morate unijeti novu lozinku");
 		} 

@@ -19,9 +19,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.ClientResources;
-import utility.FieldTechnitiansListResources;
+import utility.OperaterResources;
 import utility.MessageBox;
-import utility.UsersListResources;
+import utility.AdministratorResources;
 
 public class InterventionsController {
 
@@ -30,7 +30,7 @@ public class InterventionsController {
 	@FXML Button openNewInterventionButton;
 	@FXML Button viewInterventionButton;
 	@FXML TableView<Intervention> interventionsTable;
-	@FXML ClientResources resources;
+	@FXML OperaterResources resources;
 
 	@FXML public void initialize() {
 		resize();
@@ -61,7 +61,7 @@ public class InterventionsController {
 			Stage newInterventionStage = new Stage();
 			ClientResources newResources = new ClientResources(newInterventionStage, resources.getClientCommunication(),
 					resources.getUser(), resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
-			FieldTechnitiansListResources interventionResources = new FieldTechnitiansListResources(newResources, fieldTechnitians);
+			OperaterResources interventionResources = new OperaterResources(newResources, fieldTechnitians, resources.getSession());
 			newInterventionStage.setResizable(false);
 			newInterventionStage.initModality(Modality.APPLICATION_MODAL);
 			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/NewInterventionForm.fxml"),

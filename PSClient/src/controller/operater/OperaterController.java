@@ -2,9 +2,9 @@ package controller.operater;
 
 import utility.ChoiceBox;
 import utility.ClientResources;
-import utility.FieldTechnitiansListResources;
+import utility.OperaterResources;
 import utility.MessageBox;
-import utility.UsersListResources;
+import utility.AdministratorResources;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,7 +84,7 @@ public class OperaterController {
 			if(!workspaceAnchor.getChildren().isEmpty())
 					workspaceAnchor.getChildren().clear();
 			try {
-				FieldTechnitiansListResources tableResources = new FieldTechnitiansListResources(resources, fieldTechnitians);
+				OperaterResources tableResources = new OperaterResources(resources, fieldTechnitians, session);
 				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/VehicleForm.fxml"), tableResources);
 				workspaceAnchor.getChildren().add(root);
 			} catch(Exception e) {

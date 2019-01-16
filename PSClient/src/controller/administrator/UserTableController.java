@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.UsersListResources;
+import utility.AdministratorResources;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
 
@@ -28,7 +28,7 @@ public class UserTableController {
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
 	@FXML Button profileButton;
-	@FXML UsersListResources resources;
+	@FXML AdministratorResources resources;
 	
 	public void initialize() {
 		resize();
