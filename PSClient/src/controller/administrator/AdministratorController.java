@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.AdministratorResources;
+import utility.UsersListResources;
 import utility.ChoiceBox;
 import utility.ClientResources;
 import utility.MessageBox;
@@ -42,7 +42,7 @@ public class AdministratorController {
 	}
 	
 	public void addNewUser(ActionEvent event) {
-		AdministratorResources adminResources = new AdministratorResources(resources, users);
+		UsersListResources adminResources = new UsersListResources(resources, users);
 		adminResources.setScreenHeight(resources.getScreenHeight() * 0.7);
 		adminResources.setScreenWidth(resources.getScreenWidth() * 0.5);
 		try {
@@ -70,7 +70,7 @@ public class AdministratorController {
 			}
 		}
 		try {
-			AdministratorResources adminResources = new AdministratorResources(resources, users);
+			UsersListResources adminResources = new UsersListResources(resources, users);
 			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/UserTableForm.fxml"), adminResources);
 			if(workspaceAnchor.getChildren().size() != 0)
 				workspaceAnchor.getChildren().remove(0);

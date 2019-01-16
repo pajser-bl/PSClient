@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import utility.AdministratorResources;
+import utility.UsersListResources;
 import utility.MessageBox;
 import utility.Parser;
 
@@ -31,7 +31,7 @@ public class AddNewUserController {
 	@FXML ComboBox<String> userType;
 	@FXML ComboBox<String> qualification;
 	@FXML Button createNewUser;
-	@FXML AdministratorResources resources;
+	@FXML UsersListResources resources;
 
 	@FXML public void initialize() {
 		resize();

@@ -6,11 +6,11 @@ import client.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AdministratorResources extends ClientResources{
+public class UsersListResources extends ClientResources {
 	
 	private ArrayList<User> users;
 	
-	public AdministratorResources(ClientResources resources, ArrayList<User> users) {
+	public UsersListResources(ClientResources resources, ArrayList<User> users) {
 		super(resources.getStage(), resources.getClientCommunication(), resources.getUser(), resources.getScreenHeight(), 
 				resources.getScreenHeight());
 		this.users = users;
@@ -22,6 +22,10 @@ public class AdministratorResources extends ClientResources{
 	
 	public ArrayList<User> getUsers(){
 		return users;
+	}
+	
+	public String getFieldTechnician(int userIndex) {
+		return users.get(userIndex).getFieldTechnician();
 	}
 	
 	protected Object handleGetObject(String key) {

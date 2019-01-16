@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import utility.AdministratorResources;
+import utility.UsersListResources;
 import utility.ChoiceBox;
 import utility.ClientResources;
 import utility.MessageBox;
@@ -36,7 +36,7 @@ public class AdministratorController {
 	
 	public void addNewUser(ActionEvent event) {
 		try {
-			AdministratorResources adminResources = new AdministratorResources(resources, users);
+			UsersListResources adminResources = new UsersListResources(resources, users);
 			Parent root = FXMLLoader.load(getClass().getResource("/view/AddNewUserForm.fxml"), adminResources);
 			if(anchor.getChildren().size() != 0)
 				anchor.getChildren().remove(0);

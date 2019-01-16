@@ -1,17 +1,21 @@
 package client;
 
-public class FieldTechnician {
+public class FieldTechnitian {
 
 	private String Id;
 	private String name;
 	private String lastName;
 	private String state;
 	
-	public FieldTechnician(String Id, String name, String lastName, String state) {
+	public FieldTechnitian(String Id, String name, String lastName, String state) {
 		this.Id = Id;
 		this.name = name;
 		this.lastName = lastName;
 		this.state = state;
+	}
+	
+	public String toStringNoState() {
+		return Id + ": " + name + " " + lastName;
 	}
 	
 	public String toString() {
