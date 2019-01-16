@@ -2,8 +2,13 @@ package new_forms;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import utility.ClientResources;
 
 public class NewFieldTechnicianController {
@@ -27,7 +32,23 @@ public class NewFieldTechnicianController {
 	}
 	
 	public void changeState(ActionEvent event) {}
-	public void showMap(ActionEvent event) {}
+	
+	public void showMap(ActionEvent event) {
+		ClientResources reportResources = new ClientResources(null, resources.getClientCommunication(), resources.getUser(),
+				resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
+		try {
+			Stage addNewUserStage = new Stage();
+			addNewUserStage.setResizable(false);
+			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
+			Parent root = FXMLLoader.load(getClass().getResource("/new_forms/NewRoadReportForm.fxml"), reportResources);
+			Scene addNewUserScene = new Scene(root, reportResources.getScreenWidth(), reportResources.getScreenHeight());
+			addNewUserStage.setScene(addNewUserScene);
+			addNewUserStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void report(ActionEvent event) {}
 	public void showSession(ActionEvent event) {}
 	public void logout(ActionEvent event) {}

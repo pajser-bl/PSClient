@@ -3,7 +3,7 @@ package controller.user;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ProfilController {
+public class ProfileController {
 
 	@FXML private Label name;
 	@FXML private Label lastName;

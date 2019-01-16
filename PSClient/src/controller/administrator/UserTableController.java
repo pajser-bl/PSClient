@@ -1,7 +1,7 @@
 package controller.administrator;
 
 import client.User;
-import controller.user.ProfilController;
+import controller.user.ProfileController;
 import exception.EmptyFieldException;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.AdministratorResources;
@@ -21,6 +22,8 @@ import utility.PasswordChangeBox;
 
 public class UserTableController {
 
+	@FXML AnchorPane tableAnchor;
+	@FXML AnchorPane optionsAnchor;
 	@FXML TableView<User> userTable;
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
@@ -28,6 +31,7 @@ public class UserTableController {
 	@FXML AdministratorResources resources;
 	
 	public void initialize() {
+		resize();
 		TableColumn<User, String> idColumn = new TableColumn<User, String>("ID");
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
 		TableColumn<User, String> nameColumn = new TableColumn<User, String>("Ime");
@@ -63,7 +67,7 @@ public class UserTableController {
 			ArrayList<String> reply = resources.getClientCommunication().getUser(id);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfilForm.fxml"));
 			Parent profileView = loader.load();
-			ProfilController controller = loader.getController();
+			ProfileController controller = loader.getController();
 			controller.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
 			Scene profileScene = new Scene(profileView);
 			Stage profileWindow = new Stage();
@@ -75,6 +79,14 @@ public class UserTableController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void resize() {
+		AnchorPane.setBottomAnchor(tableAnchor, resources.getScreenHeight() * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.7);
+		profileButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
+		deleteUserButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
+		changePasswordButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
 	}
 	
 	public TableView<User> getUserTable() {

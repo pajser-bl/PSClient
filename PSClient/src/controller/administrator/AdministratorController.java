@@ -19,20 +19,22 @@ import utility.MessageBox;
 
 public class AdministratorController {
 
-	@FXML AnchorPane workSpace;
-	@FXML ClientResources resources;
+	@FXML AnchorPane statusAnchor;
+	@FXML AnchorPane menuAnchor;
+	@FXML AnchorPane workspaceAnchor;
+	@FXML AnchorPane optionsAnchor;
 	@FXML Button addNewUserButton;
-	@FXML Button helpButton;
+	@FXML Button showUsersButton;
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
-	@FXML Button showUsers;
-	@FXML Label name;
-	@FXML Label lastName;
+	@FXML Button helpButton;
+	@FXML ClientResources resources;
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
-		name.setText("Ime: " + resources.getUser().getName());
-		lastName.setText("Prezime: " + resources.getUser().getLastName());
+		resize();
+		//name.setText("Ime: " + resources.getUser().getName());
+		//lastName.setText("Prezime: " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -41,9 +43,12 @@ public class AdministratorController {
 	
 	public void addNewUser(ActionEvent event) {
 		AdministratorResources adminResources = new AdministratorResources(resources, users);
+		adminResources.setScreenHeight(resources.getScreenHeight() * 0.7);
+		adminResources.setScreenWidth(resources.getScreenWidth() * 0.5);
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
 			Stage addNewUserStage = new Stage();
+			adminResources.setStage(addNewUserStage);
 			addNewUserStage.setScene(new Scene(root));
 			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
 			addNewUserStage.show();
@@ -66,10 +71,10 @@ public class AdministratorController {
 		}
 		try {
 			AdministratorResources adminResources = new AdministratorResources(resources, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/NewUserTableForm.fxml"), adminResources);
-			if(workSpace.getChildren().size() != 0)
-				workSpace.getChildren().remove(0);
-			workSpace.getChildren().add(root);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/UserTableForm.fxml"), adminResources);
+			if(workspaceAnchor.getChildren().size() != 0)
+				workspaceAnchor.getChildren().remove(0);
+			workspaceAnchor.getChildren().add(root);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,5 +91,21 @@ public class AdministratorController {
 			resources.getClientCommunication().closeConnection();
 			resources.getStage().hide();
 		}
+	}
+	
+	public void resize() {
+		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.8);
+		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
+		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
+		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
+		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
+		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
+		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
+		addNewUserButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
+		showUsersButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
+		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
 	}
 }

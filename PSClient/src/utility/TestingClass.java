@@ -31,7 +31,12 @@ public class TestingClass {
 		Intervention intervention5 = new Intervention("5", "5", "5", "5", "5", LocalDateTime.now(), LocalDateTime.now(), true, "Assssd.");
 		Intervention intervention6 = new Intervention("6", "6", "6", "6", "6", LocalDateTime.now(), LocalDateTime.now(), true, "Asddddsd.");
 		interventions.add(intervention1); interventions.add(intervention2); interventions.add(intervention3); interventions.add(intervention4);
-		interventions.add(intervention5); interventions.add(intervention6);
+		interventions.add(intervention5); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
+		interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
+		interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
+		interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
+		interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
+		interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6); interventions.add(intervention6);
 		return FXCollections.observableArrayList(interventions);
 	}
 	
