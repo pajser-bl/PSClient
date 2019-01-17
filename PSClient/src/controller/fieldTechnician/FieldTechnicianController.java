@@ -10,7 +10,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import utility.ChoiceBox;
 import utility.ClientResources;
-import utility.TestingClass;
 
 public class FieldTechnicianController {
 
@@ -33,7 +32,6 @@ public class FieldTechnicianController {
 	}
 	
 	public void showSession(ActionEvent event) {
-		session = TestingClass.generateSession();
 		if(!anchor.getChildren().isEmpty())
 			anchor.getChildren().clear();
 		TextArea sessionTextArea = new TextArea();

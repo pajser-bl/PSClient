@@ -16,6 +16,10 @@ public class User {
 		this.userName = userName;
 	}
 	
+	public String getFieldTechnician() {
+		return userId + " " + name + " " + lastName;
+	}
+	
 	public String toString() {
 		return userId + " " + name + " " + lastName + " " + userName + " " + type;
 	}

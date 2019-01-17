@@ -6,7 +6,7 @@ import client.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AdministratorResources extends ClientResources{
+public class AdministratorResources extends ClientResources {
 	
 	private ArrayList<User> users;
 	
@@ -23,7 +23,7 @@ public class AdministratorResources extends ClientResources{
 	public ArrayList<User> getUsers(){
 		return users;
 	}
-	
+
 	protected Object handleGetObject(String key) {
 		return null;
 	}

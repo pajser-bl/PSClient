@@ -2,6 +2,9 @@ package controller.operater;
 
 import utility.ChoiceBox;
 import utility.ClientResources;
+import utility.OperaterResources;
+import utility.MessageBox;
+import utility.AdministratorResources;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,8 +14,11 @@ import javafx.scene.layout.BorderPane;
 
 import java.util.ArrayList;
 
+import client.FieldTechnitian;
 import client.Request;
 import client.Session;
+import client.User;
+import exception.ServerReplyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,16 +75,23 @@ public class OperaterController {
 	public void showFieldTechnicians(ActionEvent event) {
 		Request request = new Request("VIEW FIELD TECHNITIANS", new ArrayList<String>());
 		ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
-		for(int i = 0; i < reply.size(); i++)
-			System.out.println(reply.get(i));
-		if(!workspaceAnchor.getChildren().isEmpty())
-			workspaceAnchor.getChildren().clear();
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/VehicleForm.fxml"), resources);
-			workspaceAnchor.getChildren().add(root);
-		} catch(Exception e) {
-			e.printStackTrace();
+		if(reply.get(0).equals("VIEW FIELD TECHNITIANS OK")) {
+			ArrayList<FieldTechnitian> fieldTechnitians = new ArrayList<>();
+			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parsedUser = reply.get(i + 2).split(":");
+				fieldTechnitians.add(new FieldTechnitian(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
+			}
+			if(!workspaceAnchor.getChildren().isEmpty())
+					workspaceAnchor.getChildren().clear();
+			try {
+				OperaterResources tableResources = new OperaterResources(resources, fieldTechnitians, session);
+				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/VehicleForm.fxml"), tableResources);
+				workspaceAnchor.getChildren().add(root);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
+		else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
 	public void showMap(ActionEvent event) {}

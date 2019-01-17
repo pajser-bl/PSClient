@@ -179,6 +179,12 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 	
+	public ArrayList<String> getFieldTechnicians() {
+		ArrayList<String> arguments = new ArrayList<>();
+		Request request = new Request("VIEW AVAILABLE FIELD TECHNITIANS", arguments);
+		return sendRequest(request);
+	}
+	
 	public ArrayList<String> newFieldReport(String intervention_Id, String user_Id, String assistance, String time,  String remark) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(intervention_Id);

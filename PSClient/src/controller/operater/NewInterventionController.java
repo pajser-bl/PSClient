@@ -12,21 +12,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import utility.ClientResources;
+import utility.OperaterResources;
 import utility.MessageBox;
+import utility.AdministratorResources;
 
 public class NewInterventionController {
 
-	@FXML AnchorPane bottomPane;
-	@FXML AnchorPane topPane;
-	@FXML AnchorPane clientInformationPane;
+	@FXML AnchorPane clientInformationAnchor;
 	@FXML AnchorPane clientInformationLabels;
 	@FXML AnchorPane clientInformationInput;
-	@FXML AnchorPane vehicleInformationPane;
+	@FXML AnchorPane vehicleAnchor;
+	@FXML AnchorPane vehicleInformationAnchor;
 	@FXML AnchorPane vehicleInformationLabels;
 	@FXML AnchorPane vehicleInformationInput;
-	@FXML ComboBox<String> fieldTechnician;
-	@FXML ClientResources resources;
+	@FXML ComboBox<String> fieldTechnicians;
+	@FXML OperaterResources resources;
 	@FXML Button submitButton;
 	@FXML TextField name;
 	@FXML TextField lastName;
@@ -36,7 +36,13 @@ public class NewInterventionController {
 	@FXML TextField model;
 	@FXML TextField yearMade;
 	
-	@FXML public void initalize() {
+	@FXML public void initialize() {
+		ArrayList<String> fieldTechnitians = new ArrayList<>();
+		for(int i = 0; i < resources.getFieldTechnitians().size(); i++) {
+			fieldTechnitians.add(resources.getFieldTechnitians().get(i).toStringNoState());
+		}
+		fieldTechnicians.getItems().addAll(fieldTechnitians);
+		fieldTechnicians.setValue(fieldTechnitians.get(0));
 		resize();
 	}
 	
@@ -70,6 +76,7 @@ public class NewInterventionController {
 			if(reply.get(0).equals("NEW INTERVENTION FAILED"))
 				throw new ServerReplyException(reply.get(1));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
+			resources.getStage().close();
 		} catch (EmptyFieldException e) {
 			MessageBox.displayMessage("Greska", "Oznacena polja moraju biti popunjena");
 		} catch (ServerReplyException e) {
@@ -78,14 +85,14 @@ public class NewInterventionController {
 	}
 	
 	public void resize() {
-		AnchorPane.setTopAnchor(bottomPane, resources.getScreenHeight() * 0.6);
-		AnchorPane.setBottomAnchor(topPane, resources.getScreenHeight() * 0.4);
+		AnchorPane.setBottomAnchor(clientInformationAnchor, resources.getScreenHeight() * 0.6);
 		AnchorPane.setTopAnchor(clientInformationLabels, 0.0);
 		AnchorPane.setRightAnchor(clientInformationLabels, resources.getScreenWidth() * 0.5);
 		AnchorPane.setTopAnchor(clientInformationInput, 0.0);
 		AnchorPane.setLeftAnchor(clientInformationInput, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(vehicleInformationPane, 0.5);
-		AnchorPane.setBottomAnchor(vehicleInformationPane, 0.1);
+		AnchorPane.setTopAnchor(vehicleAnchor, resources.getScreenHeight() * 0.4);
+		AnchorPane.setTopAnchor(vehicleInformationAnchor, 0.5);
+		AnchorPane.setBottomAnchor(vehicleInformationAnchor, 0.1);
 		AnchorPane.setTopAnchor(vehicleInformationLabels, resources.getScreenHeight() * 0.0125);
 		AnchorPane.setRightAnchor(vehicleInformationLabels, resources.getScreenWidth() * 0.5);
 		AnchorPane.setTopAnchor(vehicleInformationInput, resources.getScreenHeight() * 0.0125);

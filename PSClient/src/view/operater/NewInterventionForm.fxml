@@ -14,7 +14,7 @@
 	fx:controller="controller.operater.NewInterventionController"
 	styleClass="root7" stylesheets="@/css/background.css">
 	<children>
-		<AnchorPane fx:id="clientInformationPane"
+		<AnchorPane fx:id="clientInformationAnchor"
 			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 			AnchorPane.topAnchor="0.0">
 			<children>
@@ -64,7 +64,7 @@
 				</AnchorPane>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="bottomPane"
+		<AnchorPane fx:id="vehicleAnchor"
 			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 			AnchorPane.rightAnchor="0.0">
 			<children>
@@ -75,7 +75,7 @@
 						<Insets left="10.0" />
 					</padding>
 				</Label>
-				<AnchorPane fx:id="vehicleInformationPane"
+				<AnchorPane fx:id="vehicleInformationAnchor"
 					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 					<children>
 						<AnchorPane fx:id="vehicleInformationLabels"
@@ -111,7 +111,7 @@
 										<TextField fx:id="manufacturer" styleClass="text_field" stylesheets="@../../css/text_field.css" />
 										<TextField fx:id="model" styleClass="text_field" stylesheets="@../../css/text_field.css" />
 										<TextField fx:id="yearMade" styleClass="text_field" stylesheets="@../../css/text_field.css" />
-										<ComboBox prefWidth="150.0" styleClass="combo-box" stylesheets="@../../css/combo_box.css"/>
+										<ComboBox fx:id="fieldTechnicians" prefWidth="150.0" styleClass="combo-box" stylesheets="@../../css/combo_box.css"/>
 									</children>
 									<padding>
 										<Insets top="15.0" />
