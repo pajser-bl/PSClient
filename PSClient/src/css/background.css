@@ -56,7 +56,7 @@
 
 .root10 {
 	-fx-background-image: url("/resources/images/background_6.png");
-	-fx-background-size: 100% 100%
+	-fx-background-size: 100% 100%;
 }
 
 .split-pane-divider {

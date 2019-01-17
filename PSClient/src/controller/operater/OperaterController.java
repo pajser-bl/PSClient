@@ -9,12 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
-import client.FieldTechnitian;
+import client.FieldTechnician;
 import client.Request;
 import client.Session;
 import client.User;
@@ -30,6 +32,7 @@ public class OperaterController {
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane workspaceAnchor;
 	@FXML AnchorPane optionsAnchor;
+	@FXML AnchorPane avatarAnchor;
 	@FXML Button interventionsButton;
 	@FXML Button mapButton;
 	@FXML Button sessionButton;
@@ -39,14 +42,16 @@ public class OperaterController {
 	@FXML Button refreshButton;
 	@FXML BorderPane mainLayout;
 	@FXML ClientResources resources;
+	@FXML ImageView avatar;
 	@FXML Label name;
 	@FXML Label lastName;
+	@FXML VBox userData;
 	
 	@FXML public void initialize() {
 		session = new Session();
 		resize();
-		//name.setText("Ime: " + resources.getUser().getName());
-		//lastName.setText("Prezime: " + resources.getUser().getLastName());
+		name.setText("  " + resources.getUser().getName());
+		lastName.setText("  " + resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -71,29 +76,37 @@ public class OperaterController {
 			workspaceAnchor.getChildren().clear();
 		TextArea sessionTextArea = new TextArea();
 		sessionTextArea.setText(session.toString());
+		AnchorPane.setBottomAnchor(sessionTextArea, 0.0);
+		AnchorPane.setTopAnchor(sessionTextArea, 0.0);
+		AnchorPane.setLeftAnchor(sessionTextArea, 0.0);
+		AnchorPane.setRightAnchor(sessionTextArea, 0.0);
+		sessionTextArea.getStylesheets().add("@../../css/background.css");
+		sessionTextArea.getStyleClass().add("root10");
+		sessionTextArea.setStyle("root10");
 		workspaceAnchor.getChildren().add(sessionTextArea);
 	}
 	
 	public void showFieldTechnicians(ActionEvent event) {
-		Request request = new Request("VIEW FIELD TECHNITIANS", new ArrayList<String>());
+		Request request = new Request("VIEW FIELD TECHNICIANS", new ArrayList<String>());
 		ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
 		if(reply.get(0).equals("VIEW FIELD TECHNICIANS OK") && (Integer.parseInt(reply.get(1)) != 0)) {
-			ArrayList<FieldTechnitian> fieldTechnitians = new ArrayList<>();
+			ArrayList<FieldTechnician> fieldTechnicians = new ArrayList<>();
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedUser = reply.get(i + 2).split(":");
-				fieldTechnitians.add(new FieldTechnitian(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
+				fieldTechnicians.add(new FieldTechnician(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
 			}
 			if(!workspaceAnchor.getChildren().isEmpty())
 					workspaceAnchor.getChildren().clear();
 			try {
-				OperaterResources tableResources = new OperaterResources(resources, fieldTechnitians, session);
+				OperaterResources tableResources = new OperaterResources(resources, fieldTechnicians, session);
 				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/FieldTechnicianTableForm.fxml"), tableResources);
 				workspaceAnchor.getChildren().add(root);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if (Integer.parseInt(reply.get(1)) == 0) {
+		} else if (reply.get(0).equals("VIEW FIELD TECHNICIANS OK") && (Integer.parseInt(reply.get(1)) == 0)) {
 			MessageBox.displayMessage("Greska", "Nema prijavljenih terenskih radnika");
+			workspaceAnchor.getChildren().clear();
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
@@ -113,7 +126,7 @@ public class OperaterController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.8);
+		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
 		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
 		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
@@ -121,6 +134,11 @@ public class OperaterController {
 		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
 		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
+		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
+		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
+		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
 		interventionsButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
 		mapButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
 		sessionButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);

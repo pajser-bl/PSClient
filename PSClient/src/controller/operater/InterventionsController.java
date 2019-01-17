@@ -1,7 +1,7 @@
 package controller.operater;
 
 import java.util.ArrayList;
-import client.FieldTechnitian;
+import client.FieldTechnician;
 import client.Intervention;
 import exception.ServerReplyException;
 import javafx.event.ActionEvent;
@@ -46,14 +46,14 @@ public class InterventionsController {
 
 	public void openNewIntervention(ActionEvent event) {
 		try {
-			ArrayList<String> reply = resources.getClientCommunication().getFieldTechnicians();
-			ArrayList<FieldTechnitian> fieldTechnitians = new ArrayList<>();
-			if (reply.get(0).equals("VIEW AVAILABLE FIELD TECHNITIANS OK"))
-				if (Integer.parseInt(reply.get(1)) == 0)
-					throw new ServerReplyException("Nema slobodnih terenskih radnika");
+			ArrayList<String> reply = resources.getClientCommunication().getAvailableFieldTechnicians();
+			ArrayList<FieldTechnician> fieldTechnitians = new ArrayList<>();
+			System.out.print(reply.toString());
+			if (reply.get(0).equals("VIEW AVAILABLE FIELD TECHNICIANS OK") && Integer.parseInt(reply.get(1)) == 0)
+				throw new ServerReplyException("Nema slobodnih terenskih radnika");
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedUser = reply.get(i + 2).split(":");
-				fieldTechnitians.add(new FieldTechnitian(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
+				fieldTechnitians.add(new FieldTechnician(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
 			}
 			Stage newInterventionStage = new Stage();
 			ClientResources newResources = new ClientResources(newInterventionStage, resources.getClientCommunication(),

@@ -32,12 +32,14 @@ public class AdministratorController {
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ClientResources resources;
+	@FXML Label name;
+	@FXML Label lastName;
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
 		resize();
-		//name.setText("Ime: " + resources.getUser().getName());
-		//lastName.setText("Prezime: " + resources.getUser().getLastName());
+		name.setText(resources.getUser().getName());
+		lastName.setText(resources.getUser().getLastName());
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
 			close();

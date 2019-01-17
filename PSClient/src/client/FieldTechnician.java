@@ -1,13 +1,13 @@
 package client;
 
-public class FieldTechnitian {
+public class FieldTechnician {
 
 	private String Id;
 	private String name;
 	private String lastName;
 	private String state;
 	
-	public FieldTechnitian(String Id, String name, String lastName, String state) {
+	public FieldTechnician(String Id, String name, String lastName, String state) {
 		this.Id = Id;
 		this.name = name;
 		this.lastName = lastName;

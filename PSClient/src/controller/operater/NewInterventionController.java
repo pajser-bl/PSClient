@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import utility.OperaterResources;
 import utility.MessageBox;
-import utility.AdministratorResources;
 
 public class NewInterventionController {
 
@@ -56,24 +55,22 @@ public class NewInterventionController {
 			arguments.add(openedOn.toString());
 			arguments.add(name.getText());
 			arguments.add(lastName.getText());
-			if(!phoneNumber.getText().isEmpty())
-				arguments.add(phoneNumber.getText());
-			else arguments.add("empty");
-			if(!licencePlate.getText().isEmpty())
-				arguments.add(licencePlate.getText());
+			arguments.add(phoneNumber.getText());
+			arguments.add(licencePlate.getText());
+			if(!model.getText().isEmpty())
+				arguments.add(model.getText());
 			else arguments.add("empty");
 			if(!manufacturer.getText().isEmpty())
 				arguments.add(manufacturer.getText());
 			else arguments.add("empty");
-			if(!model.getText().isEmpty())
-				arguments.add(model.getText());
-			else arguments.add("empty");
 			if(!yearMade.getText().isEmpty())
 				arguments.add(yearMade.getText());
 			else arguments.add("empty");
+			String[] fieldTechnician = fieldTechnicians.getSelectionModel().getSelectedItem().split(":");
+			arguments.add(fieldTechnician[0]);
 			Request request = new Request("NEW INTERVENTION", arguments);
 			ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
-			if(reply.get(0).equals("NEW INTERVENTION FAILED"))
+			if(reply.get(0).equals("NEW INTERVENTION NOT OK"))
 				throw new ServerReplyException(reply.get(1));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
 			resources.getStage().close();

@@ -179,9 +179,9 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 	
-	public ArrayList<String> getFieldTechnicians() {
+	public ArrayList<String> getAvailableFieldTechnicians() {
 		ArrayList<String> arguments = new ArrayList<>();
-		Request request = new Request("VIEW AVAILABLE FIELD TECHNITIANS", arguments);
+		Request request = new Request("VIEW AVAILABLE FIELD TECHNICIANS", arguments);
 		return sendRequest(request);
 	}
 	

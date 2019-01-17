@@ -79,7 +79,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <Label text="_ime" textFill="#46a4b7" GridPane.columnIndex="1">
+                              <Label fx:id="name" textFill="#46a4b7" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
@@ -88,7 +88,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label text="_prezime" textFill="#46a4b7" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="lastName" textFill="#46a4b7" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
