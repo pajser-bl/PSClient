@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.fieldTechnician.FieldTechnicianController">
+	<children>
+		<AnchorPane fx:id="statusAnchor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+		<AnchorPane fx:id="menuAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+			<children>
+				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="stateButton" mnemonicParsing="false" onAction="#changeState" styleClass="stanjebutton" stylesheets="@../../css/field_techician_state_button.css" />
+						<Button fx:id="mapButton" mnemonicParsing="false" onAction="#showMap" styleClass="mapabutton" stylesheets="@../../css/field_techician_map_button.css" />
+						<Button fx:id="reportButton" mnemonicParsing="false" onAction="#newFieldReport" styleClass="reportbutton" stylesheets="@../../css/field_technician_field_report_button.css" />
+						<Button fx:id="sessionButton" mnemonicParsing="false" onAction="#showSession" styleClass="sesijabutton" stylesheets="@../../css/field_tehnician_session_button.css" />
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="workspaceAnchor" styleClass="root2" stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" />
+		<AnchorPane fx:id="optionsAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@../../css/exit_button.css" />
+						<Button fx:id="refreshButton" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../../css/refresh_button.css" />
+						<Button fx:id="helpButton" mnemonicParsing="false" styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>

@@ -54,10 +54,12 @@ public class OperaterController {
 	}
 	
 	public void showInterventions(ActionEvent event) {
+		
 		if(!workspaceAnchor.getChildren().isEmpty())
 			workspaceAnchor.getChildren().clear();
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), resources);
+			OperaterResources operaterResources = new OperaterResources(resources, null, session);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), operaterResources);
 			workspaceAnchor.getChildren().add(root);
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -24,7 +24,11 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
+<<<<<<< HEAD
 				resources.setClientCommunication(new ClientCommunication("127.0.0.1", 9000));
+=======
+				resources.setClientCommunication(new ClientCommunication("192.168.0.48", 9000));
+>>>>>>> branch 'master' of https://github.com/pajser-bl/PSClient
 				ArrayList<String> reply = resources.getClientCommunication().login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
@@ -32,8 +36,8 @@ public class LoginController{
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/operater/OperaterForm.fxml"), resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);
-					} else if(reply.get(4).equals("Terenski radnik")) {
-						Parent userView = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/FieldTechnicianForm.fxml"),
+					} else if(reply.get(4).equals("Terenski Radnik")) {
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/field_technician/FieldTechnicianForm.fxml"),
 								resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);

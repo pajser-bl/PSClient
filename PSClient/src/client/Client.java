@@ -22,7 +22,11 @@ public class Client extends Application {
 			double width = screenResolution.getWidth();
 			double height = screenResolution.getHeight();
 			ClientResources resources = new ClientResources(mainStage, clientCommunication, user, width, height);
+<<<<<<< HEAD
 			Parent root = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/StateForm.fxml"), resources);
+=======
+			Parent root = FXMLLoader.load(getClass().getResource("/view/user/LoginForm.fxml"), resources);
+>>>>>>> branch 'master' of https://github.com/pajser-bl/PSClient
 			mainStage.setScene(new Scene(root));
 			mainStage.setTitle("Road Runner");
 			mainStage.setResizable(false);

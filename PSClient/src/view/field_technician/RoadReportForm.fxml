@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="root7" stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="new_forms.NewRoadReportController">
+<AnchorPane styleClass="root7" stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.fieldTechnician.RoadReportController">
 	<children>
 		<AnchorPane fx:id="interventionAnchor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -74,7 +74,7 @@
 			<children>
 				<Label text="Opis problema:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 				<TextArea fx:id="report" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-				<Button fx:id="submitButton" mnemonicParsing="false" styleClass="commonbutton" stylesheets="@../css/common_button.css" text="Posalji" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+				<Button fx:id="submitButton" mnemonicParsing="false" styleClass="commonbutton" stylesheets="@../../css/common_button.css" text="Posalji" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
 			</children>
 		</AnchorPane>
 	</children>
