@@ -4,6 +4,7 @@
 
 .table-view {
 	-fx-background-color: #020A0D;
+	-fx-border-color: #0E1A24;
 }
 
 .table-view:focused {
@@ -16,16 +17,21 @@
 
 .table-view .column-header-background .label{
 	-fx-background-color: transparent;
-	-fx-text-fill: #36778E  ;
+	-fx-text-fill: #36778E;
 }
 
 .table-view .column-header {
-	-fx-background-color: #010C16   ;
+	-fx-background-color: #010C16;
 }
 
 
 .table-view .table-cell {
 	-fx-text-fill: #8FB6C5;
+}
+
+.table-row-cell{
+-fx-border-color: #010C16;
+-fx-table-cell-border-color:#010C16;
 }
 
 .table-row-cell:odd{

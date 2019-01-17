@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.AdministratorResources;
@@ -23,6 +24,8 @@ public class AdministratorController {
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane workspaceAnchor;
 	@FXML AnchorPane optionsAnchor;
+	@FXML AnchorPane profileAnchor;
+	@FXML HBox profileHBox;
 	@FXML Button addNewUserButton;
 	@FXML Button showUsersButton;
 	@FXML Button logoutButton;
@@ -94,18 +97,31 @@ public class AdministratorController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.8);
+		//top panel
+		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.9);
+		
+		//profile picture
+		AnchorPane.setRightAnchor(profileAnchor, resources.getScreenWidth() * 0.805);
+		AnchorPane.setBottomAnchor(profileAnchor, resources.getScreenHeight() * 0.81);
+		
+		//left panel
 		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
-		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
+		
+		//center panel
+		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.15);
 		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
 		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
+		
+		//right panel
 		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
+		
+		//buttons
 		addNewUserButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
 		showUsersButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		logoutButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
+		refreshButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
+		helpButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
 	}
 }

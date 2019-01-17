@@ -22,7 +22,7 @@ public class Client extends Application {
 			double width = screenResolution.getWidth();
 			double height = screenResolution.getHeight();
 			ClientResources resources = new ClientResources(mainStage, clientCommunication, user, width, height);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/user/LoginForm.fxml"), resources);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AdministratorForm.fxml"), resources);
 			mainStage.setScene(new Scene(root));
 			mainStage.setTitle("Road Runner");
 			mainStage.setResizable(false);
