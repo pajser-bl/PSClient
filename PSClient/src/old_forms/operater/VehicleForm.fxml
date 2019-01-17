@@ -17,7 +17,7 @@
 	minHeight="900.0" minWidth="1400.0" prefHeight="900.0"
 	prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.operater.FieldTechnitianTableController">
+	fx:controller="controller.operater.FieldTechnicianTableController">
 	<right>
 		<GridPane prefHeight="798.0" prefWidth="1799.0"
 			BorderPane.alignment="CENTER">

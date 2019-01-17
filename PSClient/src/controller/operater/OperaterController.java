@@ -77,7 +77,7 @@ public class OperaterController {
 	public void showFieldTechnicians(ActionEvent event) {
 		Request request = new Request("VIEW FIELD TECHNITIANS", new ArrayList<String>());
 		ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
-		if(reply.get(0).equals("VIEW FIELD TECHNITIANS OK")) {
+		if(reply.get(0).equals("VIEW FIELD TECHNICIANS OK") && (Integer.parseInt(reply.get(1)) != 0)) {
 			ArrayList<FieldTechnitian> fieldTechnitians = new ArrayList<>();
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedUser = reply.get(i + 2).split(":");
@@ -87,13 +87,14 @@ public class OperaterController {
 					workspaceAnchor.getChildren().clear();
 			try {
 				OperaterResources tableResources = new OperaterResources(resources, fieldTechnitians, session);
-				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/VehicleForm.fxml"), tableResources);
+				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/FieldTechnicianTableForm.fxml"), tableResources);
 				workspaceAnchor.getChildren().add(root);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else MessageBox.displayMessage("Greska", reply.get(1));
+		} else if (Integer.parseInt(reply.get(1)) == 0) {
+			MessageBox.displayMessage("Greska", "Nema prijavljenih terenskih radnika");
+		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
 	public void showMap(ActionEvent event) {}

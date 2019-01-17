@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import utility.OperaterResources;
 import utility.AdministratorResources;
 
-public class FieldTechnitianTableController {
+public class FieldTechnicianTableController {
 
+	@FXML AnchorPane tableAnchor;
 	@FXML OperaterResources resources;
 	@FXML TableView<FieldTechnitian> FieldTechnicianTable;
 	
