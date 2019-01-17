@@ -1,10 +1,8 @@
 package controller.operater;
 
 import java.util.ArrayList;
-
 import client.FieldTechnitian;
 import client.Intervention;
-import client.User;
 import exception.ServerReplyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +19,6 @@ import javafx.stage.Stage;
 import utility.ClientResources;
 import utility.OperaterResources;
 import utility.MessageBox;
-import utility.AdministratorResources;
 
 public class InterventionsController {
 

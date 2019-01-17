@@ -1,4 +1,4 @@
-package new_forms;
+package controller.fieldTechnician;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import utility.ClientResources;
 
-public class NewRoadReportController {
+public class RoadReportController {
 
 	@FXML AnchorPane interventionAnchor;
 	@FXML AnchorPane vehicleAnchor;
