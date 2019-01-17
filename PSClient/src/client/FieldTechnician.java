@@ -14,6 +14,13 @@ public class FieldTechnician {
 		this.state = state;
 	}
 	
+	public FieldTechnician(User user) {
+		Id = user.getUserId();
+		name = user.getName();
+		lastName = user.getLastName();
+		state = "neaktivan";
+	}
+	
 	public String toStringNoState() {
 		return Id + ": " + name + " " + lastName;
 	}

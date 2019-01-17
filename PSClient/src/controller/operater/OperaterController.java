@@ -81,8 +81,8 @@ public class OperaterController {
 		AnchorPane.setLeftAnchor(sessionTextArea, 0.0);
 		AnchorPane.setRightAnchor(sessionTextArea, 0.0);
 		sessionTextArea.getStylesheets().add("@../../css/background.css");
-		sessionTextArea.getStyleClass().add("root10");
-		sessionTextArea.setStyle("root10");
+		sessionTextArea.getStyleClass().add("root9");
+		sessionTextArea.setStyle("root9");
 		workspaceAnchor.getChildren().add(sessionTextArea);
 	}
 	

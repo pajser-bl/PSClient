@@ -267,11 +267,10 @@ public class ClientCommunication {
 	}
 
 	public ArrayList<String> changeState(String userId, String state) {
-		ArrayList<String>arguments=new ArrayList<>();
+		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);
 		arguments.add(state);
-		Request request=new Request("CHANGE STATE FIELD TECHNICIAN",arguments);
-		return sendRequest(request);
-		
+		Request request = new Request("CHANGE STATE FIELD TECHNICIAN", arguments);
+		return sendRequest(request);	
 	}
 }

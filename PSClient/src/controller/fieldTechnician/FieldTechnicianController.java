@@ -1,5 +1,8 @@
 package controller.fieldTechnician;
 
+import java.util.ArrayList;
+
+import client.FieldTechnician;
 import client.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +16,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.ChoiceBox;
 import utility.ClientResources;
+import utility.MessageBox;
 
 public class FieldTechnicianController {
 
 	private Session session;
+	private FieldTechnician user;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane optionsAnchor;
@@ -29,10 +34,10 @@ public class FieldTechnicianController {
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ClientResources resources;
-	String state;
 	
 	
 	@FXML public void initialize() {
+		user = new FieldTechnician(resources.getUser());
 		resize();
 		resources.getStage().setOnCloseRequest(e -> {
 			e.consume();
@@ -60,12 +65,20 @@ public class FieldTechnicianController {
 	}
 	
 	public void changeState(ActionEvent event) {
-		if(state.equals("aktivan")) {
-			state="neaktivan";
+		if(user.getState().equals("aktivan")) {
+			user.setState("neaktivan");
+		} else user.setState("aktivan");
+		ArrayList<String> reply = resources.getClientCommunication().changeState(resources.getUser().getUserId(),user.getState());
+		if(reply.get(0).equals("CHANGE STATE OK"))
+				MessageBox.displayMessage("Potvrda", "Stanje uspjesno pormjenjeno");
+		else {
+			if(user.getState().equals("aktivan")) {
+				user.setState("neaktivan");
+			} else user.setState("aktivan");
+			
+				
+			MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
 		}
-		else state="aktivan";
-		resources.getClientCommunication().changeState(resources.getUser().getUserId(),state);
-	
 	}
 	
 	public void showMap(ActionEvent event) {
