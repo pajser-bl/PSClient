@@ -24,7 +24,7 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				resources.setClientCommunication(new ClientCommunication("192.168.0.66", 9000));
+				resources.setClientCommunication(new ClientCommunication("127.0.0.1", 9000));
 				ArrayList<String> reply = resources.getClientCommunication().login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
