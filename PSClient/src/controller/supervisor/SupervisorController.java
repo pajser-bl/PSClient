@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import utility.ClientResources;
 
-public class NewSupervisorController {
+public class SupervisorController {
 
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane optionsAnchor;
