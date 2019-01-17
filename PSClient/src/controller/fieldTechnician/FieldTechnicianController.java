@@ -29,6 +29,8 @@ public class FieldTechnicianController {
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ClientResources resources;
+	String state;
+	
 	
 	@FXML public void initialize() {
 		resize();
@@ -57,7 +59,14 @@ public class FieldTechnicianController {
 		}
 	}
 	
-	public void changeState(ActionEvent event) {}
+	public void changeState(ActionEvent event) {
+		if(state.equals("aktivan")) {
+			state="neaktivan";
+		}
+		else state="aktivan";
+		resources.getClientCommunication().changeState(resources.getUser().getUserId(),state);
+	
+	}
 	
 	public void showMap(ActionEvent event) {
 		ClientResources reportResources = new ClientResources(null, resources.getClientCommunication(), resources.getUser(),
