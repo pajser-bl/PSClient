@@ -41,6 +41,11 @@ public class LoginController{
 								resources);
 						Scene userScene = new Scene(userView);
 						resources.getStage().setScene(userScene);
+					} else if(reply.get(4).equals("Supervizor")) {
+						Parent userView = FXMLLoader.load(getClass().getResource("/view/supervisor/SupervisorForm.fxml"),
+								resources);
+						Scene userScene = new Scene(userView);
+						resources.getStage().setScene(userScene);
 					} else {
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/administrator/AdministratorForm.fxml"), 
 								resources);

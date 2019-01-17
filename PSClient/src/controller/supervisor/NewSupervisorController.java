@@ -1,4 +1,4 @@
-package new_forms;
+package controller.supervisor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +26,27 @@ public class NewSupervisorController {
 		resize();
 	}
 	
-	public void showActiveUsers(ActionEvent event) {}
+	public void showActiveUsers(ActionEvent event) {
+		/*ArrayList<String> reply = RequestFunctionality.viewActiveUsers(Client.clientCommunication);
+		System.out.println(reply);
+		if (reply.get(0).equals("VIEW ONLINE USERS OK")) {
+			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] userData = reply.get(i+2).split(":");
+				activeUsers.add(new User(userData[0], userData[1], userData[2], userData[3],userData[4]));
+			}
+		} else {
+			MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
+		}
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/view/SupervisorActiveUsersForm.fxml"));
+			if (anchor.getChildren().size() != 0)
+				anchor.getChildren().remove(0);
+			anchor.getChildren().add(root);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+	}
+	
 	public void showClients(ActionEvent event) {}
 	public void showSessions(ActionEvent event) {}
 	public void showInterventions(ActionEvent event) {}
