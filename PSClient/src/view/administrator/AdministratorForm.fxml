@@ -13,97 +13,98 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.administrator.AdministratorController">
+<AnchorPane styleClass="root2"
+	stylesheets="@/css/background.css"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.administrator.AdministratorController">
 	<children>
-		<AnchorPane fx:id="statusAnchor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<AnchorPane fx:id="statusAnchor"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
 			<children>
-				<HBox fx:id="statusHBox" alignment="BOTTOM_LEFT" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-			</children>
-			</AnchorPane>
-		<AnchorPane fx:id="menuAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-			<children>
-				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<AnchorPane fx:id="avatarAnchor" styleClass="root10"
+					stylesheets="@../../css/background.css"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
 					<children>
-						<Button fx:id="addNewUserButton" mnemonicParsing="false" onAction="#addNewUser" styleClass="dodajbutton" stylesheets="@../../css/administrator_add_new_user_button.css" />
-						<Button fx:id="showUsersButton" mnemonicParsing="false" onAction="#showUsers" styleClass="pregledajbutton" stylesheets="@../../css/administrator_view_users.css" />
+						<ImageView fx:id="avatar" pickOnBounds="true"
+							preserveRatio="true" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image
+									url="@../../resources/images/administrator_avatar.png" />
+							</image>
+						</ImageView>
+					</children>
+				</AnchorPane>
+				<VBox fx:id="userData" alignment="CENTER_LEFT"
+					styleClass="root10" stylesheets="@../../css/background.css"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
+					<children>
+						<Label text="Ime:" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label fx:id="name" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label text="Prezime:" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label fx:id="lastName" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
 					</children>
 				</VBox>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="workspaceAnchor" styleClass="root2" stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" />
-		<AnchorPane fx:id="optionsAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+		<AnchorPane fx:id="menuAnchor"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
 			<children>
-				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<VBox alignment="CENTER" spacing="10.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@../../css/exit_button.css" />
-						<Button fx:id="refreshButton" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../../css/refresh_button.css" />
-						<Button fx:id="helpButton" mnemonicParsing="false" styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
+						<Button fx:id="addNewUserButton" mnemonicParsing="false"
+							onAction="#addNewUser" styleClass="dodajbutton"
+							stylesheets="@../../css/administrator_add_new_user_button.css" />
+						<Button fx:id="showUsersButton" mnemonicParsing="false"
+							onAction="#showUsers" styleClass="pregledajbutton"
+							stylesheets="@../../css/administrator_view_users.css" />
 					</children>
 				</VBox>
 			</children>
 		</AnchorPane>
-      <AnchorPane fx:id="profileAnchor" styleClass="root2" stylesheets="@../../css/background.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox fx:id="profileHBox" styleClass="root10" stylesheets="@../../css/background.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox fx:id="leftHBox" alignment="BOTTOM_CENTER">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../resources/images/administrator_avatar.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="1.0" />
-                     </padding></HBox>
-                  <HBox fx:id="rightHBox">
-                     <children>
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Ime:" textFill="#46a4b7">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font></Label>
-                              <Label fx:id="name" textFill="#46a4b7" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font></Label>
-                              <Label text="Prezime:" textFill="#46a4b7" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lastName" textFill="#46a4b7" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </GridPane>
-                     </children></HBox>
-               </children>
-            </HBox>
-         </children></AnchorPane>
+		<AnchorPane fx:id="workspaceAnchor" styleClass="root2"
+			stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" />
+		<AnchorPane fx:id="optionsAnchor"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<VBox alignment="CENTER" spacing="10.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="logoutButton" mnemonicParsing="false"
+							onAction="#logout" styleClass="exitbutton"
+							stylesheets="@../../css/exit_button.css" />
+						<Button fx:id="refreshButton" mnemonicParsing="false"
+							styleClass="refreshbutton"
+							stylesheets="@../../css/refresh_button.css" />
+						<Button fx:id="helpButton" mnemonicParsing="false"
+							styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
 	</children>
 </AnchorPane>

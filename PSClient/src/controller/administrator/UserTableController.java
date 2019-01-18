@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.AdministratorResources;
+import utility.ClientResources;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
 
@@ -38,11 +39,11 @@ public class UserTableController {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		TableColumn<User, String> lastNameColumn = new TableColumn<User, String>("Prezime");
 		lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-		TableColumn<User, String> userNameColumn = new TableColumn<User, String>("Korisnicko ime");
-		userNameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
+		TableColumn<User, String> usernameColumn = new TableColumn<User, String>("Korisnicko ime");
+		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, userNameColumn, typeColumn);
+		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, usernameColumn, typeColumn);
 		userTable.setItems(resources.getObservableUsers());
 	}
 	
@@ -65,13 +66,15 @@ public class UserTableController {
 				throw (new EmptyFieldException());
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
 			ArrayList<String> reply = resources.getClientCommunication().getUser(id);
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ProfilForm.fxml"));
-			Parent profileView = loader.load();
-			ProfileController controller = loader.getController();
-			controller.showProfile(reply.get(2), reply.get(3), reply.get(7), reply.get(6), reply.get(4));
-			Scene profileScene = new Scene(profileView);
+			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), null);
+			ArrayList<User> users = new ArrayList<>();
+			users.add(user);
+			ClientResources temp = new ClientResources(resources.getStage(), resources.getClientCommunication(), resources.getUser(),
+					resources.getScreenWidth() * 0.5, resources.getScreenHeight() * 0.8);
+			AdministratorResources newResources = new AdministratorResources(temp, users);
+			Parent root = FXMLLoader.load(getClass().getResource("/view/user/ProfileForm.fxml"), newResources);
 			Stage profileWindow = new Stage();
-			profileWindow.setScene(profileScene);
+			profileWindow.setScene(new Scene(root, newResources.getScreenWidth(), newResources.getScreenHeight()));
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
 			profileWindow.show();
 		} catch (EmptyFieldException e) {

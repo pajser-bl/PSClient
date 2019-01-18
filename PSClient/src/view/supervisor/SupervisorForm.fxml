@@ -4,29 +4,105 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="root2" stylesheets="@/css/background.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.supervisor.SupervisorController">
+<AnchorPane styleClass="root2"
+	stylesheets="@/css/background.css"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.supervisor.SupervisorController">
 	<children>
-		<AnchorPane fx:id="statusAnchor" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-		<AnchorPane fx:id="menuAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+		<AnchorPane fx:id="statusAnchor"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
 			<children>
-				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<AnchorPane fx:id="avatarAnchor" styleClass="root10"
+					stylesheets="@../../css/background.css"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
 					<children>
-						<Button fx:id="activeUsersButton" onAction="#showActiveUsers" styleClass="aktivnikorisnicibutton" stylesheets="@../../css/supervisor_active_users_button.css" mnemonicParsing="false" />
-						<Button fx:id="clientsButton"  onAction="#showClients" styleClass="klijentibutton" stylesheets="@../../css/supervisor_clients_button.css" mnemonicParsing="false" />
-						<Button fx:id="sessionsButton" onAction="#showSessions" styleClass="Ssesijebutton" stylesheets="@../../css/supervisor_sessions_button.css" mnemonicParsing="false" />
-						<Button fx:id="interventionsButton" onAction="#showInterventions" styleClass="Sintervencijabutton" stylesheets="@../../css/supervisor_interventions_button.css" mnemonicParsing="false" />
+						<ImageView fx:id="avatar" pickOnBounds="true"
+							preserveRatio="true" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0">
+							<image>
+								<Image
+									url="@../../resources/images/administrator_avatar.png" />
+							</image>
+						</ImageView>
+					</children>
+				</AnchorPane>
+				<VBox fx:id="userData" alignment="CENTER_LEFT"
+					styleClass="root10" stylesheets="@../../css/background.css"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
+					<children>
+						<Label text="Ime:" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label fx:id="name" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label text="Prezime:" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
+						<Label fx:id="lastName" textFill="#46a4b7">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Label>
 					</children>
 				</VBox>
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="workspaceAnchor" styleClass="root2" stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" />
-		<AnchorPane fx:id="optionsAnchor" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+		<AnchorPane fx:id="menuAnchor"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
 			<children>
-				<VBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<VBox alignment="CENTER" spacing="10.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" styleClass="exitbutton" stylesheets="@../../css/exit_button.css" />
-						<Button fx:id="refreshButton" mnemonicParsing="false" styleClass="refreshbutton" stylesheets="@../../css/refresh_button.css" />
-						<Button fx:id="helpButton" mnemonicParsing="false" styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
+						<Button fx:id="activeUsersButton"
+							onAction="#showActiveUsers" styleClass="aktivnikorisnicibutton"
+							stylesheets="@../../css/supervisor_active_users_button.css"
+							mnemonicParsing="false" />
+						<Button fx:id="clientsButton" onAction="#showClients"
+							styleClass="klijentibutton"
+							stylesheets="@../../css/supervisor_clients_button.css"
+							mnemonicParsing="false" />
+						<Button fx:id="sessionsButton" onAction="#showSessions"
+							styleClass="Ssesijebutton"
+							stylesheets="@../../css/supervisor_sessions_button.css"
+							mnemonicParsing="false" />
+						<Button fx:id="interventionsButton"
+							onAction="#showInterventions" styleClass="Sintervencijabutton"
+							stylesheets="@../../css/supervisor_interventions_button.css"
+							mnemonicParsing="false" />
+					</children>
+				</VBox>
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="workspaceAnchor" styleClass="root2"
+			stylesheets="@/css/background.css" AnchorPane.bottomAnchor="0.0" />
+		<AnchorPane fx:id="optionsAnchor"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<VBox alignment="CENTER" spacing="10.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="logoutButton" mnemonicParsing="false"
+							onAction="#logout" styleClass="exitbutton"
+							stylesheets="@../../css/exit_button.css" />
+						<Button fx:id="refreshButton" mnemonicParsing="false"
+							styleClass="refreshbutton"
+							stylesheets="@../../css/refresh_button.css" />
+						<Button fx:id="helpButton" mnemonicParsing="false"
+							styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
 					</children>
 				</VBox>
 			</children>

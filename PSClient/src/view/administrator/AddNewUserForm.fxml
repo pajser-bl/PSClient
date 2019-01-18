@@ -136,7 +136,7 @@
 												</FXCollections>
 											</items>
 										</ComboBox>
-										<TextField fx:id="userName" styleClass="text_field"
+										<TextField fx:id="username" styleClass="text_field"
 											stylesheets="@../../css/text_field.css" />
 										<TextField fx:id="password" styleClass="text_field"
 											stylesheets="@../../css/text_field.css" />

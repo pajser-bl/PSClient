@@ -9,8 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.AdministratorResources;
@@ -20,20 +22,22 @@ import utility.MessageBox;
 
 public class AdministratorController {
 
+	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane workspaceAnchor;
 	@FXML AnchorPane optionsAnchor;
-	@FXML AnchorPane profileAnchor;
-	@FXML HBox profileHBox;
 	@FXML Button addNewUserButton;
 	@FXML Button showUsersButton;
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ClientResources resources;
+	@FXML HBox profileHBox;
+	@FXML ImageView avatar;
 	@FXML Label name;
 	@FXML Label lastName;
+	@FXML VBox userData;
 	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
@@ -48,6 +52,7 @@ public class AdministratorController {
 	
 	public void addNewUser(ActionEvent event) {
 		AdministratorResources adminResources = new AdministratorResources(resources, users);
+		adminResources.setUserUpdate(false);
 		adminResources.setScreenHeight(resources.getScreenHeight() * 0.7);
 		adminResources.setScreenWidth(resources.getScreenWidth() * 0.5);
 		try {
@@ -70,7 +75,7 @@ public class AdministratorController {
 			else {
 				for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 					String[] userData = reply.get(i + 2).split(":");
-					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4]));
+					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4], null, null));
 				}
 			}
 		}
@@ -100,18 +105,21 @@ public class AdministratorController {
 	
 	public void resize() {
 		//top panel
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.9);
+		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
 		
 		//profile picture
-		AnchorPane.setRightAnchor(profileAnchor, resources.getScreenWidth() * 0.805);
-		AnchorPane.setBottomAnchor(profileAnchor, resources.getScreenHeight() * 0.81);
+		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
+		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
+		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
+		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
 		
 		//left panel
 		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
 		
 		//center panel
-		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.15);
+		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
 		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
 		

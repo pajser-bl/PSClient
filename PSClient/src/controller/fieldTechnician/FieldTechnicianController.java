@@ -11,7 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.ChoiceBox;
@@ -22,6 +24,7 @@ public class FieldTechnicianController {
 
 	private Session session;
 	private FieldTechnician user;
+	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane optionsAnchor;
@@ -34,7 +37,8 @@ public class FieldTechnicianController {
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ClientResources resources;
-	
+	@FXML ImageView avatar;
+	@FXML VBox userData;
 	
 	@FXML public void initialize() {
 		user = new FieldTechnician(resources.getUser());
@@ -111,7 +115,7 @@ public class FieldTechnicianController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.8);
+		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
 		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
 		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
@@ -119,6 +123,11 @@ public class FieldTechnicianController {
 		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
 		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
 		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
+		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
+		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
+		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
 		stateButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
 		mapButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
 		reportButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);

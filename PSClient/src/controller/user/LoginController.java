@@ -24,10 +24,10 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				resources.setClientCommunication(new ClientCommunication("10.99.169.140", 9000));
+				resources.setClientCommunication(new ClientCommunication("192.168.1.13", 9000));
 				ArrayList<String> reply = resources.getClientCommunication().login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
-					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5)));
+					resources.setUser(new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5), null, null));
 					if(reply.get(4).equals("Operater")) {
 						Parent userView = FXMLLoader.load(getClass().getResource("/view/operater/OperaterForm.fxml"), resources);
 						Scene userScene = new Scene(userView);
@@ -58,7 +58,7 @@ public class LoginController{
 				}
 			} catch (ConnectionTimeoutException e) {
 				e.printStackTrace();
-				MessageBox.displayMessage("Greska", "Veza sa serverom nije uspostavljena.");
+				MessageBox.displayMessage("Greska", "JEBEM TI ETF I SUGAVI NET!!!!!!!!");
 			} catch (Exception e) {
 				e.printStackTrace();
 				resources.getClientCommunication().closeConnection();
