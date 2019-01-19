@@ -62,9 +62,10 @@ public class OperaterController {
 		ArrayList<Intervention> interventions = new ArrayList<>();
 		OperaterResources operaterResources = new OperaterResources(resources, null, session, interventions);
 		System.out.print(reply.toString());
-		/*if(reply.get(0).equals("VIEW OPENED INTERVENTIONS OK")) {
+		if(reply.get(0).equals("VIEW OPENED INTERVENTIONS OK")) {
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedReply = reply.get(i + 2).split(":");
+				parsedReply[3].replace(";", ":");
 				Intervention intervention = new Intervention(parsedReply[0], parsedReply[1], parsedReply[2],
 						TimeUtility.stringToLocalDateTime(parsedReply[3]), parsedReply[4]);
 				interventions.add(intervention);
@@ -77,7 +78,7 @@ public class OperaterController {
 			workspaceAnchor.getChildren().add(root);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	public void showSession(ActionEvent event) {
