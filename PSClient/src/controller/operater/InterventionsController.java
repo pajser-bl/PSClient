@@ -1,5 +1,6 @@
 package controller.operater;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import client.FieldTechnician;
 import client.Intervention;
@@ -33,22 +34,21 @@ public class InterventionsController {
 		resize();
 		TableColumn<Intervention, String> idColumn = new TableColumn<Intervention, String>("Id");
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
-		stateColumn.setCellValueFactory(new PropertyValueFactory<>("closed"));
-		TableColumn<Intervention, String> openedOnColumn = new TableColumn<Intervention, String>("Datum otvaranja");
+		TableColumn<Intervention, String> clientColumn = new TableColumn<Intervention, String>("Klijent");
+		clientColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
+		TableColumn<Intervention, String> userColumn = new TableColumn<Intervention, String>("Korisnik");
+		userColumn.setCellValueFactory(new PropertyValueFactory<>("userOpened"));
+		TableColumn<Intervention, LocalDateTime> openedOnColumn = new TableColumn<Intervention, LocalDateTime>("Vrijeme otvaranja");
 		openedOnColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
-		TableColumn<Intervention, String> openedColumn = new TableColumn<Intervention, String>("Vrijeme otvaranja");
-		openedColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
-		TableColumn<Intervention, String> closedOnColumn = new TableColumn<Intervention, String>("Vrijeme zatvaranja");
-		closedOnColumn.setCellValueFactory(new PropertyValueFactory<>("closedOn"));
-		interventionsTable.getColumns().addAll(idColumn, stateColumn, openedOnColumn, openedColumn, closedOnColumn);
+		TableColumn<Intervention, String> fieldTechnicianColumn = new TableColumn<Intervention, String>("Terenski radnik");
+		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("closedOn"));
+		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn, fieldTechnicianColumn);
 	}
 
 	public void openNewIntervention(ActionEvent event) {
 		try {
 			ArrayList<String> reply = resources.getClientCommunication().getAvailableFieldTechnicians();
 			ArrayList<FieldTechnician> fieldTechnitians = new ArrayList<>();
-			System.out.print(reply.toString());
 			if (reply.get(0).equals("VIEW AVAILABLE FIELD TECHNICIANS OK") && Integer.parseInt(reply.get(1)) == 0)
 				throw new ServerReplyException("Nema slobodnih terenskih radnika");
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
@@ -58,7 +58,7 @@ public class InterventionsController {
 			Stage newInterventionStage = new Stage();
 			ClientResources newResources = new ClientResources(newInterventionStage, resources.getClientCommunication(),
 					resources.getUser(), resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
-			OperaterResources interventionResources = new OperaterResources(newResources, fieldTechnitians, resources.getSession());
+			OperaterResources interventionResources = new OperaterResources(newResources, fieldTechnitians, resources.getSession(), null);
 			newInterventionStage.setResizable(false);
 			newInterventionStage.initModality(Modality.APPLICATION_MODAL);
 			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/NewInterventionForm.fxml"),
@@ -74,8 +74,7 @@ public class InterventionsController {
 		}
 	}
 
-	public void viewIntervention(ActionEvent event) {
-	}
+	public void viewIntervention(ActionEvent event) {}
 
 	public void resize() {
 		AnchorPane.setBottomAnchor(tableAnchor, resources.getScreenHeight() * 0.1);

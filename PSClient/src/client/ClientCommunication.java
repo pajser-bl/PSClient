@@ -135,12 +135,18 @@ public class ClientCommunication {
 	}
 	
 	public ArrayList<String> newIntervention(String id_client, String id_vehicle, String id_user_opened, String opened_on ){
-		ArrayList<String> arguments=new ArrayList<>();
+		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(id_client);
 		arguments.add(id_vehicle);
 		arguments.add(id_user_opened);
 		arguments.add(opened_on);
-		Request request= new Request ("NEW INTERVENTION",arguments);
+		Request request= new Request("NEW INTERVENTION",arguments);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> showOpenedInterventions(){
+		ArrayList<String> arguments = new ArrayList<>();
+		Request request = new Request("VIEW OPENED INTERVENTIONS", arguments);
 		return sendRequest(request);
 	}
 	

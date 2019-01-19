@@ -9,6 +9,7 @@ public class Intervention {
 	private String vehicleId;
 	private String userOpened;
 	private String userClosed;
+	private String fieldTechnician;
 	private LocalDateTime openedOn;
 	private LocalDateTime closedOn;
 	private boolean closed;
@@ -21,6 +22,14 @@ public class Intervention {
 		this.userOpened = userOpenedId;
 		openedOn = LocalDateTime.now();
 		closed = false;
+	}
+	
+	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician) {
+		this.id = id;
+		this.client = client;
+		this.userOpened = userId;
+		this.openedOn = openedOn;
+		this.fieldTechnician = fieldTechnician;
 	}
 	
 	public Intervention(String id, String clientId, String vehicleId, String userOpenedId, String userClosedId, LocalDateTime openedOn,
@@ -86,6 +95,18 @@ public class Intervention {
 
 	public LocalDateTime getClosedOn() {
 		return closedOn;
+	}
+
+	public String getFieldTechnician() {
+		return fieldTechnician;
+	}
+
+	public void setFieldTechnician(String fieldTechnician) {
+		this.fieldTechnician = fieldTechnician;
+	}
+
+	public void setUserClosed(String userClosed) {
+		this.userClosed = userClosed;
 	}
 
 	public void setClosedOn(LocalDateTime closedOn) {

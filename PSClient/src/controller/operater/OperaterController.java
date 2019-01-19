@@ -3,6 +3,7 @@ package controller.operater;
 import utility.ChoiceBox;
 import utility.ClientResources;
 import utility.OperaterResources;
+import utility.TimeUtility;
 import utility.MessageBox;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import client.FieldTechnician;
+import client.Intervention;
 import client.Request;
 import client.Session;
 import client.User;
@@ -56,16 +58,26 @@ public class OperaterController {
 	}
 	
 	public void showInterventions(ActionEvent event) {
-		
+		ArrayList<String> reply = resources.getClientCommunication().showOpenedInterventions();
+		ArrayList<Intervention> interventions = new ArrayList<>();
+		OperaterResources operaterResources = new OperaterResources(resources, null, session, interventions);
+		System.out.print(reply.toString());
+		/*if(reply.get(0).equals("VIEW OPENED INTERVENTIONS OK")) {
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parsedReply = reply.get(i + 2).split(":");
+				Intervention intervention = new Intervention(parsedReply[0], parsedReply[1], parsedReply[2],
+						TimeUtility.stringToLocalDateTime(parsedReply[3]), parsedReply[4]);
+				interventions.add(intervention);
+			}
+		}
 		if(!workspaceAnchor.getChildren().isEmpty())
 			workspaceAnchor.getChildren().clear();
 		try {
-			OperaterResources operaterResources = new OperaterResources(resources, null, session);
 			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), operaterResources);
 			workspaceAnchor.getChildren().add(root);
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void showSession(ActionEvent event) {
@@ -95,7 +107,7 @@ public class OperaterController {
 			if(!workspaceAnchor.getChildren().isEmpty())
 					workspaceAnchor.getChildren().clear();
 			try {
-				OperaterResources tableResources = new OperaterResources(resources, fieldTechnicians, session);
+				OperaterResources tableResources = new OperaterResources(resources, fieldTechnicians, session, null);
 				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/FieldTechnicianTableForm.fxml"), tableResources);
 				workspaceAnchor.getChildren().add(root);
 			} catch(Exception e) {

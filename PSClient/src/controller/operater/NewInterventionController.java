@@ -2,7 +2,6 @@ package controller.operater;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import client.Request;
 import exception.EmptyFieldException;
 import exception.ServerReplyException;
@@ -13,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import utility.OperaterResources;
+import utility.TimeUtility;
 import utility.MessageBox;
 
 public class NewInterventionController {
@@ -36,6 +36,7 @@ public class NewInterventionController {
 	@FXML TextField yearMade;
 	
 	@FXML public void initialize() {
+		System.out.print(resources.getUser().getUserId());
 		ArrayList<String> fieldTechnitians = new ArrayList<>();
 		for(int i = 0; i < resources.getFieldTechnitians().size(); i++) {
 			fieldTechnitians.add(resources.getFieldTechnitians().get(i).toStringNoState());
@@ -50,9 +51,8 @@ public class NewInterventionController {
 			if(name.getText().isEmpty() || lastName.getText().isEmpty())
 				throw new EmptyFieldException();
 			ArrayList<String> arguments = new ArrayList<String>();
-			LocalDateTime openedOn = LocalDateTime.now();
 			arguments.add(resources.getUser().getUserId());
-			arguments.add(openedOn.toString());
+			arguments.add(TimeUtility.localDateTimeToString(LocalDateTime.now()));
 			arguments.add(name.getText());
 			arguments.add(lastName.getText());
 			arguments.add(phoneNumber.getText());
