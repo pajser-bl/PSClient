@@ -53,8 +53,8 @@ public class AdministratorController {
 	public void addNewUser(ActionEvent event) {
 		AdministratorResources adminResources = new AdministratorResources(resources, users);
 		adminResources.setUserUpdate(false);
-		adminResources.setScreenHeight(resources.getScreenHeight() * 0.7);
-		adminResources.setScreenWidth(resources.getScreenWidth() * 0.5);
+		adminResources.setScreenHeight(resources.getScreenHeight() * 0.75);
+		adminResources.setScreenWidth(resources.getScreenWidth() * 0.3);
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
 			Stage addNewUserStage = new Stage();

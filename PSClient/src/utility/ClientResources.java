@@ -47,7 +47,7 @@ public class ClientResources extends ResourceBundle{
 	}
 	
 	public void setScreenWidth(double width) {
-		this.screenHeight = width;
+		this.screenWidth = width;
 	}
 	
 	public double getScreenWidth() {
