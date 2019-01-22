@@ -67,9 +67,8 @@ public class OperaterController {
 		if(reply.get(0).equals("VIEW OPENED INTERVENTIONS OK")) {
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedReply = reply.get(i + 2).split(":");
-				parsedReply[3].replace(";", ":");
 				Intervention intervention = new Intervention(parsedReply[0], parsedReply[1], parsedReply[2],
-						TimeUtility.stringToLocalDateTime(parsedReply[3]), parsedReply[4]);
+						TimeUtility.stringToLocalDateTime(parsedReply[3].replace(";", ":")), parsedReply[4]);
 				interventions.add(intervention);
 			}
 		}
