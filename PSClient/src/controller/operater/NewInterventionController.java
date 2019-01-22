@@ -24,7 +24,7 @@ public class NewInterventionController {
 	@FXML AnchorPane vehicleInformationAnchor;
 	@FXML AnchorPane vehicleInformationLabels;
 	@FXML AnchorPane vehicleInformationInput;
-	@FXML ComboBox<String> fieldTechnicians;
+	@FXML ComboBox<String> fieldTechniciansBox;
 	@FXML OperaterResources resources;
 	@FXML Button submitButton;
 	@FXML TextField name;
@@ -36,13 +36,12 @@ public class NewInterventionController {
 	@FXML TextField yearMade;
 	
 	@FXML public void initialize() {
-		System.out.print(resources.getUser().getUserId());
-		ArrayList<String> fieldTechnitians = new ArrayList<>();
-		for(int i = 0; i < resources.getFieldTechnitians().size(); i++) {
-			fieldTechnitians.add(resources.getFieldTechnitians().get(i).toStringNoState());
+		ArrayList<String> fieldTechnicians = new ArrayList<>();
+		for(int i = 0; i < resources.getFieldTechnicians().size(); i++) {
+			fieldTechnicians.add(resources.getFieldTechnicians().get(i).toStringNoState());
 		}
-		fieldTechnicians.getItems().addAll(fieldTechnitians);
-		fieldTechnicians.setValue(fieldTechnitians.get(0));
+		fieldTechniciansBox.getItems().addAll(fieldTechnicians);
+		fieldTechniciansBox.setValue(fieldTechnicians.get(0));
 		resize();
 	}
 	
@@ -66,7 +65,7 @@ public class NewInterventionController {
 			if(!yearMade.getText().isEmpty())
 				arguments.add(yearMade.getText());
 			else arguments.add("empty");
-			String[] fieldTechnician = fieldTechnicians.getSelectionModel().getSelectedItem().split(":");
+			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(":");
 			arguments.add(fieldTechnician[0]);
 			Request request = new Request("NEW INTERVENTION", arguments);
 			ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);

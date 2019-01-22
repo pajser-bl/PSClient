@@ -1,6 +1,7 @@
 package client;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
 
@@ -13,7 +14,7 @@ public class Event {
 	}
 	
 	public String toString() {
-		return timeStamp.toString() + ": " + action + "\n";
+		return timeStamp.format(DateTimeFormatter.ISO_DATE) + " " + timeStamp.format(DateTimeFormatter.ISO_TIME) + ": " + action + "\n";
 	}
 	
 	public LocalDateTime getTimeStamp() {

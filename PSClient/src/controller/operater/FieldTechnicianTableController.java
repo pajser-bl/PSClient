@@ -25,6 +25,6 @@ public class FieldTechnicianTableController {
 		TableColumn<FieldTechnician, String> stateColumn = new TableColumn<FieldTechnician, String>("Stanje");
 		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
 		FieldTechnicianTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, stateColumn);
-		FieldTechnicianTable.setItems(resources.getObservableFieldTechnitians());
+		FieldTechnicianTable.setItems(resources.getObservableFieldTechnicians());
 	}
 }

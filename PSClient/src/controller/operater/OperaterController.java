@@ -14,12 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
+
+import client.Event;
 import client.FieldTechnician;
 import client.Intervention;
 import client.Request;
 import client.Session;
-import client.User;
-import exception.ServerReplyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +48,8 @@ public class OperaterController {
 	
 	@FXML public void initialize() {
 		session = new Session();
+		session.getEventList().add(new Event("Korisnik " + resources.getUser().getName() + " " + resources.getUser().getLastName() +
+				" se prijavio na sistem"));
 		resize();
 		name.setText("  " + resources.getUser().getName());
 		lastName.setText("  " + resources.getUser().getLastName());

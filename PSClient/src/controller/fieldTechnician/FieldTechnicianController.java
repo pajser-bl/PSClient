@@ -1,9 +1,10 @@
-package controller.fieldTechnician;
+	package controller.fieldTechnician;
 
 import java.util.ArrayList;
 
 import client.FieldTechnician;
 import client.Session;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

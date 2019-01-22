@@ -202,6 +202,13 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 	
+	public ArrayList<String> checkIntervention(String userId) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(userId);
+		Request request = new Request("CHECK FIELD TECHNICIAN INTERVENTION", arguments);
+		return sendRequest(request);
+	}
+	
 	public ArrayList<String> viewClient(String client_Id) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(client_Id);

@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -18,6 +21,8 @@ public class MessageBox {
 		window.setMaximized(false);
 		
 		Label label = new Label(message);
+		label.setFont(new Font(20));
+		label.setTextFill(Color.web("#21947b"));
 		Button closeButton = new Button("U redu");
 		closeButton.setDefaultButton(true);
 		closeButton.getStylesheets().add("css/profile_button.css");

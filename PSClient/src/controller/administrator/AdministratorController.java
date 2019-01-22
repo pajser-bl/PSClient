@@ -59,7 +59,7 @@ public class AdministratorController {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
 			Stage addNewUserStage = new Stage();
 			adminResources.setStage(addNewUserStage);
-			addNewUserStage.setScene(new Scene(root));
+			addNewUserStage.setScene(new Scene(root, adminResources.getScreenWidth(), adminResources.getScreenHeight()));
 			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
 			addNewUserStage.show();
 		} catch (Exception e) {

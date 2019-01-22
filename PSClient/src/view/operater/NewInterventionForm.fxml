@@ -64,7 +64,6 @@
 										<Label text="Proizvodjac:" textFill="#21947b" />
 										<Label text="Model:" textFill="#21947b" />
 										<Label text="Godina proizvodnje:" textFill="#21947b" />
-										<Label text="Terenski radnik:" textFill="#21947b" />
 									</children>
 									<padding>
 										<Insets left="20.0" top="20.0" />

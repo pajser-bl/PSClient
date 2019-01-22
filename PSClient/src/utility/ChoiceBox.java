@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,7 +23,10 @@ public class ChoiceBox {
 		window.setMaximized(false);
 			
 		Label label = new Label(message);
+		label.setFont(new Font(20));
+		label.setTextFill(Color.web("#21947b"));
 		Button yesButton = new Button("Da");
+		yesButton.setTextFill(Color.web("#21947b"));
 		yesButton.setDefaultButton(true);
 		yesButton.getStylesheets().add("css/profile_button.css");
 		yesButton.getStyleClass().add("profilbutton");
@@ -30,6 +35,7 @@ public class ChoiceBox {
 			window.close();
 		});
 		Button noButton = new Button("Ne");
+		noButton.setTextFill(Color.web("#21947b"));
 		noButton.getStylesheets().add("css/profile_button.css");
 		noButton.getStyleClass().add("profilbutton");
 		noButton.setOnAction(e -> {

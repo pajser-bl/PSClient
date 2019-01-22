@@ -10,16 +10,16 @@ import javafx.collections.ObservableList;
 
 public class OperaterResources extends ClientResources {
 	
-	private ArrayList<FieldTechnician> fieldTechnitians;
+	private ArrayList<FieldTechnician> fieldTechnicians;
 	private ArrayList<Intervention> interventions;
 	private Session session;
 	
-	public OperaterResources(ClientResources resources, ArrayList<FieldTechnician> fieldTechnitians, Session session,
+	public OperaterResources(ClientResources resources, ArrayList<FieldTechnician> fieldTechnicians, Session session,
 			ArrayList<Intervention> interventions) {
 		super(resources.getStage(), resources.getClientCommunication(), resources.getUser(), resources.getScreenHeight(), 
 				resources.getScreenHeight());
 		this.session = session;
-		this.fieldTechnitians = fieldTechnitians;
+		this.fieldTechnicians = fieldTechnicians;
 		this.interventions = interventions;
 	}
 	
@@ -31,20 +31,20 @@ public class OperaterResources extends ClientResources {
 		this.interventions = interventions;
 	}
 
-	public void setFieldTechnitians(ArrayList<FieldTechnician> fieldTechnitians) {
-		this.fieldTechnitians = fieldTechnitians;
+	public void setFieldTechnicians(ArrayList<FieldTechnician> fieldTechnicians) {
+		this.fieldTechnicians = fieldTechnicians;
 	}
 
 	public void setSession(Session session) {
 		this.session = session;
 	}
 
-	public ObservableList<FieldTechnician> getObservableFieldTechnitians() {
-		return FXCollections.observableArrayList(fieldTechnitians);
+	public ObservableList<FieldTechnician> getObservableFieldTechnicians() {
+		return FXCollections.observableArrayList(fieldTechnicians);
 	}
 	
-	public ArrayList<FieldTechnician> getFieldTechnitians(){
-		return fieldTechnitians;
+	public ArrayList<FieldTechnician> getFieldTechnicians(){
+		return fieldTechnicians;
 	}
 	
 	public Session getSession() {
