@@ -2,6 +2,8 @@ package controller.operater;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import client.Event;
 import client.Request;
 import exception.EmptyFieldException;
 import exception.ServerReplyException;
@@ -71,6 +73,7 @@ public class NewInterventionController {
 			ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
 			if(reply.get(0).equals("NEW INTERVENTION NOT OK"))
 				throw new ServerReplyException(reply.get(1));
+			resources.getSession().getEventList().add(new Event("Otvorena nova intervencija"));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
 			resources.getStage().close();
 		} catch (EmptyFieldException e) {

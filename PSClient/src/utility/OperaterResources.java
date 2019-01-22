@@ -12,6 +12,7 @@ public class OperaterResources extends ClientResources {
 	
 	private ArrayList<FieldTechnician> fieldTechnicians;
 	private ArrayList<Intervention> interventions;
+	private Intervention intervention;
 	private Session session;
 	
 	public OperaterResources(ClientResources resources, ArrayList<FieldTechnician> fieldTechnicians, Session session,
@@ -21,6 +22,7 @@ public class OperaterResources extends ClientResources {
 		this.session = session;
 		this.fieldTechnicians = fieldTechnicians;
 		this.interventions = interventions;
+		intervention = null;
 	}
 	
 	public ArrayList<Intervention> getInterventions() {
@@ -43,6 +45,10 @@ public class OperaterResources extends ClientResources {
 		return FXCollections.observableArrayList(fieldTechnicians);
 	}
 	
+	public ObservableList<Intervention> getObservableInterventions(){
+		return FXCollections.observableArrayList(interventions);
+	}
+	
 	public ArrayList<FieldTechnician> getFieldTechnicians(){
 		return fieldTechnicians;
 	}
@@ -51,6 +57,14 @@ public class OperaterResources extends ClientResources {
 		return session;
 	}
 	
+	public Intervention getIntervention() {
+		return intervention;
+	}
+
+	public void setIntervention(Intervention intervention) {
+		this.intervention = intervention;
+	}
+
 	protected Object handleGetObject(String key) {
 		return null;
 	}

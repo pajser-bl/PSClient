@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
-
 import client.Event;
 import client.FieldTechnician;
 import client.Intervention;
@@ -68,7 +67,7 @@ public class OperaterController {
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedReply = reply.get(i + 2).split(":");
 				Intervention intervention = new Intervention(parsedReply[0], parsedReply[1], parsedReply[2],
-						TimeUtility.stringToLocalDateTime(parsedReply[3].replace(";", ":")), parsedReply[4]);
+						TimeUtility.stringToLocalDateTime(parsedReply[3].replace(";", ":")), parsedReply[4], parsedReply[5]);
 				interventions.add(intervention);
 			}
 		}
@@ -117,7 +116,6 @@ public class OperaterController {
 			}
 		} else if (reply.get(0).equals("VIEW FIELD TECHNICIANS OK") && (Integer.parseInt(reply.get(1)) == 0)) {
 			MessageBox.displayMessage("Greska", "Nema prijavljenih terenskih radnika");
-			workspaceAnchor.getChildren().clear();
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	

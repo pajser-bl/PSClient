@@ -4,45 +4,51 @@ import java.time.LocalDateTime;
 
 public class Intervention {
 
-	private String id;
-	private String client;
-	private String vehicleId;
-	private String userOpened;
-	private String userClosed;
-	private String fieldTechnician;
+	private String state;
 	private LocalDateTime openedOn;
 	private LocalDateTime closedOn;
-	private boolean closed;
-	private String remark;
+	private LocalDateTime reportTime;
+	private LocalDateTime serviceTime;
+	private String id;
+	private String client;
+	private String vehicleModel;
+	private String vehicleManu;
+	private String vehicleYear;
+	private String vehicleLicencePlace;
+	private String userOpened;
+	private String userClosed;
+	private String service;
+	private String operaterReport;
+	private String fieldTechnician;
+	private String fieldReport;
+	private String supervisor;
+	private String supervisorReport;
 	
-	public Intervention(String client, String vehicleId, String userOpenedId) {
-		id = "0";
-		this.client = client;
-		this.vehicleId = vehicleId;
+	public Intervention(String id, String clientId, String userOpenedId, String userClosedId, LocalDateTime openedOn,
+			LocalDateTime closedOn, String state) {
+		this.id = id;
+		this.client = clientId;
 		this.userOpened = userOpenedId;
-		openedOn = LocalDateTime.now();
-		closed = false;
+		this.userClosed = userClosedId;
+		this.openedOn = openedOn;
+		this.closedOn = closedOn;
+		this.state = state;
 	}
 	
-	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician) {
+	public Intervention(String client, String userOpenedId) {
+		id = "0";
+		this.client = client;
+		this.userOpened = userOpenedId;
+		openedOn = LocalDateTime.now();
+		state = "Otvorena";
+	}
+	
+	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician, String state) {
 		this.id = id;
 		this.client = client;
 		this.userOpened = userId;
 		this.openedOn = openedOn;
 		this.fieldTechnician = fieldTechnician;
-	}
-	
-	public Intervention(String id, String clientId, String vehicleId, String userOpenedId, String userClosedId, LocalDateTime openedOn,
-			LocalDateTime closedOn, boolean closed, String remark) {
-		this.id = id;
-		this.client = clientId;
-		this.vehicleId = vehicleId;
-		this.userOpened = userOpenedId;
-		this.userClosed = userClosedId;
-		this.openedOn = openedOn;
-		this.closedOn = closedOn;
-		this.closed = closed;
-		this.remark = remark;
 	}
 
 	public String getId() {
@@ -59,14 +65,6 @@ public class Intervention {
 
 	public void setClient(String client) {
 		this.client = client;
-	}
-
-	public String getVehicleId() {
-		return vehicleId;
-	}
-
-	public void setVehicleId(String vehicleId) {
-		this.vehicleId = vehicleId;
 	}
 
 	public String getUserOpened() {
@@ -113,19 +111,35 @@ public class Intervention {
 		this.closedOn = closedOn;
 	}
 
-	public boolean isClosed() {
-		return closed;
+	public String getState() {
+		return state;
 	}
 
-	public void setClosed(boolean closed) {
-		this.closed = closed;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getRemark() {
-		return remark;
+	public String getOperaterReport() {
+		return operaterReport;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
+	public void setOperaterReport(String operaterReport) {
+		this.operaterReport = operaterReport;
+	}
+
+	public String getFieldReport() {
+		return fieldReport;
+	}
+
+	public void setFieldReport(String fieldReport) {
+		this.fieldReport = fieldReport;
+	}
+
+	public String getSupervisorReport() {
+		return supervisorReport;
+	}
+
+	public void setSupervisorReport(String supervisorReport) {
+		this.supervisorReport = supervisorReport;
 	}
 }

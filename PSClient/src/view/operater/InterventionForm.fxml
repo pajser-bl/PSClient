@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane fx:controller="controller.operater.InterventionController" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/10.0.1" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+	<children>
+		<AnchorPane fx:id="infoAnchor"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<VBox fx:id="infoLabelsBox" alignment="CENTER_LEFT" spacing="10.0"
+					AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Label text="ID intervencije:" textFill="#21947b" />
+						<Label text="Datum:" textFill="#21947b" />
+						<Label text="Vrijeme:" textFill="#21947b" />
+						<Label text="Operater:" textFill="#21947b" />
+						<Label text="Terenski radnik:" textFill="#21947b" />
+						<Label text="Klijent:" textFill="#21947b" />
+					</children>
+					<padding>
+						<Insets left="20.0" />
+					</padding>
+				</VBox>
+				<VBox fx:id="infoBox" alignment="CENTER_LEFT" spacing="10.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Label fx:id="interventionId" textFill="#21947b" />
+						<Label fx:id="date" textFill="#21947b" />
+						<Label fx:id="time" textFill="#21947b" />
+						<Label fx:id="operater" textFill="#21947b" />
+						<Label fx:id="fieldTechnician" textFill="#21947b" />
+						<Label fx:id="client" textFill="#21947b" />
+					</children>
+					<padding>
+						<Insets left="20.0" />
+					</padding>
+				</VBox>
+			</children>
+		</AnchorPane>
+		<AnchorPane fx:id="optionsAnchor" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+			<children>
+				<HBox alignment="CENTER_LEFT" spacing="20.0"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<children>
+						<Button fx:id="closeInterventionButton" mnemonicParsing="false" text="Zatvori" styleClass="commonbutton" stylesheets="@../../css/common_button.css"/>
+						<Button fx:id="fieldReportButton" mnemonicParsing="false" text="Terenski izvjestaj" styleClass="commonbutton" stylesheets="@../../css/common_button.css"/>
+					</children>
+				</HBox>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>

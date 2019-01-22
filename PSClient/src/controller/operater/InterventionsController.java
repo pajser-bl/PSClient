@@ -41,8 +41,11 @@ public class InterventionsController {
 		TableColumn<Intervention, LocalDateTime> openedOnColumn = new TableColumn<Intervention, LocalDateTime>("Vrijeme otvaranja");
 		openedOnColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
 		TableColumn<Intervention, String> fieldTechnicianColumn = new TableColumn<Intervention, String>("Terenski radnik");
-		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("closedOn"));
-		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn, fieldTechnicianColumn);
+		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("fieldTechnician"));
+		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
+		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn, fieldTechnicianColumn, stateColumn);
+		interventionsTable.setItems(resources.getObservableInterventions());
 	}
 
 	public void openNewIntervention(ActionEvent event) {
@@ -74,7 +77,19 @@ public class InterventionsController {
 		}
 	}
 
-	public void viewIntervention(ActionEvent event) {}
+	public void showIntervention(ActionEvent event) {
+		resources.setIntervention(interventionsTable.getSelectionModel().getSelectedItem());
+		Stage interventionStage = new Stage();
+		interventionStage.setResizable(false);
+		interventionStage.initModality(Modality.APPLICATION_MODAL);
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionForm.fxml"), resources);
+			interventionStage.setScene(new Scene(root, resources.getScreenWidth() * 0.5, resources.getScreenHeight() * 0.7));
+			interventionStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void resize() {
 		AnchorPane.setBottomAnchor(tableAnchor, resources.getScreenHeight() * 0.1);

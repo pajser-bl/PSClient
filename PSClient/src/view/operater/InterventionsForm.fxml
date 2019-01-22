@@ -52,7 +52,7 @@
 			AnchorPane.rightAnchor="0.0">
 			<children>
 				<HBox alignment="CENTER_LEFT" spacing="30.0"
-					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+					AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
 					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
 						<Button fx:id="openNewInterventionButton"
@@ -65,7 +65,7 @@
 							</font>
 						</Button>
 						<Button fx:id="viewInterventionButton"
-							mnemonicParsing="false" onAction="#viewIntervention"
+							mnemonicParsing="false" onAction="#showIntervention"
 							styleClass="commonbutton"
 							stylesheets="@../../css/common_button.css" text="Pregledaj"
 							textAlignment="CENTER" wrapText="true">
