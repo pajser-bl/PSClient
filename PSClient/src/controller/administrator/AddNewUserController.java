@@ -1,21 +1,29 @@
 package controller.administrator;
 
+import client.ClientCommunication;
 import client.User;
 import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import utility.AdministratorResources;
 import utility.MessageBox;
 
 public class AddNewUserController {
 
-	@FXML AdministratorResources resources;
+	private ObservableList<User> users;
+	private double stageHeight;
+	private double stageWidth;
+	private boolean userUpdate;
+	private ClientCommunication clientComm;
+	private Stage userStage;
 	@FXML AnchorPane userDataAnchor;
 	@FXML AnchorPane accountSettingsAnchor;
 	@FXML Button createNewUser;
@@ -34,26 +42,29 @@ public class AddNewUserController {
 
 	@FXML public void initialize() {
 		resize();
-		if(resources.getUserUpdate() == true) {
-			//createNewUser.setOnAction(e -> updateUser());
-			System.out.print(resources.getUsers().get(0).toString());
-			password.setEditable(false);
-			username.setEditable(false);
-			setUserInfo();
-		}
+	}
+	
+	public AddNewUserController(Stage userStage, ClientCommunication clientComm, ObservableList<User> users , boolean userUpdate, 
+			double stageWidth, double stageHeight) {
+		this.userStage = userStage;
+		this.clientComm = clientComm;
+		this.users = users;
+		this.userUpdate = userUpdate;
+		this.stageWidth = stageWidth;
+		this.stageHeight = stageHeight;
 	}
 	
 	public void createNewUser(ActionEvent event) {
 		try {
-			ArrayList<String> reply = resources.getClientCommunication().newUser(name.getText(), lastName.getText(), date.getValue().toString(),
-				(String) userType.getValue(), qualification.getValue() + (licence.getText().isEmpty() ? "" : ", " +
-				licence.getText()), username.getText(), password.getText());
+			ArrayList<String> reply = clientComm.newUser(name.getText(), lastName.getText(), date.getValue().toString(),
+				(String) userType.getValue(), qualification.getValue() + (licence.getText().isEmpty() ? "" : ", " + licence.getText()),
+				username.getText(), password.getText());
 			if (reply.get(0).equals("ADD USER OK")) {
 				MessageBox.displayMessage("Potvrda", "Korisnik uspjesno kreiran");
-				if(!resources.getUsers().isEmpty())
-					resources.getUsers().add(new User(reply.get(1), name.getText(), lastName.getText(), userType.getValue(),
+				if(!users.isEmpty())
+					users.add(new User(reply.get(1), name.getText(), lastName.getText(), userType.getValue(),
 							username.getText(), null, null));
-				resources.getStage().close();
+				userStage.close();
 			} else
 				MessageBox.displayMessage("Greska", reply.get(1));
 		} catch (Exception e) {
@@ -66,26 +77,21 @@ public class AddNewUserController {
 		
 	}
 	
-	public void setUserInfo() {
-		System.out.print(resources.getUsers().get(0).toString());
-		name = new TextField(resources.getUsers().get(0).getName());
-		lastName = new TextField(resources.getUsers().get(0).getLastName());
-		username = new TextField(resources.getUsers().get(0).getUsername());
-	}
+	public void setUserInfo() {}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(userDataAnchor, resources.getScreenHeight() * 0.6);
-		AnchorPane.setTopAnchor(userDataLabelsBox, resources.getScreenHeight() * 0.1);
-		AnchorPane.setRightAnchor(userDataLabelsBox, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(userDataInputBox, resources.getScreenHeight() * 0.1);
-		AnchorPane.setLeftAnchor(userDataInputBox, resources.getScreenWidth() * 0.5);
+		AnchorPane.setBottomAnchor(userDataAnchor, stageHeight * 0.6);
+		AnchorPane.setTopAnchor(userDataLabelsBox, stageHeight * 0.1);
+		AnchorPane.setRightAnchor(userDataLabelsBox, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(userDataInputBox, stageHeight * 0.1);
+		AnchorPane.setLeftAnchor(userDataInputBox, stageWidth * 0.5);
 		
-		AnchorPane.setTopAnchor(accountSettingsAnchor, resources.getScreenHeight() * 0.45);
-		AnchorPane.setTopAnchor(accountSettingsLabelsBox, resources.getScreenHeight() * 0.0001);
-		AnchorPane.setBottomAnchor(accountSettingsLabelsBox, resources.getScreenHeight() * 0.1);
-		AnchorPane.setRightAnchor(accountSettingsLabelsBox, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(accountSettingsInputBox, resources.getScreenHeight() * 0.0001);
-		AnchorPane.setBottomAnchor(accountSettingsInputBox, resources.getScreenHeight() * 0.1);
-		AnchorPane.setLeftAnchor(accountSettingsInputBox, resources.getScreenWidth() * 0.5);
+		AnchorPane.setTopAnchor(accountSettingsAnchor, stageHeight * 0.45);
+		AnchorPane.setTopAnchor(accountSettingsLabelsBox, stageHeight * 0.0001);
+		AnchorPane.setBottomAnchor(accountSettingsLabelsBox, stageHeight * 0.1);
+		AnchorPane.setRightAnchor(accountSettingsLabelsBox, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(accountSettingsInputBox, stageHeight * 0.0001);
+		AnchorPane.setBottomAnchor(accountSettingsInputBox, stageHeight * 0.1);
+		AnchorPane.setLeftAnchor(accountSettingsInputBox, stageWidth * 0.5);
 	}
 }

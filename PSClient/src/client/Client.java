@@ -1,5 +1,6 @@
 package client;
 
+import controller.user.LoginController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javafx.application.Application;
@@ -7,22 +8,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utility.ClientResources;
 
 public class Client extends Application {
 	
-	private ClientCommunication clientCommunication;
 	private Stage mainStage;
-	private User user;
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 		
 	public void start(Stage primaryStage) {
 		try {
-			mainStage = primaryStage;
+			this.mainStage = primaryStage;
 			Dimension screenResolution = Toolkit.getDefaultToolkit().getScreenSize();
-			double width = screenResolution.getWidth();
-			double height = screenResolution.getHeight();
-			ClientResources resources = new ClientResources(mainStage, clientCommunication, user, width, height);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/user/LoginForm.fxml"), resources);
+			double screenWidth = screenResolution.getWidth();
+			double screenHeight = screenResolution.getHeight();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/LoginForm.fxml"));
+			loader.setControllerFactory(e -> new LoginController(mainStage, screenWidth, screenHeight));
+			Parent root = loader.load();
 			mainStage.setScene(new Scene(root));
 			mainStage.setTitle("Road Runner");
 			mainStage.setResizable(false);
@@ -30,9 +33,5 @@ public class Client extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
 	}
 }

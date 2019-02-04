@@ -1,9 +1,13 @@
 package controller.administrator;
 
+import client.ClientCommunication;
 import client.User;
 import controller.user.ProfileController;
 import exception.EmptyFieldException;
 import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,20 +20,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.AdministratorResources;
-import utility.ClientResources;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
 
 public class UserTableController {
 
+	private ObservableList<User> users;
+	private ClientCommunication clientComm;
+	private double screenHeight;
+	private double screenWidth;
+	private Stage mainStage;
 	@FXML AnchorPane tableAnchor;
 	@FXML AnchorPane optionsAnchor;
 	@FXML TableView<User> userTable;
 	@FXML Button changePasswordButton;
 	@FXML Button deleteUserButton;
 	@FXML Button profileButton;
-	@FXML AdministratorResources resources;
 	
 	public void initialize() {
 		resize();
@@ -44,37 +50,43 @@ public class UserTableController {
 		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
 		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
 		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, usernameColumn, typeColumn);
-		userTable.setItems(resources.getObservableUsers());
+		userTable.setItems(users);
+	}
+	
+	public UserTableController(Stage mainStage, ClientCommunication clientComm, ObservableList<User> users, double screenWidth,
+			double screenHeight) {
+		this.mainStage = mainStage;
+		this.clientComm = clientComm;
+		this.users = users; 
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 	}
 	
 	public void deleteUser(ActionEvent event) {
-		ArrayList<String> reply = resources.getClientCommunication().deleteUser(userTable.getSelectionModel().getSelectedItem().getUserId());
+		ArrayList<String> reply = clientComm.deleteUser(userTable.getSelectionModel().getSelectedItem().getUserId());
 		if(reply.get(0).equals("DELETE USER OK")) {
-			resources.getUsers().remove(userTable.getSelectionModel().getSelectedItem());
-			userTable.setItems(resources.getObservableUsers());
+			users.remove(userTable.getSelectionModel().getSelectedItem());
 			MessageBox.displayMessage("Administrator", "Korisnik uspjesno obrisan");
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
 	public void passwordChange(ActionEvent event) {
-		PasswordChangeBox.passwordChange(userTable.getSelectionModel().getSelectedItem().getUserId(), resources);
+		PasswordChangeBox.passwordChange(userTable.getSelectionModel().getSelectedItem().getUserId(), clientComm);
 	}
 	
 	public void showUser(ActionEvent event) {
 		try {
 			if(userTable.getSelectionModel().isEmpty())
 				throw (new EmptyFieldException());
-			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
-			ArrayList<String> reply = resources.getClientCommunication().getUser(id);
-			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), null);
-			ArrayList<User> users = new ArrayList<>();
-			users.add(user);
-			ClientResources temp = new ClientResources(resources.getStage(), resources.getClientCommunication(), resources.getUser(),
-					resources.getScreenWidth() * 0.5, resources.getScreenHeight() * 0.8);
-			AdministratorResources newResources = new AdministratorResources(temp, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/user/ProfileForm.fxml"), newResources);
 			Stage profileWindow = new Stage();
-			profileWindow.setScene(new Scene(root, newResources.getScreenWidth(), newResources.getScreenHeight()));
+			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
+			ArrayList<String> reply = clientComm.getUser(id);
+			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), null);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/ProfileForm.fxml"));
+			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.5,
+					screenHeight * 0.8));
+			Parent profileView = loader.load();
+			profileWindow.setScene(new Scene(profileView, screenWidth * 0.5, screenHeight * 0.8));
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
 			profileWindow.show();
 		} catch (EmptyFieldException e) {
@@ -85,11 +97,11 @@ public class UserTableController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(tableAnchor, resources.getScreenHeight() * 0.1);
-		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.7);
-		profileButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
-		deleteUserButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
-		changePasswordButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
+		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.7);
+		profileButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
+		deleteUserButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
+		changePasswordButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
 	}
 	
 	public TableView<User> getUserTable() {

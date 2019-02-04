@@ -1,30 +1,30 @@
-	package controller.fieldTechnician;
+package controller.fieldTechnician;
 
-import java.util.ArrayList;
-
+import client.ClientCommunication;
 import client.FieldTechnician;
 import client.Session;
-import javafx.application.Platform;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utility.ChoiceBox;
-import utility.ClientResources;
 import utility.MessageBox;
 
 public class FieldTechnicianController {
 
 	private Session session;
+	private Stage mainStage;
 	private FieldTechnician user;
+	private double screenHeight;
+	private double screenWidth;
+	private ClientCommunication clientComm;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
@@ -37,17 +37,24 @@ public class FieldTechnicianController {
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
-	@FXML ClientResources resources;
 	@FXML ImageView avatar;
 	@FXML VBox userData;
 	
 	@FXML public void initialize() {
-		user = new FieldTechnician(resources.getUser());
 		resize();
-		resources.getStage().setOnCloseRequest(e -> {
+		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
 		});
+	}
+	
+	public FieldTechnicianController(Stage mainStage, ClientCommunication clientComm, FieldTechnician user, double screenWidth,
+			double screenHeight) {
+		this.mainStage = mainStage;
+		this.clientComm = clientComm;
+		this.user = user;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 	}
 	
 	public void showSession(ActionEvent event) {
@@ -73,21 +80,19 @@ public class FieldTechnicianController {
 		if(user.getState().equals("aktivan")) {
 			user.setState("neaktivan");
 		} else user.setState("aktivan");
-		ArrayList<String> reply = resources.getClientCommunication().changeState(resources.getUser().getUserId(),user.getState());
+		ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
 		if(reply.get(0).equals("CHANGE STATE OK"))
-				MessageBox.displayMessage("Potvrda", "Stanje uspjesno pormjenjeno");
+				MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
 		else {
 			if(user.getState().equals("aktivan")) {
 				user.setState("neaktivan");
 			} else user.setState("aktivan");
-			
-				
-			MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
+				MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
 		}
 	}
 	
 	public void showMap(ActionEvent event) {
-		ClientResources reportResources = new ClientResources(null, resources.getClientCommunication(), resources.getUser(),
+		/*ClientResources reportResources = new ClientResources(null, resources.getClientCommunication(), resources.getUser(),
 				resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
 		try {
 			Stage addNewUserStage = new Stage();
@@ -99,15 +104,15 @@ public class FieldTechnicianController {
 			addNewUserStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void close() {
 		boolean answer = ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?");
 		if(answer) {
-			resources.getClientCommunication().logout(resources.getUser().getUserId());
-			resources.getClientCommunication().closeConnection();
-			resources.getStage().hide();
+			clientComm.logout(user.getId());
+			clientComm.closeConnection();
+			mainStage.hide();
 		}
 	}
 	
@@ -116,25 +121,25 @@ public class FieldTechnicianController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
-		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
-		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
-		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
-		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
-		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
-		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
-		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
-		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
-		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
-		stateButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		mapButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		reportButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		sessionButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		AnchorPane.setBottomAnchor(statusAnchor, screenHeight * 0.7715);
+		AnchorPane.setTopAnchor(menuAnchor, screenHeight * 0.2);
+		AnchorPane.setRightAnchor(menuAnchor, screenWidth * 0.8);
+		AnchorPane.setTopAnchor(workspaceAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(workspaceAnchor, screenWidth * 0.2);
+		AnchorPane.setRightAnchor(workspaceAnchor, screenWidth * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(optionsAnchor, screenWidth * 0.9);
+		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
+		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
+		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
+		avatar.setFitHeight(screenHeight * 0.8);
+		avatar.setFitWidth(screenWidth * 0.1);
+		stateButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		mapButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		reportButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		sessionButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
+		refreshButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
+		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}
 }

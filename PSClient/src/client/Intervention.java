@@ -14,7 +14,7 @@ public class Intervention {
 	private String vehicleModel;
 	private String vehicleManu;
 	private String vehicleYear;
-	private String vehicleLicencePlace;
+	private String vehicleLicencePlate;
 	private String userOpened;
 	private String userClosed;
 	private String service;
@@ -24,23 +24,42 @@ public class Intervention {
 	private String supervisor;
 	private String supervisorReport;
 	
-	public Intervention(String id, String clientId, String userOpenedId, String userClosedId, LocalDateTime openedOn,
-			LocalDateTime closedOn, String state) {
-		this.id = id;
-		this.client = clientId;
-		this.userOpened = userOpenedId;
-		this.userClosed = userClosedId;
+	public Intervention(String id, String client, String vehicleLicencePlate, String vehicleModel, String vehicleManu, String vehicleYear,
+	String userOpened, String fieldTechnician, LocalDateTime openedOn, String state, String service, LocalDateTime serviceTime,
+	String fieldReport, String userClosed, LocalDateTime closedOn, String operaterReport, String supervisor, String supervisorReport,
+	LocalDateTime reportTime) {
+		this.state = state;
 		this.openedOn = openedOn;
 		this.closedOn = closedOn;
-		this.state = state;
+		this.reportTime = reportTime;
+		this.serviceTime = serviceTime;
+		this.id = id;
+		this.client = client;
+		this.vehicleModel = vehicleModel;
+		this.vehicleManu = vehicleManu;
+		this.vehicleYear = vehicleYear;
+		this.vehicleLicencePlate = vehicleLicencePlate;
+		this.userOpened = userOpened;
+		this.userClosed = userClosed;
+		this.service = service;
+		this.operaterReport = operaterReport;
+		this.fieldTechnician = fieldTechnician;
+		this.fieldReport = fieldReport;
+		this.supervisor = supervisor;
+		this.supervisorReport = supervisorReport;
 	}
 	
-	public Intervention(String client, String userOpenedId) {
-		id = "0";
+	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician, String state,
+			String service, LocalDateTime serviceTime, String fieldReport) {
+		this.id = id;
 		this.client = client;
-		this.userOpened = userOpenedId;
-		openedOn = LocalDateTime.now();
-		state = "Otvorena";
+		this.userOpened = userId;
+		this.openedOn = openedOn;
+		this.fieldTechnician = fieldTechnician;
+		this.state = state;
+		this.service = service;
+		this.serviceTime = serviceTime;
+		this.fieldReport = fieldReport;
 	}
 	
 	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician, String state) {
@@ -49,6 +68,7 @@ public class Intervention {
 		this.userOpened = userId;
 		this.openedOn = openedOn;
 		this.fieldTechnician = fieldTechnician;
+		this.state = state;
 	}
 
 	public String getId() {
@@ -141,5 +161,69 @@ public class Intervention {
 
 	public void setSupervisorReport(String supervisorReport) {
 		this.supervisorReport = supervisorReport;
+	}
+
+	public LocalDateTime getReportTime() {
+		return reportTime;
+	}
+
+	public void setReportTime(LocalDateTime reportTime) {
+		this.reportTime = reportTime;
+	}
+
+	public LocalDateTime getServiceTime() {
+		return serviceTime;
+	}
+
+	public void setServiceTime(LocalDateTime serviceTime) {
+		this.serviceTime = serviceTime;
+	}
+
+	public String getVehicleModel() {
+		return vehicleModel;
+	}
+
+	public void setVehicleModel(String vehicleModel) {
+		this.vehicleModel = vehicleModel;
+	}
+
+	public String getVehicleManu() {
+		return vehicleManu;
+	}
+
+	public void setVehicleManu(String vehicleManu) {
+		this.vehicleManu = vehicleManu;
+	}
+
+	public String getVehicleYear() {
+		return vehicleYear;
+	}
+
+	public void setVehicleYear(String vehicleYear) {
+		this.vehicleYear = vehicleYear;
+	}
+
+	public String getVehicleLicencePlate() {
+		return vehicleLicencePlate;
+	}
+
+	public void setVehicleLicencePlate(String vehicleLicencePlate) {
+		this.vehicleLicencePlate = vehicleLicencePlate;
+	}
+
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
+	public String getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(String supervisor) {
+		this.supervisor = supervisor;
 	}
 }

@@ -7,16 +7,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import utility.ClientResources;
+import javafx.stage.Stage;
 
 public class RoadReportController {
 
+	private double stageHeight;
+	private double stageWidth;
+	private Stage reportStage;
 	@FXML AnchorPane interventionAnchor;
 	@FXML AnchorPane vehicleAnchor;
 	@FXML AnchorPane reportAnchor;
 	@FXML Button submitButton;
 	@FXML ComboBox<String> service;
-	@FXML ClientResources resources;
 	@FXML Label interventionId;
 	@FXML Label date;
 	@FXML Label time;
@@ -34,21 +36,21 @@ public class RoadReportController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(interventionAnchor, resources.getScreenHeight() * 0.85);
-		AnchorPane.setTopAnchor(interventionLabels, resources.getScreenHeight() * 0.05);
-		AnchorPane.setRightAnchor(interventionLabels, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(interventionData, resources.getScreenHeight() * 0.05);
-		AnchorPane.setLeftAnchor(interventionData, resources.getScreenWidth() * 0.5);
+		AnchorPane.setBottomAnchor(interventionAnchor, stageHeight * 0.85);
+		AnchorPane.setTopAnchor(interventionLabels, stageHeight * 0.05);
+		AnchorPane.setRightAnchor(interventionLabels, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(interventionData, stageHeight * 0.05);
+		AnchorPane.setLeftAnchor(interventionData, stageWidth * 0.5);
 		
-		AnchorPane.setBottomAnchor(vehicleAnchor, resources.getScreenHeight() * 0.6);
-		AnchorPane.setTopAnchor(vehicleAnchor, resources.getScreenHeight() * 0.15);
-		AnchorPane.setTopAnchor(vehicleLabels, resources.getScreenHeight() * 0.0125);
-		AnchorPane.setRightAnchor(vehicleLabels, resources.getScreenWidth() * 0.5);
-		AnchorPane.setLeftAnchor(vehicleData, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(vehicleData, resources.getScreenHeight() * 0.0125);
+		AnchorPane.setBottomAnchor(vehicleAnchor, stageHeight * 0.6);
+		AnchorPane.setTopAnchor(vehicleAnchor, stageHeight * 0.15);
+		AnchorPane.setTopAnchor(vehicleLabels, stageHeight * 0.0125);
+		AnchorPane.setRightAnchor(vehicleLabels, stageWidth * 0.5);
+		AnchorPane.setLeftAnchor(vehicleData, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(vehicleData, stageHeight * 0.0125);
 		
-		AnchorPane.setTopAnchor(reportAnchor, resources.getScreenHeight() * 0.4);
-		AnchorPane.setBottomAnchor(report, resources.getScreenHeight() * 0.1);
-		AnchorPane.setTopAnchor(report, resources.getScreenHeight() * 0.05);
+		AnchorPane.setTopAnchor(reportAnchor, stageHeight * 0.4);
+		AnchorPane.setBottomAnchor(report, stageHeight * 0.1);
+		AnchorPane.setTopAnchor(report, stageHeight * 0.05);
 	}
 }

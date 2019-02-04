@@ -19,7 +19,7 @@
 				</Label>
 				<AnchorPane fx:id="clientInformationLabels" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
-						<VBox alignment="CENTER_LEFT" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<VBox alignment="CENTER_LEFT" spacing="23.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
 								<Label text="Ime:" textFill="#21947b" />
 								<Label text="Prezime:" textFill="#21947b" />
@@ -58,7 +58,7 @@
 					<children>
 						<AnchorPane fx:id="vehicleInformationLabels" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+								<VBox prefHeight="200.0" prefWidth="100.0" spacing="23.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 									<children>
 										<Label text="Registarski broj:" textFill="#21947b" />
 										<Label text="Proizvodjac:" textFill="#21947b" />
@@ -79,7 +79,7 @@
 										<TextField fx:id="manufacturer" styleClass="text_field" stylesheets="@../../css/text_field.css" />
 										<TextField fx:id="model" styleClass="text_field" stylesheets="@../../css/text_field.css" />
 										<TextField fx:id="yearMade" styleClass="text_field" stylesheets="@../../css/text_field.css" />
-										<ComboBox fx:id="fieldTechnicians" prefWidth="150.0" styleClass="combo-box" stylesheets="@../../css/combo_box.css" />
+										<ComboBox fx:id="fieldTechniciansBox" prefWidth="150.0" styleClass="combo-box" stylesheets="@../../css/combo_box.css" />
 									</children>
 									<padding>
 										<Insets top="15.0" />

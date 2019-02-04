@@ -1,7 +1,11 @@
 package controller.administrator;
 
+import client.ClientCommunication;
 import client.User;
 import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,13 +19,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.AdministratorResources;
 import utility.ChoiceBox;
-import utility.ClientResources;
 import utility.MessageBox;
 
 public class AdministratorController {
 
+	private ClientCommunication clientComm;
+	private double screenHeight;
+	private double screenWidth;
+	private ObservableList<User> users;
+	private Stage mainStage;
+	private User user;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
@@ -32,34 +40,48 @@ public class AdministratorController {
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
 	@FXML Button helpButton;
-	@FXML ClientResources resources;
 	@FXML HBox profileHBox;
 	@FXML ImageView avatar;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML VBox userData;
-	private ArrayList<User> users = new ArrayList<User>();
 
 	@FXML public void initialize() {
 		resize();
-		name.setText(resources.getUser().getName());
-		lastName.setText(resources.getUser().getLastName());
-		resources.getStage().setOnCloseRequest(e -> {
+		name.setText(user.getName());
+		lastName.setText(user.getLastName());
+		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
 		});
 	}
 	
+	public AdministratorController(Stage mainStage, ClientCommunication clientComm, User user, double screenWidth, double screenHeight) {
+		this.mainStage = mainStage;
+		this.clientComm = clientComm;
+		this.user = user;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+		users = FXCollections.observableArrayList(new ArrayList<User>());
+	}
+	
 	public void addNewUser(ActionEvent event) {
-		AdministratorResources adminResources = new AdministratorResources(resources, users);
-		adminResources.setUserUpdate(false);
-		adminResources.setScreenHeight(resources.getScreenHeight() * 0.75);
-		adminResources.setScreenWidth(resources.getScreenWidth() * 0.3);
+		Stage addNewUserStage = new Stage();
+		if(users.isEmpty()) {
+			ArrayList<String> reply = clientComm.getUsers(user.getUserId());
+			if(reply.get(0).equals("VIEW USERS NOT OK"))
+				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
+			else for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+					String[] userData = reply.get(i + 2).split(":");
+					users.add(new User(userData[0], userData[1], userData[2], userData[3], userData[4], null, null));
+				}
+		}
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/AddNewUserForm.fxml"), adminResources);
-			Stage addNewUserStage = new Stage();
-			adminResources.setStage(addNewUserStage);
-			addNewUserStage.setScene(new Scene(root, adminResources.getScreenWidth(), adminResources.getScreenHeight()));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/administrator/AddNewUserForm.fxml"));
+			loader.setControllerFactory(e -> new AddNewUserController(addNewUserStage, clientComm, users, false, screenWidth * 0.3,
+					screenHeight * 0.75));
+			Parent addNewUserView = loader.load();
+			addNewUserStage.setScene(new Scene(addNewUserView, screenWidth * 0.3, screenHeight * 0.75));
 			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
 			addNewUserStage.show();
 		} catch (Exception e) {
@@ -69,7 +91,7 @@ public class AdministratorController {
 	
 	public void showUsers(ActionEvent event) {
 		if(users.isEmpty()) {
-			ArrayList<String> reply = resources.getClientCommunication().getUsers(resources.getUser().getUserId());
+			ArrayList<String> reply = clientComm.getUsers(user.getUserId());
 			if(reply.get(0).equals("VIEW USERS NOT OK"))
 				MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
 			else {
@@ -80,11 +102,13 @@ public class AdministratorController {
 			}
 		}
 		try {
-			AdministratorResources adminResources = new AdministratorResources(resources, users);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/administrator/UserTableForm.fxml"), adminResources);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/administrator/UserTableForm.fxml"));
+			loader.setControllerFactory(e -> new UserTableController(mainStage, clientComm, users, screenWidth,
+					screenHeight));
+			Parent userTableView = loader.load();
 			if(workspaceAnchor.getChildren().size() != 0)
 				workspaceAnchor.getChildren().remove(0);
-			workspaceAnchor.getChildren().add(root);
+			workspaceAnchor.getChildren().add(userTableView);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -97,41 +121,41 @@ public class AdministratorController {
 	public void close() {
 		boolean answer = ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?");
 		if(answer) {
-			resources.getClientCommunication().logout(resources.getUser().getUserId());
-			resources.getClientCommunication().closeConnection();
-			resources.getStage().hide();
+			clientComm.logout(user.getUserId());
+			clientComm.closeConnection();
+			mainStage.hide();
 		}
 	}
 	
 	public void resize() {
 		//top panel
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
+		AnchorPane.setBottomAnchor(statusAnchor, screenHeight * 0.7715);
 		
 		//profile picture
-		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
-		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
-		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
-		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
-		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
+		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
+		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
+		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
+		avatar.setFitHeight(screenHeight * 0.8);
+		avatar.setFitWidth(screenHeight * 0.1);
 		
 		//left panel
-		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
+		AnchorPane.setTopAnchor(menuAnchor, screenHeight * 0.2);
+		AnchorPane.setRightAnchor(menuAnchor, screenWidth * 0.8);
 		
 		//center panel
-		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
-		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
+		AnchorPane.setTopAnchor(workspaceAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(workspaceAnchor, screenWidth * 0.2);
+		AnchorPane.setRightAnchor(workspaceAnchor, screenWidth * 0.1);
 		
 		//right panel
-		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
+		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(optionsAnchor, screenWidth * 0.9);
 		
 		//buttons
-		addNewUserButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		showUsersButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		logoutButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
-		refreshButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
-		helpButton.setPrefSize(resources.getScreenWidth() * 0.095, resources.getScreenHeight() * 0.14);
+		addNewUserButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		showUsersButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		logoutButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
+		refreshButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
+		helpButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
 	}
 }

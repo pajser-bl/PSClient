@@ -1,18 +1,19 @@
 package controller.operater;
 
+import java.util.ArrayList;
+
 import client.FieldTechnician;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import utility.OperaterResources;
-import utility.AdministratorResources;
 
 public class FieldTechnicianTableController {
 
+	private ArrayList<FieldTechnician> technicians;
 	@FXML AnchorPane tableAnchor;
-	@FXML OperaterResources resources;
 	@FXML TableView<FieldTechnician> FieldTechnicianTable;
 	
 	@FXML public void initialize() {
@@ -25,6 +26,10 @@ public class FieldTechnicianTableController {
 		TableColumn<FieldTechnician, String> stateColumn = new TableColumn<FieldTechnician, String>("Stanje");
 		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
 		FieldTechnicianTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, stateColumn);
-		FieldTechnicianTable.setItems(resources.getObservableFieldTechnicians());
+		FieldTechnicianTable.setItems(FXCollections.observableArrayList(technicians));
+	}
+	
+	public FieldTechnicianTableController(ArrayList<FieldTechnician> technicians) {
+		this.technicians = technicians;
 	}
 }

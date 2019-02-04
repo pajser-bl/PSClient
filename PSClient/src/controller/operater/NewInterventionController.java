@@ -3,8 +3,12 @@ package controller.operater;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import client.ClientCommunication;
 import client.Event;
+import client.FieldTechnician;
 import client.Request;
+import client.Session;
+import client.User;
 import exception.EmptyFieldException;
 import exception.ServerReplyException;
 import javafx.event.ActionEvent;
@@ -13,12 +17,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import utility.OperaterResources;
+import javafx.stage.Stage;
 import utility.TimeUtility;
 import utility.MessageBox;
 
 public class NewInterventionController {
 
+	private ClientCommunication clientComm;
+	private ArrayList<FieldTechnician> technicians;
+	private User user;
+	private double stageHeight;
+	private double stageWidth;
+	private Stage interventionStage;
+	private Session session;
 	@FXML AnchorPane clientInformationAnchor;
 	@FXML AnchorPane clientInformationLabels;
 	@FXML AnchorPane clientInformationInput;
@@ -27,7 +38,6 @@ public class NewInterventionController {
 	@FXML AnchorPane vehicleInformationLabels;
 	@FXML AnchorPane vehicleInformationInput;
 	@FXML ComboBox<String> fieldTechniciansBox;
-	@FXML OperaterResources resources;
 	@FXML Button submitButton;
 	@FXML TextField name;
 	@FXML TextField lastName;
@@ -38,13 +48,22 @@ public class NewInterventionController {
 	@FXML TextField yearMade;
 	
 	@FXML public void initialize() {
-		ArrayList<String> fieldTechnicians = new ArrayList<>();
-		for(int i = 0; i < resources.getFieldTechnicians().size(); i++) {
-			fieldTechnicians.add(resources.getFieldTechnicians().get(i).toStringNoState());
+		for(int i = 0; i < technicians.size(); i++) {
+			fieldTechniciansBox.getItems().add(technicians.get(i).toStringNoState());
 		}
-		fieldTechniciansBox.getItems().addAll(fieldTechnicians);
-		fieldTechniciansBox.setValue(fieldTechnicians.get(0));
+		fieldTechniciansBox.setValue(technicians.get(0).toStringNoState());
 		resize();
+	}
+	
+	public NewInterventionController(Stage interventionStage, ClientCommunication clientComm, User user,
+			ArrayList<FieldTechnician> technicians, Session session, double stageWidth, double stageHeight) {
+		this.interventionStage = interventionStage;
+		this.clientComm = clientComm;
+		this.user = user;
+		this.technicians = technicians;
+		this.session = session;
+		this.stageWidth = stageWidth;
+		this.stageHeight = stageHeight;
 	}
 	
 	public void openNewIntervention(ActionEvent event) {
@@ -52,7 +71,7 @@ public class NewInterventionController {
 			if(name.getText().isEmpty() || lastName.getText().isEmpty())
 				throw new EmptyFieldException();
 			ArrayList<String> arguments = new ArrayList<String>();
-			arguments.add(resources.getUser().getUserId());
+			arguments.add(user.getUserId());
 			arguments.add(TimeUtility.localDateTimeToString(LocalDateTime.now()));
 			arguments.add(name.getText());
 			arguments.add(lastName.getText());
@@ -66,16 +85,16 @@ public class NewInterventionController {
 			else arguments.add("empty");
 			if(!yearMade.getText().isEmpty())
 				arguments.add(yearMade.getText());
-			else arguments.add("empty");
+			else arguments.add("2000");
 			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(":");
 			arguments.add(fieldTechnician[0]);
 			Request request = new Request("NEW INTERVENTION", arguments);
-			ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
+			ArrayList<String> reply = clientComm.sendRequest(request);
 			if(reply.get(0).equals("NEW INTERVENTION NOT OK"))
 				throw new ServerReplyException(reply.get(1));
-			resources.getSession().getEventList().add(new Event("Otvorena nova intervencija"));
+			session.getEventList().add(new Event("Otvorena nova intervencija"));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
-			resources.getStage().close();
+			interventionStage.close();
 		} catch (EmptyFieldException e) {
 			MessageBox.displayMessage("Greska", "Oznacena polja moraju biti popunjena");
 		} catch (ServerReplyException e) {
@@ -84,17 +103,17 @@ public class NewInterventionController {
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(clientInformationAnchor, resources.getScreenHeight() * 0.6);
+		AnchorPane.setBottomAnchor(clientInformationAnchor, stageHeight * 0.6);
 		AnchorPane.setTopAnchor(clientInformationLabels, 0.0);
-		AnchorPane.setRightAnchor(clientInformationLabels, resources.getScreenWidth() * 0.5);
+		AnchorPane.setRightAnchor(clientInformationLabels, stageWidth * 0.5);
 		AnchorPane.setTopAnchor(clientInformationInput, 0.0);
-		AnchorPane.setLeftAnchor(clientInformationInput, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(vehicleAnchor, resources.getScreenHeight() * 0.4);
+		AnchorPane.setLeftAnchor(clientInformationInput, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(vehicleAnchor, stageHeight * 0.4);
 		AnchorPane.setTopAnchor(vehicleInformationAnchor, 0.5);
 		AnchorPane.setBottomAnchor(vehicleInformationAnchor, 0.1);
-		AnchorPane.setTopAnchor(vehicleInformationLabels, resources.getScreenHeight() * 0.0125);
-		AnchorPane.setRightAnchor(vehicleInformationLabels, resources.getScreenWidth() * 0.5);
-		AnchorPane.setTopAnchor(vehicleInformationInput, resources.getScreenHeight() * 0.0125);
-		AnchorPane.setLeftAnchor(vehicleInformationInput, resources.getScreenWidth() * 0.5);
+		AnchorPane.setTopAnchor(vehicleInformationLabels, stageHeight * 0.0125);
+		AnchorPane.setRightAnchor(vehicleInformationLabels, stageWidth * 0.5);
+		AnchorPane.setTopAnchor(vehicleInformationInput, stageWidth * 0.0125);
+		AnchorPane.setLeftAnchor(vehicleInformationInput, stageWidth * 0.5);
 	}
 }

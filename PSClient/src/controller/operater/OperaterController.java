@@ -1,10 +1,16 @@
 package controller.operater;
 
-import utility.ChoiceBox;
-import utility.ClientResources;
-import utility.OperaterResources;
-import utility.TimeUtility;
-import utility.MessageBox;
+import client.ClientCommunication;
+import client.Event;
+import client.FieldTechnician;
+import client.Intervention;
+import client.Request;
+import client.Session;
+import client.User;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,19 +19,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import java.util.ArrayList;
-import client.Event;
-import client.FieldTechnician;
-import client.Intervention;
-import client.Request;
-import client.Session;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import utility.ChoiceBox;
+import utility.TimeUtility;
+import utility.MessageBox;
 
 public class OperaterController {
 
+	private double screenWidth;
+	private double screenHeight;
+	private User user;
+	private ClientCommunication clientComm;
 	private Session session;
+	private Stage mainStage;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane workspaceAnchor;
@@ -39,30 +45,35 @@ public class OperaterController {
 	@FXML Button logoutButton;
 	@FXML Button refreshButton;
 	@FXML BorderPane mainLayout;
-	@FXML ClientResources resources;
 	@FXML ImageView avatar;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML VBox userData;
 	
 	@FXML public void initialize() {
-		session = new Session();
-		session.getEventList().add(new Event("Korisnik " + resources.getUser().getName() + " " + resources.getUser().getLastName() +
-				" se prijavio na sistem"));
+		session.getEventList().add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " se prijavio na sistem"));
 		resize();
-		name.setText("  " + resources.getUser().getName());
-		lastName.setText("  " + resources.getUser().getLastName());
-		resources.getStage().setOnCloseRequest(e -> {
+		name.setText("  " + user.getName());
+		lastName.setText("  " + user.getLastName());
+		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
 		});
 	}
 	
+	public OperaterController(Stage mainStage, ClientCommunication clientComm, User user, double screenWidth,
+			double screenHeight) {
+		this.mainStage = mainStage;
+		this.clientComm = clientComm;
+		this.user = user;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
+		session = new Session();
+	}
+	
 	public void showInterventions(ActionEvent event) {
-		ArrayList<String> reply = resources.getClientCommunication().showOpenedInterventions();
+		ArrayList<String> reply = clientComm.showOpenedInterventions();
 		ArrayList<Intervention> interventions = new ArrayList<>();
-		OperaterResources operaterResources = new OperaterResources(resources, null, session, interventions);
-		System.out.print(reply.toString());
 		if(reply.get(0).equals("VIEW OPENED INTERVENTIONS OK")) {
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsedReply = reply.get(i + 2).split(":");
@@ -74,8 +85,11 @@ public class OperaterController {
 		if(!workspaceAnchor.getChildren().isEmpty())
 			workspaceAnchor.getChildren().clear();
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionsForm.fxml"), operaterResources);
-			workspaceAnchor.getChildren().add(root);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/InterventionsForm.fxml"));
+			loader.setControllerFactory(e -> new InterventionsController(mainStage, clientComm, user, interventions, session, screenWidth,
+					screenHeight));
+			Parent interventionsView = loader.load();
+			workspaceAnchor.getChildren().add(interventionsView);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -98,7 +112,7 @@ public class OperaterController {
 	
 	public void showFieldTechnicians(ActionEvent event) {
 		Request request = new Request("VIEW FIELD TECHNICIANS", new ArrayList<String>());
-		ArrayList<String> reply = resources.getClientCommunication().sendRequest(request);
+		ArrayList<String> reply = clientComm.sendRequest(request);
 		if(reply.get(0).equals("VIEW FIELD TECHNICIANS OK") && (Integer.parseInt(reply.get(1)) != 0)) {
 			ArrayList<FieldTechnician> fieldTechnicians = new ArrayList<>();
 			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
@@ -108,9 +122,10 @@ public class OperaterController {
 			if(!workspaceAnchor.getChildren().isEmpty())
 					workspaceAnchor.getChildren().clear();
 			try {
-				OperaterResources tableResources = new OperaterResources(resources, fieldTechnicians, session, null);
-				Parent root = FXMLLoader.load(getClass().getResource("/view/operater/FieldTechnicianTableForm.fxml"), tableResources);
-				workspaceAnchor.getChildren().add(root);
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/FieldTechnicianTableForm.fxml"));
+				loader.setControllerFactory(e -> new FieldTechnicianTableController(fieldTechnicians));
+				Parent techniciansView = loader.load();
+				workspaceAnchor.getChildren().add(techniciansView);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -128,32 +143,32 @@ public class OperaterController {
 	public void close() {
 		boolean answer = ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?");
 		if(answer) {
-			resources.getClientCommunication().logout(resources.getUser().getUserId());
-			resources.getClientCommunication().closeConnection();
-			resources.getStage().hide();
+			clientComm.logout(user.getUserId());
+			clientComm.closeConnection();
+			mainStage.hide();
 		}
 	}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(statusAnchor, resources.getScreenHeight() * 0.7715);
-		AnchorPane.setTopAnchor(menuAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setRightAnchor(menuAnchor, resources.getScreenWidth() * 0.8);
-		AnchorPane.setTopAnchor(workspaceAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(workspaceAnchor, resources.getScreenWidth() * 0.2);
-		AnchorPane.setRightAnchor(workspaceAnchor, resources.getScreenWidth() * 0.1);
-		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.2);
-		AnchorPane.setLeftAnchor(optionsAnchor, resources.getScreenWidth() * 0.9);
-		AnchorPane.setRightAnchor(avatarAnchor, resources.getScreenWidth() * 0.9);
-		AnchorPane.setLeftAnchor(userData, resources.getScreenWidth() * 0.1);
-		AnchorPane.setRightAnchor(userData, resources.getScreenWidth() * 0.8);
-		avatar.setFitHeight(resources.getScreenHeight() * 0.8);
-		avatar.setFitWidth(resources.getScreenWidth() * 0.1);
-		interventionsButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		mapButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		sessionButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		vehiclesButton.setPrefSize(resources.getScreenWidth() * 0.2, resources.getScreenHeight() * 0.1125);
-		logoutButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		refreshButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
-		helpButton.setPrefSize(resources.getScreenWidth() * 0.1, resources.getScreenHeight() * 0.15);
+		AnchorPane.setBottomAnchor(statusAnchor, screenHeight * 0.7715);
+		AnchorPane.setTopAnchor(menuAnchor, screenHeight * 0.2);
+		AnchorPane.setRightAnchor(menuAnchor, screenWidth * 0.8);
+		AnchorPane.setTopAnchor(workspaceAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(workspaceAnchor, screenWidth * 0.2);
+		AnchorPane.setRightAnchor(workspaceAnchor, screenWidth * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.2);
+		AnchorPane.setLeftAnchor(optionsAnchor, screenWidth * 0.9);
+		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
+		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
+		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
+		avatar.setFitHeight(screenHeight * 0.8);
+		avatar.setFitWidth(screenWidth * 0.1);
+		interventionsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		mapButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		sessionButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		vehiclesButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
+		refreshButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
+		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}
 }

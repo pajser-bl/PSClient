@@ -185,6 +185,13 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 	
+	public ArrayList<String> viewOpenedIntervention(String interventionId){
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(interventionId);
+		Request request = new Request("VIEW OPENED INTERVENTION", arguments);
+		return sendRequest(request);
+	}
+	
 	public ArrayList<String> getAvailableFieldTechnicians() {
 		ArrayList<String> arguments = new ArrayList<>();
 		Request request = new Request("VIEW AVAILABLE FIELD TECHNICIANS", arguments);

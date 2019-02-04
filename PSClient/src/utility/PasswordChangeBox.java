@@ -1,6 +1,8 @@
 package utility;
 
 import java.util.ArrayList;
+
+import client.ClientCommunication;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +18,7 @@ public class PasswordChangeBox {
 
 	private static TextField pswField = new TextField();
 	
-	public static void passwordChange(String userId, AdministratorResources resources) {
+	public static void passwordChange(String userId, ClientCommunication clientComm) {
 		Stage window = new Stage();
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Promjena lozinke");
@@ -38,7 +40,7 @@ public class PasswordChangeBox {
 		closeButton.getStylesheets().add("css/profile_button.css");
 		closeButton.getStyleClass().add("profilbutton");
 		closeButton.setDefaultButton(true);
-		closeButton.setOnAction(e -> sendRequest(window, userId, resources));
+		closeButton.setOnAction(e -> sendRequest(window, userId, clientComm));
 		
 		VBox mainLayout = new VBox();
 		mainLayout.getStylesheets().add("css/background.css");
@@ -52,12 +54,12 @@ public class PasswordChangeBox {
 		window.showAndWait();
 	}
 	
-	public static void sendRequest(Stage window, String userId, AdministratorResources resources) {
+	public static void sendRequest(Stage window, String userId, ClientCommunication clientComm) {
 		if(pswField.getText().isEmpty()) {
 			MessageBox.displayMessage("Greska", "Morate unijeti novu lozinku");
 		} 
 		else {
-			ArrayList<String> reply = resources.getClientCommunication().changePassword(userId, pswField.getText());
+			ArrayList<String> reply = clientComm.changePassword(userId, pswField.getText());
 			if(reply.get(0).equals("CHANGE PASSWORD FAILED"))
 				MessageBox.displayMessage("Greska", reply.get(1));
 			else MessageBox.displayMessage("Potvrda" , "Lozinka uspjesno promjenjena.");

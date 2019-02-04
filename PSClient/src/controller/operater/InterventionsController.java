@@ -1,10 +1,14 @@
 package controller.operater;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import client.ClientCommunication;
 import client.FieldTechnician;
 import client.Intervention;
+import client.Session;
+import client.User;
 import exception.ServerReplyException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,20 +21,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import utility.ClientResources;
-import utility.OperaterResources;
 import utility.MessageBox;
 
 public class InterventionsController {
 
-	@FXML AnchorPane tableAnchor;
-	@FXML AnchorPane optionsAnchor;
-	@FXML Button openNewInterventionButton;
-	@FXML Button viewInterventionButton;
-	@FXML TableView<Intervention> interventionsTable;
-	@FXML OperaterResources resources;
+	private ArrayList<Intervention> interventions;
+	private double screenHeight;
+	private double screenWidth;
+	private ClientCommunication clientComm;
+	private Stage mainStage;
+	private User user;
+	private Session session;
+	@FXML
+	AnchorPane tableAnchor;
+	@FXML
+	AnchorPane optionsAnchor;
+	@FXML
+	Button openNewInterventionButton;
+	@FXML
+	Button viewInterventionButton;
+	@FXML
+	TableView<Intervention> interventionsTable;
 
-	@FXML public void initialize() {
+	@FXML
+	public void initialize() {
 		resize();
 		TableColumn<Intervention, String> idColumn = new TableColumn<Intervention, String>("Id");
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -44,32 +58,44 @@ public class InterventionsController {
 		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("fieldTechnician"));
 		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
 		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn, fieldTechnicianColumn, stateColumn);
-		interventionsTable.setItems(resources.getObservableInterventions());
+		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn,
+				fieldTechnicianColumn, stateColumn);
+		interventionsTable.setItems(FXCollections.observableArrayList(interventions));
+	}
+	
+	public InterventionsController(Stage mainStage, ClientCommunication clientComm, User user, ArrayList<Intervention> interventions,
+			Session session, double screenWidth, double screenHeight) {
+		this.mainStage = mainStage;
+		this.clientComm = clientComm;
+		this.user = user;
+		this.interventions = interventions;
+		this.session = session;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 	}
 
 	public void openNewIntervention(ActionEvent event) {
 		try {
-			ArrayList<String> reply = resources.getClientCommunication().getAvailableFieldTechnicians();
-			ArrayList<FieldTechnician> fieldTechnitians = new ArrayList<>();
+			ArrayList<String> reply = clientComm.getAvailableFieldTechnicians();
+			ArrayList<FieldTechnician> fieldTechnicians = new ArrayList<>();
 			if (reply.get(0).equals("VIEW AVAILABLE FIELD TECHNICIANS OK") && Integer.parseInt(reply.get(1)) == 0)
 				throw new ServerReplyException("Nema slobodnih terenskih radnika");
-			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
-				String[] parsedUser = reply.get(i + 2).split(":");
-				fieldTechnitians.add(new FieldTechnician(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
+			if (reply.get(0).equals("VIEW AVAILABLE FIELD TECHNICIANS OK")) {
+				for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+					String[] parsedUser = reply.get(i + 2).split(":");
+					fieldTechnicians.add(new FieldTechnician(parsedUser[0], parsedUser[1], parsedUser[2], parsedUser[3]));
+				}
+				Stage newInterventionStage = new Stage();
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/NewInterventionForm.fxml"));
+				loader.setControllerFactory(e -> new NewInterventionController(newInterventionStage, clientComm, user,
+						fieldTechnicians, session, screenWidth * 0.33, screenHeight * 0.7));
+				Parent newInterventionView = loader.load();
+				Scene addNewUserScene = new Scene(newInterventionView, screenWidth * 0.33, screenHeight * 0.7);
+				newInterventionStage.setScene(addNewUserScene);
+				newInterventionStage.setResizable(false);
+				newInterventionStage.initModality(Modality.APPLICATION_MODAL);
+				newInterventionStage.show();
 			}
-			Stage newInterventionStage = new Stage();
-			ClientResources newResources = new ClientResources(newInterventionStage, resources.getClientCommunication(),
-					resources.getUser(), resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
-			OperaterResources interventionResources = new OperaterResources(newResources, fieldTechnitians, resources.getSession(), null);
-			newInterventionStage.setResizable(false);
-			newInterventionStage.initModality(Modality.APPLICATION_MODAL);
-			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/NewInterventionForm.fxml"),
-					interventionResources);
-			Scene addNewUserScene = new Scene(root, interventionResources.getScreenWidth(),
-					interventionResources.getScreenHeight());
-			newInterventionStage.setScene(addNewUserScene);
-			newInterventionStage.show();
 		} catch (ServerReplyException e) {
 			MessageBox.displayMessage("Greska", e.toString());
 		} catch (Exception e) {
@@ -78,23 +104,21 @@ public class InterventionsController {
 	}
 
 	public void showIntervention(ActionEvent event) {
-		resources.setIntervention(interventionsTable.getSelectionModel().getSelectedItem());
-		Stage interventionStage = new Stage();
-		interventionStage.setResizable(false);
-		interventionStage.initModality(Modality.APPLICATION_MODAL);
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/operater/InterventionForm.fxml"), resources);
-			interventionStage.setScene(new Scene(root, resources.getScreenWidth() * 0.5, resources.getScreenHeight() * 0.7));
-			interventionStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		String interventionId = interventionsTable.getSelectionModel().getSelectedItem().getId();
+		ArrayList<String> reply = clientComm.viewOpenedIntervention(interventionId);
+		if(reply.get(0).equals("VIEW OPENED INTERVENTION OK")) {
+			//Intervention intervention = new Intervention(reply.get(1));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/InterventionForm.fxml"));
+			Stage interventionStage = new Stage();
+			interventionStage.setResizable(false);
+			interventionStage.initModality(Modality.APPLICATION_MODAL);
 		}
 	}
 
 	public void resize() {
-		AnchorPane.setBottomAnchor(tableAnchor, resources.getScreenHeight() * 0.1);
-		AnchorPane.setTopAnchor(optionsAnchor, resources.getScreenHeight() * 0.7);
-		openNewInterventionButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
-		viewInterventionButton.setPrefSize(resources.getScreenHeight() * 0.5, resources.getScreenHeight() * 0.1);
+		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);
+		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.7);
+		openNewInterventionButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
+		viewInterventionButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
 	}
 }
