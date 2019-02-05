@@ -3,6 +3,8 @@ package client;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import exception.ConnectionTimeoutException;
+import model.Request;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;

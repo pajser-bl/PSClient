@@ -1,12 +1,7 @@
 package controller.operater;
 
 import client.ClientCommunication;
-import client.Event;
-import client.FieldTechnician;
-import client.Intervention;
-import client.Request;
-import client.Session;
-import client.User;
+
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Event;
+import model.FieldTechnician;
+import model.Intervention;
+import model.Request;
+import model.Session;
+import model.User;
 import utility.ChoiceBox;
 import utility.TimeUtility;
 import utility.MessageBox;

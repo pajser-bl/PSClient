@@ -4,11 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import client.ClientCommunication;
-import client.Event;
-import client.FieldTechnician;
-import client.Request;
-import client.Session;
-import client.User;
 import exception.EmptyFieldException;
 import exception.ServerReplyException;
 import javafx.event.ActionEvent;
@@ -18,6 +13,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Event;
+import model.FieldTechnician;
+import model.Request;
+import model.Session;
+import model.User;
 import utility.TimeUtility;
 import utility.MessageBox;
 

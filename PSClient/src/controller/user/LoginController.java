@@ -1,8 +1,6 @@
 package controller.user;
 
 import client.ClientCommunication;
-import client.FieldTechnician;
-import client.User;
 import controller.administrator.AdministratorController;
 import controller.fieldTechnician.FieldTechnicianController;
 import controller.operater.OperaterController;
@@ -17,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.FieldTechnician;
+import model.User;
 import javafx.scene.control.Button;
 import utility.MessageBox;
 

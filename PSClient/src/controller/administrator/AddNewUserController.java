@@ -1,7 +1,7 @@
 package controller.administrator;
 
 import client.ClientCommunication;
-import client.User;
+
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.User;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -41,6 +42,11 @@ public class AddNewUserController {
 	@FXML VBox accountSettingsInputBox;
 
 	@FXML public void initialize() {
+		if(userUpdate == true) {
+			setUserInfo(users.get(0));
+			createNewUser.setText("Azuriraj korisnika");
+			createNewUser.setOnAction(e -> updateUser(users.get(0)));
+		}
 		resize();
 	}
 	
@@ -73,11 +79,21 @@ public class AddNewUserController {
 		}
 	}
 	
-	public void updateUser() {
+	public void updateUser(User user) {
 		
 	}
 	
-	public void setUserInfo() {}
+	public void setUserInfo(User user) {
+		name.setText(user.getName());
+		lastName.setText(user.getLastName());
+		username.setText(user.getUsername());
+		date.getEditor().setText(user.getDate().toString().replace("-", "/"));
+		String[] split = user.getQualification().split(", ");
+		qualification.setValue(split[0]);
+		if(split.length > 1)
+			licence.setText(split[1]);
+		userType.setValue(user.getType());
+	}
 	
 	public void resize() {
 		AnchorPane.setBottomAnchor(userDataAnchor, stageHeight * 0.6);

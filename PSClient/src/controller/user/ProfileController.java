@@ -3,7 +3,6 @@ package controller.user;
 import java.util.ArrayList;
 
 import client.ClientCommunication;
-import client.User;
 import controller.administrator.AddNewUserController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.User;
 
 public class ProfileController {
 
@@ -31,6 +31,9 @@ public class ProfileController {
 	@FXML HBox avatarBox;
 	@FXML HBox infoBox;
 	@FXML ImageView avatar;
+	@FXML ImageView phoneImage;
+	@FXML ImageView emailImage;
+	@FXML ImageView mailImage;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML Label username;
@@ -42,7 +45,7 @@ public class ProfileController {
 		if(user.getType() == "Supervizor")
 			userDataBox.getChildren().remove(updateUserButton);
 		resize();
-		name.setText("Ime:                    " + user.getName());
+		name.setText("Ime:                     " + user.getName());
 		lastName.setText("Prezime:              " + user.getLastName());
 		username.setText("Korisnicko ime:     " + user.getUsername());
 		userType.setText("Tip korisnika:       " + user.getType());
@@ -79,8 +82,12 @@ public class ProfileController {
 	
 	public void resize() {
 		AnchorPane.setBottomAnchor(avatarBox, stageHeight * 0.8);
-		AnchorPane.setTopAnchor(infoBox, stageHeight * 0.2);
+		avatar.setFitHeight(stageHeight * 0.8);
+		avatar.setFitWidth(stageWidth * 0.5);
+		mailImage.setFitHeight(stageHeight * 0.2);
+		mailImage.setFitWidth(stageWidth * 0.25);
+		AnchorPane.setTopAnchor(infoBox, stageHeight * 0.3);
 		AnchorPane.setBottomAnchor(infoBox, stageHeight * 0.6);
-		AnchorPane.setTopAnchor(userDataBox, stageHeight * 0.4);
+		AnchorPane.setTopAnchor(userDataBox, stageHeight * 0.7);
 	}
 }

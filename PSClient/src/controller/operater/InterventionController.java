@@ -2,12 +2,12 @@ package controller.operater;
 
 import java.time.format.DateTimeFormatter;
 
-import client.Intervention;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import model.Intervention;
 
 public class InterventionController {
 

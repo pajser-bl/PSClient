@@ -1,7 +1,6 @@
 package controller.supervisor;
 
 import client.ClientCommunication;
-import client.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.User;
 import utility.ChoiceBox;
 
 public class SupervisorController {

@@ -1,10 +1,6 @@
 package controller.operater;
 
 import client.ClientCommunication;
-import client.FieldTechnician;
-import client.Intervention;
-import client.Session;
-import client.User;
 import exception.ServerReplyException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +17,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.FieldTechnician;
+import model.Intervention;
+import model.Session;
+import model.User;
 import utility.MessageBox;
 
 public class InterventionsController {

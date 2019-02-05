@@ -1,7 +1,7 @@
 package controller.administrator;
 
 import client.ClientCommunication;
-import client.User;
+
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.User;
 import utility.ChoiceBox;
 import utility.MessageBox;
 

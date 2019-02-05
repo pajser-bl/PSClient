@@ -1,8 +1,7 @@
 package controller.fieldTechnician;
 
 import client.ClientCommunication;
-import client.FieldTechnician;
-import client.Session;
+
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.FieldTechnician;
+import model.Session;
 import utility.ChoiceBox;
 import utility.MessageBox;
 
@@ -55,6 +56,8 @@ public class FieldTechnicianController {
 		this.user = user;
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
+		InterventionHandler handler = new InterventionHandler(mainStage, clientComm, user);
+		
 	}
 	
 	public void showSession(ActionEvent event) {

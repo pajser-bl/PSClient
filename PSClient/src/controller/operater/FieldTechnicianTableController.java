@@ -2,13 +2,13 @@ package controller.operater;
 
 import java.util.ArrayList;
 
-import client.FieldTechnician;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.FieldTechnician;
 
 public class FieldTechnicianTableController {
 

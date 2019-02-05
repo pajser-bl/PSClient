@@ -1,9 +1,10 @@
 package controller.administrator;
 
 import client.ClientCommunication;
-import client.User;
 import controller.user.ProfileController;
 import exception.EmptyFieldException;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -20,8 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.User;
 import utility.MessageBox;
 import utility.PasswordChangeBox;
+import utility.TimeUtility;
 
 public class UserTableController {
 
@@ -81,12 +84,13 @@ public class UserTableController {
 			Stage profileWindow = new Stage();
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
 			ArrayList<String> reply = clientComm.getUser(id);
-			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), null);
+			LocalDate date = TimeUtility.stringToLocalDate(reply.get(5));
+			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), date);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/ProfileForm.fxml"));
-			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.5,
-					screenHeight * 0.8));
+			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.3,
+					screenHeight * 0.5));
 			Parent profileView = loader.load();
-			profileWindow.setScene(new Scene(profileView, screenWidth * 0.5, screenHeight * 0.8));
+			profileWindow.setScene(new Scene(profileView, screenWidth * 0.3, screenHeight * 0.5));
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
 			profileWindow.show();
 		} catch (EmptyFieldException e) {
