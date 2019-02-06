@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class Intervention {
 
-	private String state;
 	private LocalDateTime openedOn;
 	private LocalDateTime closedOn;
 	private LocalDateTime reportTime;
@@ -21,6 +20,7 @@ public class Intervention {
 	private String operaterReport;
 	private String fieldTechnician;
 	private String fieldReport;
+	private String state;
 	private String supervisor;
 	private String supervisorReport;
 	

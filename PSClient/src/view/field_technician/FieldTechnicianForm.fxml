@@ -33,7 +33,8 @@
 							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 							AnchorPane.topAnchor="0.0">
 							<image>
-								<Image url="@../../resources/images/administrator_avatar.png" />
+								<Image
+									url="@../../resources/images/field_technician_avatar.png" />
 							</image>
 						</ImageView>
 					</children>
@@ -78,7 +79,7 @@
 							onAction="#changeState" styleClass="stanjebutton"
 							stylesheets="@../../css/field_techician_state_button.css" />
 						<Button fx:id="mapButton" mnemonicParsing="false"
-							onAction="#showMap" styleClass="mapabutton"
+							onAction="#interventionAlert" styleClass="mapabutton"
 							stylesheets="@../../css/field_techician_map_button.css" />
 						<Button fx:id="reportButton" mnemonicParsing="false"
 							onAction="#newFieldReport" styleClass="reportbutton"
@@ -102,9 +103,6 @@
 						<Button fx:id="logoutButton" mnemonicParsing="false"
 							onAction="#logout" styleClass="exitbutton"
 							stylesheets="@../../css/exit_button.css" />
-						<Button fx:id="refreshButton" mnemonicParsing="false"
-							styleClass="refreshbutton"
-							stylesheets="@../../css/refresh_button.css" />
 						<Button fx:id="helpButton" mnemonicParsing="false"
 							styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
 					</children>

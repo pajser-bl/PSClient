@@ -39,10 +39,10 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				clientComm = (new ClientCommunication("192.168.1.14", 9000));
+				clientComm = (new ClientCommunication("192.168.1.7", 9000));
 				ArrayList<String> reply = clientComm.login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
-					user  = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5), null, null);
+					user  = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),null, null, null);
 					if(reply.get(4).equals("Operater")) {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/OperaterForm.fxml"));
 						loader.setControllerFactory(e -> new OperaterController(mainStage, clientComm, user, screenWidth,

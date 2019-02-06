@@ -10,18 +10,28 @@ public class User {
 	private String type;
 	private String username;
 	private String qualification;
+	private String licence;
 	private LocalDate date;
 	
-	public User(String userId, String name, String lastName, String type, String username, String qualification, LocalDate date){
+	public User(String userId, String name, String lastName, String type, String username, String qualification, String licence, LocalDate date){
 		this.userId = userId;
 		this.name = name;
 		this.lastName = lastName;
 		this.type = type;
 		this.username = username;
 		this.qualification = qualification;
+		this.licence = licence;
 		this.date = date;
 	}
 	
+	public String getLicence() {
+		return licence;
+	}
+
+	public void setLicence(String licence) {
+		this.licence = licence;
+	}
+
 	public LocalDate getDate() {
 		return date;
 	}

@@ -1,31 +1,41 @@
 package controller.fieldTechnician;
 
 import client.ClientCommunication;
+import client.TestThread;
 
 import java.util.ArrayList;
+
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Event;
 import model.FieldTechnician;
+import model.Intervention;
 import model.Session;
 import utility.ChoiceBox;
 import utility.MessageBox;
 
 public class FieldTechnicianController {
 
-	private Session session;
-	private Stage mainStage;
-	private FieldTechnician user;
+	private ClientCommunication clientComm;
 	private double screenHeight;
 	private double screenWidth;
-	private ClientCommunication clientComm;
+	private FieldTechnician user;
+	private Intervention intervention = null;
+	private Session session;
+	private Stage mainStage;
+	private TestThread task;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
@@ -36,93 +46,105 @@ public class FieldTechnicianController {
 	@FXML Button reportButton;
 	@FXML Button sessionButton;
 	@FXML Button logoutButton;
-	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML ImageView avatar;
+	@FXML Label name;
+	@FXML Label lastName;
 	@FXML VBox userData;
-	
+
 	@FXML public void initialize() {
 		resize();
+		name.setText("  " + user.getName());
+		lastName.setText("  " + user.getLastName());
 		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
 		});
+		/*
+		 * try { Thread th = new Thread(task); th.setDaemon(true); th.start(); } catch
+		 * (Exception e) { e.printStackTrace(); }
+		 */
 	}
-	
-	public FieldTechnicianController(Stage mainStage, ClientCommunication clientComm, FieldTechnician user, double screenWidth,
-			double screenHeight) {
+
+	public FieldTechnicianController(Stage mainStage, ClientCommunication clientComm, FieldTechnician user,
+			double screenWidth, double screenHeight) {
 		this.mainStage = mainStage;
 		this.clientComm = clientComm;
 		this.user = user;
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
-		InterventionHandler handler = new InterventionHandler(mainStage, clientComm, user);
-		
+		this.session = new Session();
+		session.getEventList()
+				.add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " se prijavio na sistem"));
+		this.task = new TestThread(this.clientComm, this.user, true);
 	}
-	
+
 	public void showSession(ActionEvent event) {
-		if(!workspaceAnchor.getChildren().isEmpty())
+		if (!workspaceAnchor.getChildren().isEmpty())
 			workspaceAnchor.getChildren().clear();
 		TextArea sessionTextArea = new TextArea();
 		sessionTextArea.setText(session.toString());
 		workspaceAnchor.getChildren().add(sessionTextArea);
 	}
-	
+
 	public void newFieldReport(ActionEvent event) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/ReportForm.fxml"));
-			if(workspaceAnchor.getChildren().size() != 0)
-				workspaceAnchor.getChildren().remove(0);
-			workspaceAnchor.getChildren().add(root);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if (intervention != null)
+			try {
+				Parent root = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/ReportForm.fxml"));
+				if (workspaceAnchor.getChildren().size() != 0)
+					workspaceAnchor.getChildren().remove(0);
+				workspaceAnchor.getChildren().add(root);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
-	
+
 	public void changeState(ActionEvent event) {
-		if(user.getState().equals("aktivan")) {
+		if (user.getState().equals("aktivan")) {
 			user.setState("neaktivan");
-		} else user.setState("aktivan");
+		} else
+			user.setState("aktivan");
 		ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
-		if(reply.get(0).equals("CHANGE STATE OK"))
-				MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
+		if (reply.get(0).equals("CHANGE STATE OK"))
+			MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
 		else {
-			if(user.getState().equals("aktivan")) {
+			if (user.getState().equals("aktivan")) {
 				user.setState("neaktivan");
-			} else user.setState("aktivan");
-				MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
+			} else
+				user.setState("aktivan");
+			MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
 		}
 	}
-	
-	public void showMap(ActionEvent event) {
-		/*ClientResources reportResources = new ClientResources(null, resources.getClientCommunication(), resources.getUser(),
-				resources.getScreenWidth() * 0.33, resources.getScreenHeight() * 0.7);
+
+	public void interventionAlert(ActionEvent event) {
 		try {
-			Stage addNewUserStage = new Stage();
-			addNewUserStage.setResizable(false);
-			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
-			Parent root = FXMLLoader.load(getClass().getResource("/new_forms/NewRoadReportForm.fxml"), reportResources);
-			Scene addNewUserScene = new Scene(root, reportResources.getScreenWidth(), reportResources.getScreenHeight());
-			addNewUserStage.setScene(addNewUserScene);
-			addNewUserStage.show();
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
+			loader.setControllerFactory(
+					e -> new InterventionAlertController(optionsAnchor, screenWidth * 0.3, screenHeight * 0.2));
+			Parent interventionAlert = loader.load();
+			optionsAnchor.getChildren().add(interventionAlert);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
-	
+
+	public void showMap(ActionEvent event) {
+	}
+
 	public void close() {
 		boolean answer = ChoiceBox.displayChoice("Odjava", "Da li ste sigurni da zelite da se odjavite?");
-		if(answer) {
+		if (answer) {
 			clientComm.logout(user.getId());
 			clientComm.closeConnection();
 			mainStage.hide();
 		}
 	}
-	
+
 	public void logout() {
 		close();
 	}
-	
+
 	public void resize() {
 		AnchorPane.setBottomAnchor(statusAnchor, screenHeight * 0.7715);
 		AnchorPane.setTopAnchor(menuAnchor, screenHeight * 0.2);
@@ -135,14 +157,13 @@ public class FieldTechnicianController {
 		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
 		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
 		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
-		avatar.setFitHeight(screenHeight * 0.8);
+		avatar.setFitHeight(screenHeight * 0.2);
 		avatar.setFitWidth(screenWidth * 0.1);
 		stateButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		mapButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		reportButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		sessionButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
-		refreshButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}
 }

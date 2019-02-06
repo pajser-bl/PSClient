@@ -50,15 +50,15 @@ public class InterventionsController {
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		TableColumn<Intervention, String> clientColumn = new TableColumn<Intervention, String>("Klijent");
 		clientColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
-		TableColumn<Intervention, String> userColumn = new TableColumn<Intervention, String>("Korisnik");
-		userColumn.setCellValueFactory(new PropertyValueFactory<>("userOpened"));
+		TableColumn<Intervention, String> operaterColumn = new TableColumn<Intervention, String>("Operater");
+		operaterColumn.setCellValueFactory(new PropertyValueFactory<>("userOpened"));
 		TableColumn<Intervention, LocalDateTime> openedOnColumn = new TableColumn<Intervention, LocalDateTime>("Vrijeme otvaranja");
 		openedOnColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
 		TableColumn<Intervention, String> fieldTechnicianColumn = new TableColumn<Intervention, String>("Terenski radnik");
 		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("fieldTechnician"));
 		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
 		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-		interventionsTable.getColumns().addAll(idColumn, clientColumn, userColumn, openedOnColumn,
+		interventionsTable.getColumns().addAll(idColumn, clientColumn, operaterColumn, openedOnColumn,
 				fieldTechnicianColumn, stateColumn);
 		interventionsTable.setItems(FXCollections.observableArrayList(interventions));
 	}

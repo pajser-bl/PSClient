@@ -63,13 +63,12 @@ public class AddNewUserController {
 	public void createNewUser(ActionEvent event) {
 		try {
 			ArrayList<String> reply = clientComm.newUser(name.getText(), lastName.getText(), date.getValue().toString(),
-				(String) userType.getValue(), qualification.getValue() + (licence.getText().isEmpty() ? "" : ", " + licence.getText()),
-				username.getText(), password.getText());
+				(String) userType.getValue(), qualification.getValue(), licence.getText(),username.getText(), password.getText());
 			if (reply.get(0).equals("ADD USER OK")) {
 				MessageBox.displayMessage("Potvrda", "Korisnik uspjesno kreiran");
 				if(!users.isEmpty())
 					users.add(new User(reply.get(1), name.getText(), lastName.getText(), userType.getValue(),
-							username.getText(), null, null));
+							username.getText(),null, null, null));
 				userStage.close();
 			} else
 				MessageBox.displayMessage("Greska", reply.get(1));

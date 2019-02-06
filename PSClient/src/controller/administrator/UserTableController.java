@@ -85,7 +85,7 @@ public class UserTableController {
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
 			ArrayList<String> reply = clientComm.getUser(id);
 			LocalDate date = TimeUtility.stringToLocalDate(reply.get(5));
-			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(7), reply.get(6), date);
+			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(6), reply.get(7), reply.get(8) , date);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/ProfileForm.fxml"));
 			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.3,
 					screenHeight * 0.5));
