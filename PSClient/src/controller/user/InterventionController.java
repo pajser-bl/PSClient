@@ -31,6 +31,7 @@ public class InterventionController {
 	@FXML Label operater;
 	@FXML Label fieldTechnician;
 	@FXML Label client;
+	@FXML Label phoneNumber;
 	@FXML Label vehicleModel;
 	@FXML Label vehicleManu;
 	@FXML Label vehicleYear;
@@ -83,6 +84,11 @@ public class InterventionController {
 		operater.setText(intervention.getUserOpened());
 		fieldTechnician.setText(intervention.getFieldTechnician());
 		client.setText(intervention.getClient());
+		phoneNumber.setText(intervention.getPhoneNumber());
+		vehicleModel.setText(intervention.getVehicleModel());
+		vehicleManu.setText(intervention.getVehicleManu());
+		vehicleYear.setText(intervention.getVehicleYear());
+		vehicleLicencePlate.setText(intervention.getVehicleLicencePlate());
 	}
 	
 	public void resize() {

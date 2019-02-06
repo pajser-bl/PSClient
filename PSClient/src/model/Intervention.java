@@ -10,6 +10,7 @@ public class Intervention {
 	private LocalDateTime serviceTime;
 	private String id;
 	private String client;
+	private String phoneNumber;
 	private String vehicleModel;
 	private String vehicleManu;
 	private String vehicleYear;
@@ -23,11 +24,12 @@ public class Intervention {
 	private String state;
 	private String supervisor;
 	private String supervisorReport;
-	
-	public Intervention(String id, String client, String vehicleLicencePlate, String vehicleModel, String vehicleManu, String vehicleYear,
-	String userOpened, String fieldTechnician, LocalDateTime openedOn, String state, String service, LocalDateTime serviceTime,
-	String fieldReport, String userClosed, LocalDateTime closedOn, String operaterReport, String supervisor, String supervisorReport,
-	LocalDateTime reportTime) {
+
+	public Intervention(String id, String client, String phoneNumber, String vehicleLicencePlate, String vehicleModel,
+			String vehicleManu, String vehicleYear, String userOpened, String fieldTechnician, LocalDateTime openedOn,
+			String state, String service, LocalDateTime serviceTime, String fieldReport, String userClosed,
+			LocalDateTime closedOn, String operaterReport, String supervisor, String supervisorReport,
+			LocalDateTime reportTime) {
 		this.state = state;
 		this.openedOn = openedOn;
 		this.closedOn = closedOn;
@@ -35,6 +37,7 @@ public class Intervention {
 		this.serviceTime = serviceTime;
 		this.id = id;
 		this.client = client;
+		this.phoneNumber = phoneNumber;
 		this.vehicleModel = vehicleModel;
 		this.vehicleManu = vehicleManu;
 		this.vehicleYear = vehicleYear;
@@ -48,21 +51,9 @@ public class Intervention {
 		this.supervisor = supervisor;
 		this.supervisorReport = supervisorReport;
 	}
-	
-	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician, String state,
-			String service, LocalDateTime serviceTime, String fieldReport) {
-		this.id = id;
-		this.client = client;
-		this.userOpened = userId;
-		this.openedOn = openedOn;
-		this.fieldTechnician = fieldTechnician;
-		this.state = state;
-		this.service = service;
-		this.serviceTime = serviceTime;
-		this.fieldReport = fieldReport;
-	}
-	
-	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician, String state) {
+
+	public Intervention(String id, String client, String userId, LocalDateTime openedOn, String fieldTechnician,
+			String state) {
 		this.id = id;
 		this.client = client;
 		this.userOpened = userId;
@@ -225,5 +216,13 @@ public class Intervention {
 
 	public void setSupervisor(String supervisor) {
 		this.supervisor = supervisor;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }

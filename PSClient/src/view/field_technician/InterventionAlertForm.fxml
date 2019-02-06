@@ -37,7 +37,8 @@
 						<Font size="20.0" />
 					</font>
 				</Label>
-				<Button onAction="#openIntervention" mnemonicParsing="false" styleClass="commonbutton"
+				<Button fx:id="viewButton" onAction="#openIntervention"
+					mnemonicParsing="false" styleClass="commonbutton"
 					stylesheets="@../../css/common_button.css" text="Pregledaj" />
 			</children>
 		</VBox>

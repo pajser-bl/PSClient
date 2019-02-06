@@ -121,5 +121,7 @@ public class AddNewUserController {
 		AnchorPane.setTopAnchor(accountSettingsInputBox, stageHeight * 0.0001);
 		AnchorPane.setBottomAnchor(accountSettingsInputBox, stageHeight * 0.1);
 		AnchorPane.setLeftAnchor(accountSettingsInputBox, stageWidth * 0.5);
+		
+		createNewUser.setPrefSize(stageWidth * 0.3, stageHeight * 0.05);
 	}
 }

@@ -23,6 +23,7 @@
 				<Label text="Operater:" textFill="#21947b" />
 				<Label text="Terenski radnik:" textFill="#21947b" />
 				<Label text="Klijent:" textFill="#21947b" />
+				<Label text="Broj telefona:" textFill="#21947b" />
 				<Label text="Registracija:" textFill="#21947b" />
 				<Label text="Proizvodjac:" textFill="#21947b" />
 				<Label text="Model:" textFill="#21947b" />
@@ -50,6 +51,7 @@
 				<Label fx:id="operater" textFill="#21947b" />
 				<Label fx:id="fieldTechnician" textFill="#21947b" />
 				<Label fx:id="client" textFill="#21947b" />
+				<Label fx:id="phoneNumber" textFill="#21947b" />
 				<Label fx:id="vehicleLicencePlate" textFill="#21947b" />
 				<Label fx:id="vehicleManu" textFill="#21947b" />
 				<Label fx:id="vehicleModel" textFill="#21947b" />

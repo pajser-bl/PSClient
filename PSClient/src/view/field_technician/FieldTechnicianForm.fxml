@@ -76,7 +76,7 @@
 							onAction="#changeState" styleClass="stanjebutton"
 							stylesheets="@../../css/field_techician_state_button.css" />
 						<Button fx:id="mapButton" mnemonicParsing="false"
-							onAction="#interventionAlert" styleClass="mapabutton"
+							onAction="#checkOpenedIntervention" styleClass="mapabutton"
 							stylesheets="@../../css/field_techician_map_button.css" />
 						<Button fx:id="reportButton" mnemonicParsing="false"
 							onAction="#newFieldReport" styleClass="reportbutton"

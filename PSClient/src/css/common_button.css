@@ -1,11 +1,7 @@
 .commonbutton { 
 	-fx-background-radius: 5em; 
-	-fx-min-width:150px;
 	-fx-background-color: transparent;
 	-fx-background-image: url("/resources/images/profile_button_default.png");
-	-fx-min-height: 30px; 
-	-fx-max-width: 150px; 
-	-fx-max-height: 50px;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 100% 100%

@@ -1,10 +1,17 @@
 package controller.fieldTechnician;
 
+import controller.user.InterventionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Intervention;
 
 public class InterventionAlertController {
@@ -14,6 +21,7 @@ public class InterventionAlertController {
 	private double stageWidth;
 	private Intervention intervention;
 	@FXML AnchorPane mainAnchor;
+	@FXML Button viewButton;
 	@FXML ImageView upperEdge;
 	@FXML ImageView lowerEdge;
 	@FXML VBox optionsBox;
@@ -22,14 +30,26 @@ public class InterventionAlertController {
 		resize();
 	}
 	
-	public InterventionAlertController(AnchorPane optionsAnchor, double stageWidth, double stageHeight) {
+	public InterventionAlertController(AnchorPane optionsAnchor, Intervention intervention, double stageWidth, double stageHeight) {
 		this.optionsAnchor = optionsAnchor;
+		this.intervention = intervention;
 		this.stageWidth = stageWidth;
 		this.stageHeight = stageHeight;
 	}
 	
 	public void openIntervention(ActionEvent event) {
-		optionsAnchor.getChildren().remove(optionsBox.getParent());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/InterventionForm.fxml"));
+		loader.setControllerFactory(e -> new InterventionController(intervention, "Field technician", stageWidth, stageHeight));
+		try {
+			Parent root = loader.load();
+			Stage interventionStage = new Stage();
+			interventionStage.setResizable(false);
+			interventionStage.initModality(Modality.APPLICATION_MODAL);
+			interventionStage.setScene(new Scene(root, stageWidth * 1, stageHeight * 2.3));
+			interventionStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void resize() {
@@ -37,5 +57,6 @@ public class InterventionAlertController {
 		AnchorPane.setLeftAnchor(optionsBox, stageWidth * 0.5);
 		upperEdge.setFitWidth(stageWidth);
 		lowerEdge.setFitWidth(stageWidth);
+		viewButton.setPrefSize(stageWidth * 0.3, stageHeight * 0.3);
 	}
 }

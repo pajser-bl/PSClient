@@ -100,9 +100,9 @@ public class UserTableController {
 	public void resize() {
 		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);
 		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.7);
-		profileButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
-		deleteUserButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
-		changePasswordButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
+		profileButton.setPrefSize(screenHeight * 0.2, screenHeight * 0.5);
+		deleteUserButton.setPrefSize(screenHeight * 0.2, screenHeight * 0.5);
+		changePasswordButton.setPrefSize(screenHeight * 0.2, screenHeight * 0.5);
 	}
 	
 	public TableView<User> getUserTable() {

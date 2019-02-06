@@ -118,7 +118,5 @@ public class InterventionsController {
 	public void resize() {
 		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);
 		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.7);
-		openNewInterventionButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
-		viewInterventionButton.setPrefSize(screenHeight * 0.5, screenHeight * 0.1);
 	}
 }

@@ -1,6 +1,8 @@
 package controller.fieldTechnician;
 
 import client.ClientCommunication;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import model.Intervention;
 import model.Session;
 import utility.ChoiceBox;
 import utility.MessageBox;
+import utility.TimeUtility;
 
 public class FieldTechnicianController {
 
@@ -47,7 +50,8 @@ public class FieldTechnicianController {
 	@FXML Label lastName;
 	@FXML VBox userData;
 
-	@FXML public void initialize() {
+	@FXML
+	public void initialize() {
 		resize();
 		name.setText("  " + user.getName());
 		lastName.setText("  " + user.getLastName());
@@ -81,8 +85,8 @@ public class FieldTechnicianController {
 		if (intervention != null) {
 			Stage reportStage = new Stage();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/field_technician/RoadReportForm.fxml"));
-			loader.setControllerFactory(e -> new RoadReportController(reportStage, clientComm, intervention, screenWidth * 0.3, 
-					screenHeight * 0.3));
+			loader.setControllerFactory(e -> new RoadReportController(reportStage, clientComm, optionsAnchor, intervention,
+					screenWidth * 0.3, screenHeight * 0.3));
 			try {
 				Parent root = loader.load();
 				reportStage.setResizable(false);
@@ -92,7 +96,7 @@ public class FieldTechnicianController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else 
+		} else
 			MessageBox.displayMessage("Greska", "Nemate aktivnu intervenciju");
 	}
 
@@ -113,12 +117,12 @@ public class FieldTechnicianController {
 		}
 	}
 
-	public void interventionAlert(ActionEvent event) {
+	public void interventionAlert(Intervention intervention) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
 			loader.setControllerFactory(
-					e -> new InterventionAlertController(optionsAnchor, screenWidth * 0.3, screenHeight * 0.2));
+					e -> new InterventionAlertController(optionsAnchor, intervention, screenWidth * 0.3, screenHeight * 0.2));
 			Parent interventionAlert = loader.load();
 			optionsAnchor.getChildren().add(interventionAlert);
 		} catch (Exception e) {
@@ -126,8 +130,17 @@ public class FieldTechnicianController {
 		}
 	}
 
-	public void showMap(ActionEvent event) {
-		
+	public void checkOpenedIntervention(ActionEvent event) {
+		ArrayList<String> reply = clientComm.checkOpenedIntervention(user.getId());
+		if (reply.get(0).equals("CHECK FIELD TECHNICIAN INTERVENTION OK")) {
+			intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
+					reply.get(6), reply.get(7), reply.get(8), reply.get(9),
+					TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",
+					LocalDateTime.now(), "", "", "", LocalDateTime.now());
+			interventionAlert(intervention);
+		} else {
+			MessageBox.displayMessage("Greska", reply.get(1));
+		}
 	}
 
 	public void close() {
