@@ -49,8 +49,8 @@ public class AdministratorController {
 
 	@FXML public void initialize() {
 		resize();
-		name.setText(user.getName());
-		lastName.setText(user.getLastName());
+		name.setText("  " + user.getName());
+		lastName.setText("  " + user.getLastName());
 		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -136,8 +136,8 @@ public class AdministratorController {
 		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
 		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
 		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
-		avatar.setFitHeight(screenHeight * 0.8);
-		avatar.setFitWidth(screenHeight * 0.1);
+		avatar.setFitHeight(screenHeight * 0.2);
+		avatar.setFitWidth(screenWidth * 0.1);
 		
 		//left panel
 		AnchorPane.setTopAnchor(menuAnchor, screenHeight * 0.2);

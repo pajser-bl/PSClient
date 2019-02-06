@@ -13,6 +13,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import utility.MessageBox;
 
@@ -201,13 +202,12 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 	
-	public ArrayList<String> newFieldReport(String intervention_Id, String user_Id, String assistance, String time,  String remark) {
+	public ArrayList<String> newRoadReport(String interventionId, String service, LocalDateTime time,  String report) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(intervention_Id);
-		arguments.add(user_Id);
-		arguments.add(assistance);
-		arguments.add(time);
-		arguments.add(remark);
+		arguments.add(interventionId);
+		arguments.add(service);
+		arguments.add(time.toString());
+		arguments.add(report);
 		Request request = new Request("NEW ROADREPORT", arguments);
 		return sendRequest(request);
 	}
@@ -216,6 +216,11 @@ public class ClientCommunication {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(userId);
 		Request request = new Request("CHECK FIELD TECHNICIAN INTERVENTION", arguments);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> viewClients(){
+		Request request = new Request("VIEW CLIENTS", null);
 		return sendRequest(request);
 	}
 	

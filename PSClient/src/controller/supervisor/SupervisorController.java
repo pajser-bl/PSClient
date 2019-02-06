@@ -1,14 +1,20 @@
 package controller.supervisor;
 
+import java.util.ArrayList;
+
 import client.ClientCommunication;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Client;
 import model.User;
 import utility.ChoiceBox;
 
@@ -38,8 +44,8 @@ public class SupervisorController {
 	
 	@FXML public void initialize() {
 		resize();
-		name.setText(user.getName());
-		lastName.setText(user.getLastName());
+		name.setText("  " + user.getName());
+		lastName.setText("  " + user.getLastName());
 		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -54,28 +60,32 @@ public class SupervisorController {
 		this.screenHeight = screenHeight;
 	}
 	
-	public void showActiveUsers(ActionEvent event) {
-		/*ArrayList<String> reply = RequestFunctionality.viewActiveUsers(Client.clientCommunication);
-		System.out.println(reply);
-		if (reply.get(0).equals("VIEW ONLINE USERS OK")) {
-			for (int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
-				String[] userData = reply.get(i+2).split(":");
-				activeUsers.add(new User(userData[0], userData[1], userData[2], userData[3],userData[4]));
+	public void showActiveUsers(ActionEvent event) {}
+	
+	public void showClients(ActionEvent event) {
+		ArrayList<String> reply = clientComm.viewClients();
+		ArrayList<Client> clientList = new ArrayList<>();
+		System.out.println(reply.toString());
+		if(reply.get(0).equals("VIEW CLIENTS OK")) {
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parsed = reply.get(i + 2).split(":");
+				Client client = new Client(parsed[0], parsed[1], parsed[2], parsed[3]);
+				clientList.add(client);
 			}
-		} else {
-			MessageBox.displayMessage("Greska", "Greska pri preuzimanju liste korisnika");
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/ClientTableForm.fxml"));
+			loader.setControllerFactory(e -> new ClientTableController(clientComm, FXCollections.observableArrayList(clientList),
+					screenWidth, screenHeight));
+			try {
+				Parent clientTable = loader.load();
+				if(workspaceAnchor.getChildren().size() != 0)
+					workspaceAnchor.getChildren().clear();
+				workspaceAnchor.getChildren().add(clientTable);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/SupervisorActiveUsersForm.fxml"));
-			if (anchor.getChildren().size() != 0)
-				anchor.getChildren().remove(0);
-			anchor.getChildren().add(root);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 	}
 	
-	public void showClients(ActionEvent event) {}
 	public void showSessions(ActionEvent event) {}
 	public void showInterventions(ActionEvent event) {}
 	

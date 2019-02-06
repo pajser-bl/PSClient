@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 
+import exception.MessageException;
+
 public class User {
 
 	private String userId;
@@ -12,8 +14,9 @@ public class User {
 	private String qualification;
 	private String licence;
 	private LocalDate date;
-	
-	public User(String userId, String name, String lastName, String type, String username, String qualification, String licence, LocalDate date){
+
+	public User(String userId, String name, String lastName, String type, String username, String qualification,
+			String licence, LocalDate date) {
 		this.userId = userId;
 		this.name = name;
 		this.lastName = lastName;
@@ -23,7 +26,7 @@ public class User {
 		this.licence = licence;
 		this.date = date;
 	}
-	
+
 	public String getLicence() {
 		return licence;
 	}
@@ -51,7 +54,7 @@ public class User {
 	public String getFieldTechnician() {
 		return userId + " " + name + " " + lastName;
 	}
-	
+
 	public String toString() {
 		return userId + " " + name + " " + lastName + " " + username + " " + type;
 	}

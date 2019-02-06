@@ -1,10 +1,10 @@
 package exception;
 
-public class DateException extends Exception{
+public class MessageException extends Exception {
 
 	private String message;
 	
-	public DateException(String message) {
+	public MessageException(String message) {
 		this.message = message;
 	}
 	

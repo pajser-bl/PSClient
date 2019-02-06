@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import client.ClientCommunication;
-import exception.EmptyFieldException;
+import exception.MessageException;
 import exception.ServerReplyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,8 +68,12 @@ public class NewInterventionController {
 	
 	public void openNewIntervention(ActionEvent event) {
 		try {
-			if(name.getText().isEmpty() || lastName.getText().isEmpty())
-				throw new EmptyFieldException();
+			if(name.getText().isEmpty())
+				throw new MessageException("Ime klijenta mora biti popunjeno");
+			if(lastName.getText().isEmpty())
+				throw new MessageException("Prezime klijenta mora biti popunjeno");
+			if(phoneNumber.getText().isEmpty())
+				throw new MessageException("Broj telefona klijenta mora biti popunjeno");
 			ArrayList<String> arguments = new ArrayList<String>();
 			arguments.add(user.getUserId());
 			arguments.add(TimeUtility.localDateTimeToString(LocalDateTime.now()));
@@ -92,11 +96,11 @@ public class NewInterventionController {
 			ArrayList<String> reply = clientComm.sendRequest(request);
 			if(reply.get(0).equals("NEW INTERVENTION NOT OK"))
 				throw new ServerReplyException(reply.get(1));
-			session.getEventList().add(new Event("Otvorena nova intervencija"));
+			session.getEventList().add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " je otvorio novu intervenciju"));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
 			interventionStage.close();
-		} catch (EmptyFieldException e) {
-			MessageBox.displayMessage("Greska", "Oznacena polja moraju biti popunjena");
+		} catch (MessageException e) {
+			MessageBox.displayMessage("Greska", e.toString());
 		} catch (ServerReplyException e) {
 			MessageBox.displayMessage("Greska", e.toString());
 		}

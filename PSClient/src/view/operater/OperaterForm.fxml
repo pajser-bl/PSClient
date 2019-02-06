@@ -29,7 +29,7 @@
 							AnchorPane.topAnchor="0.0">
 							<image>
 								<Image
-									url="@../../resources/images/administrator_avatar.png" />
+									url="@../../resources/images/operater_avatar.png" />
 							</image>
 						</ImageView>
 					</children>

@@ -2,12 +2,9 @@ package controller.administrator;
 
 import client.ClientCommunication;
 import controller.user.ProfileController;
-import exception.EmptyFieldException;
-
+import exception.MessageException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +77,7 @@ public class UserTableController {
 	public void showUser(ActionEvent event) {
 		try {
 			if(userTable.getSelectionModel().isEmpty())
-				throw (new EmptyFieldException());
+				throw new MessageException("Odaberite korisnika");
 			Stage profileWindow = new Stage();
 			String id = userTable.getSelectionModel().getSelectedItem().getUserId();
 			ArrayList<String> reply = clientComm.getUser(id);
@@ -93,8 +90,8 @@ public class UserTableController {
 			profileWindow.setScene(new Scene(profileView, screenWidth * 0.3, screenHeight * 0.5));
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
 			profileWindow.show();
-		} catch (EmptyFieldException e) {
-			MessageBox.displayMessage("Greska", "Odaberite Korisnika");
+		} catch (MessageException e) {
+			MessageBox.displayMessage("Greska", e.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

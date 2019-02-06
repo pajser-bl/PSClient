@@ -1,11 +1,7 @@
 package controller.fieldTechnician;
 
 import client.ClientCommunication;
-import client.TestThread;
-
 import java.util.ArrayList;
-
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +31,6 @@ public class FieldTechnicianController {
 	private Intervention intervention = null;
 	private Session session;
 	private Stage mainStage;
-	private TestThread task;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane menuAnchor;
@@ -60,10 +55,6 @@ public class FieldTechnicianController {
 			e.consume();
 			close();
 		});
-		/*
-		 * try { Thread th = new Thread(task); th.setDaemon(true); th.start(); } catch
-		 * (Exception e) { e.printStackTrace(); }
-		 */
 	}
 
 	public FieldTechnicianController(Stage mainStage, ClientCommunication clientComm, FieldTechnician user,
@@ -76,7 +67,6 @@ public class FieldTechnicianController {
 		this.session = new Session();
 		session.getEventList()
 				.add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " se prijavio na sistem"));
-		this.task = new TestThread(this.clientComm, this.user, true);
 	}
 
 	public void showSession(ActionEvent event) {
@@ -88,15 +78,22 @@ public class FieldTechnicianController {
 	}
 
 	public void newFieldReport(ActionEvent event) {
-		if (intervention != null)
+		if (intervention != null) {
+			Stage reportStage = new Stage();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/field_technician/RoadReportForm.fxml"));
+			loader.setControllerFactory(e -> new RoadReportController(reportStage, clientComm, intervention, screenWidth * 0.3, 
+					screenHeight * 0.3));
 			try {
-				Parent root = FXMLLoader.load(getClass().getResource("/view/fieldTechnician/ReportForm.fxml"));
-				if (workspaceAnchor.getChildren().size() != 0)
-					workspaceAnchor.getChildren().remove(0);
-				workspaceAnchor.getChildren().add(root);
+				Parent root = loader.load();
+				reportStage.setResizable(false);
+				reportStage.initModality(Modality.APPLICATION_MODAL);
+				reportStage.setScene(new Scene(root, screenWidth * 0.3, screenHeight * 0.3));
+				reportStage.show();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else 
+			MessageBox.displayMessage("Greska", "Nemate aktivnu intervenciju");
 	}
 
 	public void changeState(ActionEvent event) {
@@ -130,6 +127,7 @@ public class FieldTechnicianController {
 	}
 
 	public void showMap(ActionEvent event) {
+		
 	}
 
 	public void close() {

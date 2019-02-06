@@ -1,6 +1,7 @@
 package controller.administrator;
 
 import client.ClientCommunication;
+import exception.MessageException;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,16 @@ public class AddNewUserController {
 	
 	public void createNewUser(ActionEvent event) {
 		try {
+			if(name.getText().isEmpty())
+				throw new MessageException("Unesite ime korisnika");
+			if(lastName.getText().isEmpty())
+				throw new MessageException("Unesite prezime korisnika");
+			if(date.getValue() == null)
+				throw new MessageException("Unesite datum rodjenja");
+			if(username.getText().isEmpty())
+				throw new MessageException("Unesite korisnicko ime");
+			if(password.getText().isEmpty())
+				throw new MessageException("Unesite lozinku korisnika");
 			ArrayList<String> reply = clientComm.newUser(name.getText(), lastName.getText(), date.getValue().toString(),
 				(String) userType.getValue(), qualification.getValue(), licence.getText(),username.getText(), password.getText());
 			if (reply.get(0).equals("ADD USER OK")) {
@@ -72,6 +83,8 @@ public class AddNewUserController {
 				userStage.close();
 			} else
 				MessageBox.displayMessage("Greska", reply.get(1));
+		} catch (MessageException e) {
+			MessageBox.displayMessage("Greska", e.toString());
 		} catch (Exception e) {
 			MessageBox.displayMessage("Greska", e.toString());
 			e.printStackTrace();
