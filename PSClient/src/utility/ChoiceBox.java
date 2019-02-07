@@ -26,7 +26,6 @@ public class ChoiceBox {
 		label.setFont(new Font(20));
 		label.setTextFill(Color.web("#21947b"));
 		Button yesButton = new Button("Da");
-		yesButton.setTextFill(Color.web("#21947b"));
 		yesButton.setDefaultButton(true);
 		yesButton.getStylesheets().add("css/profile_button.css");
 		yesButton.getStyleClass().add("profilbutton");

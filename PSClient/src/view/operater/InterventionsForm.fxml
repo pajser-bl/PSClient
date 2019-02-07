@@ -59,16 +59,24 @@
 							mnemonicParsing="false" onAction="#openNewIntervention"
 							styleClass="commonbutton"
 							stylesheets="@../../css/common_button.css"
-							text="Nova intervencija" textAlignment="CENTER"
-							wrapText="true">
+							text="Nova intervencija" textAlignment="CENTER" wrapText="true">
 							<font>
 								<Font size="20.0" />
 							</font>
 						</Button>
-						<Button fx:id="viewInterventionButton"
+						<Button fx:id="showInterventionButton"
 							mnemonicParsing="false" onAction="#showIntervention"
 							styleClass="commonbutton"
 							stylesheets="@../../css/common_button.css" text="Pregledaj"
+							textAlignment="CENTER" wrapText="true">
+							<font>
+								<Font size="20.0" />
+							</font>
+						</Button>
+						<Button fx:id="closeInterventionButton"
+							mnemonicParsing="false" onAction="#closeIntervention"
+							styleClass="commonbutton"
+							stylesheets="@../../css/common_button.css" text="Zatvori"
 							textAlignment="CENTER" wrapText="true">
 							<font>
 								<Font size="20.0" />

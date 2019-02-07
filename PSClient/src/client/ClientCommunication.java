@@ -3,6 +3,7 @@ package client;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import exception.ConnectionTimeoutException;
+import model.Intervention;
 import model.Request;
 
 import java.io.BufferedReader;
@@ -139,13 +140,19 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> newIntervention(String id_client, String id_vehicle, String id_user_opened,
-			String opened_on) {
+	public ArrayList<String> newIntervention(Intervention intervention) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(id_client);
-		arguments.add(id_vehicle);
-		arguments.add(id_user_opened);
-		arguments.add(opened_on);
+		arguments.add(intervention.getUserOpened());
+		arguments.add(TimeUtility.localDateTimeToString(intervention.getOpenedOn()));
+		String[] client = intervention.getClient().split(" ");
+		arguments.add(client[0]);
+		arguments.add(client[1]);
+		arguments.add(intervention.getPhoneNumber());
+		arguments.add(intervention.getVehicleLicencePlate());
+		arguments.add(intervention.getVehicleModel());
+		arguments.add(intervention.getVehicleManu());
+		arguments.add(intervention.getVehicleYear());
+		arguments.add(intervention.getFieldTechnician());
 		Request request = new Request("NEW INTERVENTION", arguments);
 		return sendRequest(request);
 	}
@@ -180,14 +187,13 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> closeIntervention(String intervention_Id, String Id_closed, String closed_on,
-			String remark, String closed) {
+	public ArrayList<String> closeIntervention(String interventionId, String operaterId, String closedOn,
+			String operaterReport) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(intervention_Id);
-		arguments.add(Id_closed);
-		arguments.add(closed_on);
-		arguments.add(remark);
-		arguments.add(closed);
+		arguments.add(interventionId);
+		arguments.add(operaterId);
+		arguments.add(closedOn);
+		arguments.add(operaterReport);
 		Request request = new Request("CLOSE INTERVENTION", arguments);
 		return sendRequest(request);
 	}
@@ -195,7 +201,7 @@ public class ClientCommunication {
 	public ArrayList<String> viewOpenedIntervention(String interventionId) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(interventionId);
-		Request request = new Request("VIEW OPENED INTERVENTION", arguments);
+		Request request = new Request("VIEW OPEN INTERVENTION", arguments);
 		return sendRequest(request);
 	}
 

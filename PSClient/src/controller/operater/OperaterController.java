@@ -3,6 +3,8 @@ package controller.operater;
 import client.ClientCommunication;
 
 import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +89,8 @@ public class OperaterController {
 			workspaceAnchor.getChildren().clear();
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/InterventionsForm.fxml"));
-			loader.setControllerFactory(e -> new InterventionsController(mainStage, clientComm, user, interventions, session, screenWidth,
+			loader.setControllerFactory(e -> new InterventionsController(mainStage, clientComm, user,
+					FXCollections.observableArrayList(interventions), session, screenWidth,
 					screenHeight));
 			Parent interventionsView = loader.load();
 			workspaceAnchor.getChildren().add(interventionsView);

@@ -4,6 +4,8 @@ import client.ClientCommunication;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +39,7 @@ public class FieldTechnicianController {
 	private Stage mainStage;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
+	@FXML AnchorPane stateAnchor;
 	@FXML AnchorPane menuAnchor;
 	@FXML AnchorPane optionsAnchor;
 	@FXML AnchorPane workspaceAnchor;
@@ -46,8 +50,10 @@ public class FieldTechnicianController {
 	@FXML Button logoutButton;
 	@FXML Button helpButton;
 	@FXML ImageView avatar;
+	@FXML ImageView stateImage;
 	@FXML Label name;
 	@FXML Label lastName;
+	@FXML Label stateLabel;
 	@FXML VBox userData;
 
 	@FXML
@@ -55,6 +61,8 @@ public class FieldTechnicianController {
 		resize();
 		name.setText("  " + user.getName());
 		lastName.setText("  " + user.getLastName());
+		stateLabel.setText("Stanje: " + user.getState());
+		
 		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -101,18 +109,23 @@ public class FieldTechnicianController {
 	}
 
 	public void changeState(ActionEvent event) {
-		if (user.getState().equals("aktivan")) {
-			user.setState("neaktivan");
-		} else
+		String oldState = user.getState();
+		if(user.getState().equals("neaktivan"))
 			user.setState("aktivan");
+		else
+			user.setState("neaktivan");
 		ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
-		if (reply.get(0).equals("CHANGE STATE OK"))
+		if (reply.get(0).equals("CHANGE STATE OK")) {
+			Platform.runLater( () -> {
+				session.getEventList().add(new Event("Promjena u " + user.getState()));
+				stateLabel.setText("Stanje: " + user.getState());
+				if(user.getState().equals("aktivan"))
+					stateImage.setImage(new Image("/resources/images/circle_blue.png"));
+				else stateImage.setImage(new Image("/resources/images/circle_red.png"));
+			});
 			MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
-		else {
-			if (user.getState().equals("aktivan")) {
-				user.setState("neaktivan");
-			} else
-				user.setState("aktivan");
+		} else {
+			user.setState(oldState);
 			MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
 		}
 	}
@@ -122,7 +135,7 @@ public class FieldTechnicianController {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
 			loader.setControllerFactory(
-					e -> new InterventionAlertController(optionsAnchor, intervention, screenWidth * 0.3, screenHeight * 0.2));
+					e -> new InterventionAlertController(intervention, screenWidth * 0.3, screenHeight * 0.2));
 			Parent interventionAlert = loader.load();
 			optionsAnchor.getChildren().add(interventionAlert);
 		} catch (Exception e) {
@@ -133,6 +146,7 @@ public class FieldTechnicianController {
 	public void checkOpenedIntervention(ActionEvent event) {
 		ArrayList<String> reply = clientComm.checkOpenedIntervention(user.getId());
 		if (reply.get(0).equals("CHECK FIELD TECHNICIAN INTERVENTION OK")) {
+			user.setState("zauzet");
 			intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
 					reply.get(6), reply.get(7), reply.get(8), reply.get(9),
 					TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",
@@ -168,6 +182,7 @@ public class FieldTechnicianController {
 		AnchorPane.setRightAnchor(avatarAnchor, screenWidth * 0.9);
 		AnchorPane.setLeftAnchor(userData, screenWidth * 0.1);
 		AnchorPane.setRightAnchor(userData, screenWidth * 0.8);
+		AnchorPane.setLeftAnchor(stateAnchor, screenWidth * 0.01);
 		avatar.setFitHeight(screenHeight * 0.2);
 		avatar.setFitWidth(screenWidth * 0.1);
 		stateButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);

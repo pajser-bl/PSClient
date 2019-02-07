@@ -16,7 +16,6 @@ import model.Intervention;
 
 public class InterventionAlertController {
 
-	private AnchorPane optionsAnchor;
 	private double stageHeight;
 	private double stageWidth;
 	private Intervention intervention;
@@ -30,8 +29,7 @@ public class InterventionAlertController {
 		resize();
 	}
 	
-	public InterventionAlertController(AnchorPane optionsAnchor, Intervention intervention, double stageWidth, double stageHeight) {
-		this.optionsAnchor = optionsAnchor;
+	public InterventionAlertController(Intervention intervention, double stageWidth, double stageHeight) {
 		this.intervention = intervention;
 		this.stageWidth = stageWidth;
 		this.stageHeight = stageHeight;

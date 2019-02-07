@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import client.ClientCommunication;
 import exception.MessageException;
 import exception.ServerReplyException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Event;
 import model.FieldTechnician;
+import model.Intervention;
 import model.Request;
 import model.Session;
 import model.User;
@@ -56,7 +58,8 @@ public class NewInterventionController {
 	}
 	
 	public NewInterventionController(Stage interventionStage, ClientCommunication clientComm, User user,
-			ArrayList<FieldTechnician> technicians, Session session, double stageWidth, double stageHeight) {
+			ArrayList<FieldTechnician> technicians, Session session,
+			double stageWidth, double stageHeight) {
 		this.interventionStage = interventionStage;
 		this.clientComm = clientComm;
 		this.user = user;
@@ -74,31 +77,21 @@ public class NewInterventionController {
 				throw new MessageException("Prezime klijenta mora biti popunjeno");
 			if(phoneNumber.getText().isEmpty())
 				throw new MessageException("Broj telefona klijenta mora biti popunjeno");
-			ArrayList<String> arguments = new ArrayList<String>();
-			arguments.add(user.getUserId());
-			arguments.add(TimeUtility.localDateTimeToString(LocalDateTime.now()));
-			arguments.add(name.getText());
-			arguments.add(lastName.getText());
-			arguments.add(phoneNumber.getText());
-			arguments.add(licencePlate.getText());
-			if(!model.getText().isEmpty())
-				arguments.add(model.getText());
-			else arguments.add("empty");
-			if(!manufacturer.getText().isEmpty())
-				arguments.add(manufacturer.getText());
-			else arguments.add("empty");
-			if(!yearMade.getText().isEmpty())
-				arguments.add(yearMade.getText());
-			else arguments.add("2000");
-			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(":");
-			arguments.add(fieldTechnician[0]);
-			Request request = new Request("NEW INTERVENTION", arguments);
-			ArrayList<String> reply = clientComm.sendRequest(request);
+			int year = Integer.parseInt(yearMade.getText());
+			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(": ");
+			Intervention intervention = new Intervention("", name.getText() + " " + lastName.getText(), phoneNumber.getText(),
+					licencePlate.getText(), model.getText(), manufacturer.getText(), yearMade.getText(), user.getUserId(),
+					fieldTechnician[0], LocalDateTime.now(), "otvorena", "", LocalDateTime.now(), "", "", LocalDateTime.now(),
+					"", "", "", LocalDateTime.now());
+			ArrayList<String> reply = clientComm.newIntervention(intervention);
 			if(reply.get(0).equals("NEW INTERVENTION NOT OK"))
 				throw new ServerReplyException(reply.get(1));
-			session.getEventList().add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " je otvorio novu intervenciju"));
+			session.getEventList().add(new Event("Korisnik " + user.getName() + " " + user.getLastName() +
+					" je otvorio novu intervenciju"));
 			MessageBox.displayMessage("Potvrda", "Intervencija je otvorena");
 			interventionStage.close();
+		} catch (NumberFormatException e) {
+			MessageBox.displayMessage("Greska", "Godina vozila mora biti broj");
 		} catch (MessageException e) {
 			MessageBox.displayMessage("Greska", e.toString());
 		} catch (ServerReplyException e) {
@@ -119,5 +112,6 @@ public class NewInterventionController {
 		AnchorPane.setRightAnchor(vehicleInformationLabels, stageWidth * 0.5);
 		AnchorPane.setTopAnchor(vehicleInformationInput, stageWidth * 0.0125);
 		AnchorPane.setLeftAnchor(vehicleInformationInput, stageWidth * 0.5);
+		submitButton.setPrefSize(stageWidth * 0.25, stageHeight * 0.05);
 	}
 }

@@ -2,13 +2,20 @@ package controller.user;
 
 import java.time.format.DateTimeFormatter;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Intervention;
+import utility.TimeUtility;
 
 public class InterventionController {
 
@@ -78,7 +85,7 @@ public class InterventionController {
 	}
 	
 	public void setInfo() {
-		interventionId.setText(interventionId.getId());
+		interventionId.setText(intervention.getId());
 		date.setText(intervention.getOpenedOn().format(DateTimeFormatter.ISO_LOCAL_DATE));
 		time.setText(intervention.getOpenedOn().format(DateTimeFormatter.ISO_LOCAL_TIME));
 		operater.setText(intervention.getUserOpened());
@@ -89,6 +96,26 @@ public class InterventionController {
 		vehicleManu.setText(intervention.getVehicleManu());
 		vehicleYear.setText(intervention.getVehicleYear());
 		vehicleLicencePlate.setText(intervention.getVehicleLicencePlate());
+		if(user.equals("Operater") && intervention.getState().equals("terenski izvjestaj")) {
+			service.setText(intervention.getService());
+			serviceTime.setText(TimeUtility.localDateTimeToString(intervention.getServiceTime()));
+		}
+	}
+	
+	public void showRoadReport(ActionEvent event) {
+		AnchorPane anchor = new AnchorPane();
+		TextField roadReport = new TextField();
+		roadReport.appendText(intervention.getFieldReport());
+		AnchorPane.setBottomAnchor(roadReport, 0.0);
+		AnchorPane.setTopAnchor(roadReport, 0.0);
+		AnchorPane.setLeftAnchor(roadReport, 0.0);
+		AnchorPane.setRightAnchor(roadReport, 0.0);
+		roadReport.setEditable(false);
+		anchor.getChildren().add(roadReport);
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
+		stage.show();
 	}
 	
 	public void resize() {

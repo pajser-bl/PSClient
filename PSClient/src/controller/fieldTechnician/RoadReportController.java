@@ -23,12 +23,9 @@ public class RoadReportController {
 	private double stageWidth;
 	private Stage reportStage;
 	private Intervention intervention;
-	@FXML
-	Button reportButton;
-	@FXML
-	ComboBox<String> serviceBox;
-	@FXML
-	TextArea reportText;
+	@FXML Button reportButton;
+	@FXML ComboBox<String> serviceBox;
+	@FXML TextArea reportText;
 	
 	@FXML public void initialize() {
 		reportButton.setPrefSize(stageWidth * 0.3, stageHeight * 0.3);
@@ -49,7 +46,7 @@ public class RoadReportController {
 				LocalDateTime.now(), reportText.getText());
 		if (reply.get(0).equals("NEW ROAD REPORT OK")) {
 			intervention = null;
-			optionsPane.getChildren().remove(3);
+			optionsPane.getChildren().remove(1);
 			MessageBox.displayMessage("Potvrda", "Terenski izvjestaj uspjesno poslan");
 		} else
 			MessageBox.displayMessage("Greska", reply.get(1));
