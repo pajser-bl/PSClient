@@ -1,0 +1,39 @@
+  .date-picker .text-field {  /*izgled dugmica */
+   -fx-background-color:
+        linear-gradient(#072747, #072747),
+        radial-gradient(center 50% -40%, radius 200%, #072747 45%, #041220 50%);
+    -fx-background-radius: 0, 0;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #164E5B;
+    -fx-font-size: 20px;
+}
+ 
+.label {    
+     -fx-background-color:#072747;  /*mjesec i godina*/ 
+     -fx-text-fill:#1B4966;
+}
+
+.button{
+    -fx-background-color: #072747; /*strelice */
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #072747; /*header */
+}
+
+.combo-box-base{
+    -fx-background-color:#164E5B;
+    -fx-padding: #164E5B;
+}
+
+.combo-box-base > .arrow-button { /*oznaka sa desne strane dugmica */
+   -fx-background-color: #164E5B;
+}
+  
+.date-picker-popup .list-view {
+    -fx-background-color: #263238;  /*pozadina pop-up liste */
+}
+
+/*---- */
+

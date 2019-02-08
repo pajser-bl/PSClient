@@ -34,7 +34,7 @@ public class ChoiceBox {
 			window.close();
 		});
 		Button noButton = new Button("Ne");
-		noButton.setTextFill(Color.web("#21947b"));
+		noButton.setDefaultButton(true);
 		noButton.getStylesheets().add("css/profile_button.css");
 		noButton.getStyleClass().add("profilbutton");
 		noButton.setOnAction(e -> {

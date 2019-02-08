@@ -31,7 +31,7 @@
 						</FXCollections>
 					</items>
 				</ComboBox>
-				<TextArea fx:id="reportText" />
+				<TextArea fx:id="reportText"  styleClass="content" stylesheets="@/css/text_area.css"/>
 				<Button fx:id="reportButton" defaultButton="true"
 					mnemonicParsing="false" onAction="#sendReport"
 					styleClass="commonbutton"
