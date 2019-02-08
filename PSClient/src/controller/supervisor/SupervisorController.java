@@ -1,5 +1,6 @@
 package controller.supervisor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import client.ClientCommunication;
@@ -15,8 +16,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Client;
+import model.Session;
 import model.User;
 import utility.ChoiceBox;
+import utility.MessageBox;
+import utility.TimeUtility;
 
 public class SupervisorController {
 
@@ -60,13 +64,35 @@ public class SupervisorController {
 		this.screenHeight = screenHeight;
 	}
 	
-	public void showActiveUsers(ActionEvent event) {}
+	public void showActiveUsers(ActionEvent event) {
+		ArrayList<String> reply = clientComm.viewActiveUsers();
+		if(reply.get(0).equals("VIEW ACTIVE USERS OK")) {
+			if(workspaceAnchor.getChildren().size() > 0)
+				workspaceAnchor.getChildren().clear();
+			ArrayList<User> users = new ArrayList<>();
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] userSplit = reply.get(i + 2).split(":");
+				User user = new User(userSplit[0], userSplit[1], userSplit[2], userSplit[3], userSplit[4], "", "", null);
+				users.add(user);
+			}
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/ActiveUsersTableForm.fxml"));
+			loader.setControllerFactory(e -> new ActiveUsersTableController(FXCollections.observableArrayList(users)));
+			try {
+				Parent usersTable = loader.load();
+				workspaceAnchor.getChildren().add(usersTable);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else
+			MessageBox.displayMessage("Greska", reply.get(1));
+	}
 	
 	public void showClients(ActionEvent event) {
 		ArrayList<String> reply = clientComm.viewClients();
 		ArrayList<Client> clientList = new ArrayList<>();
-		System.out.println(reply.toString());
 		if(reply.get(0).equals("VIEW CLIENTS OK")) {
+			if(workspaceAnchor.getChildren().size() > 0)
+				workspaceAnchor.getChildren().clear();
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsed = reply.get(i + 2).split(":");
 				Client client = new Client(parsed[0], parsed[1], parsed[2], parsed[3]);
@@ -86,7 +112,32 @@ public class SupervisorController {
 		}
 	}
 	
-	public void showSessions(ActionEvent event) {}
+	public void showSessions(ActionEvent event) {
+		ArrayList<String> reply = clientComm.viewSessions();
+		ArrayList<Session> sessions = new ArrayList<>();
+		System.out.println(reply.toString());
+		if(reply.get(0).equals("VIEW SESSIONS OK")) {
+			if(workspaceAnchor.getChildren().size() > 0)
+				workspaceAnchor.getChildren().clear();
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parse = reply.get(i + 2).split(":");
+				Session session = new Session(parse[0], parse[1], parse[2] + " " + parse[3], parse[4].replace(";", ":"),
+						parse[5].replace(";", ":"));
+				sessions.add(session);
+			}
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/SessionsTableForm.fxml"));
+			loader.setControllerFactory(e -> new SessionsTableController(FXCollections.observableArrayList(sessions), screenWidth,
+					screenHeight));
+			try {
+				Parent root = loader.load();
+				workspaceAnchor.getChildren().add(root);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		} else
+			MessageBox.displayMessage("Greska", reply.get(1));
+	}
+	
 	public void showInterventions(ActionEvent event) {}
 	
 	public void logout() {

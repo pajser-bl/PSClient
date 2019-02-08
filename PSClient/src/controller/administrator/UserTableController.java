@@ -39,18 +39,7 @@ public class UserTableController {
 	
 	public void initialize() {
 		resize();
-		TableColumn<User, String> idColumn = new TableColumn<User, String>("ID");
-		idColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-		TableColumn<User, String> nameColumn = new TableColumn<User, String>("Ime");
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-		TableColumn<User, String> lastNameColumn = new TableColumn<User, String>("Prezime");
-		lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-		TableColumn<User, String> usernameColumn = new TableColumn<User, String>("Korisnicko ime");
-		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
-		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, usernameColumn, typeColumn);
-		userTable.setItems(users);
+		generateTable();
 	}
 	
 	public UserTableController(Stage mainStage, ClientCommunication clientComm, ObservableList<User> users, double screenWidth,
@@ -95,6 +84,21 @@ public class UserTableController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void generateTable() {
+		TableColumn<User, String> idColumn = new TableColumn<User, String>("ID");
+		idColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
+		TableColumn<User, String> nameColumn = new TableColumn<User, String>("Ime");
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		TableColumn<User, String> lastNameColumn = new TableColumn<User, String>("Prezime");
+		lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+		TableColumn<User, String> usernameColumn = new TableColumn<User, String>("Korisnicko ime");
+		usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+		TableColumn<User, String> typeColumn = new TableColumn<User, String>("Tip korisnika");
+		typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+		userTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, usernameColumn, typeColumn);
+		userTable.setItems(users);
 	}
 	
 	public void resize() {

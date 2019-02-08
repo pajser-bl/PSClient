@@ -1,6 +1,7 @@
 package controller.fieldTechnician;
 
 import client.ClientCommunication;
+import exception.MessageException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import model.FieldTechnician;
 import model.Intervention;
 import model.Session;
 import utility.ChoiceBox;
+import utility.InterventionHandler;
 import utility.MessageBox;
 import utility.TimeUtility;
 
@@ -37,6 +39,7 @@ public class FieldTechnicianController {
 	private Intervention intervention = null;
 	private Session session;
 	private Stage mainStage;
+	private InterventionHandler handler;
 	@FXML AnchorPane avatarAnchor;
 	@FXML AnchorPane statusAnchor;
 	@FXML AnchorPane stateAnchor;
@@ -62,7 +65,6 @@ public class FieldTechnicianController {
 		name.setText("  " + user.getName());
 		lastName.setText("  " + user.getLastName());
 		stateLabel.setText("Stanje: " + user.getState());
-		
 		mainStage.setOnCloseRequest(e -> {
 			e.consume();
 			close();
@@ -79,6 +81,7 @@ public class FieldTechnicianController {
 		this.session = new Session();
 		session.getEventList()
 				.add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " se prijavio na sistem"));
+		handler = new InterventionHandler(clientComm, user, this);
 	}
 
 	public void showSession(ActionEvent event) {
@@ -109,52 +112,67 @@ public class FieldTechnicianController {
 	}
 
 	public void changeState(ActionEvent event) {
-		String oldState = user.getState();
-		if(user.getState().equals("neaktivan"))
-			user.setState("aktivan");
-		else
-			user.setState("neaktivan");
-		ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
-		if (reply.get(0).equals("CHANGE STATE OK")) {
-			Platform.runLater( () -> {
-				session.getEventList().add(new Event("Promjena u " + user.getState()));
-				stateLabel.setText("Stanje: " + user.getState());
-				if(user.getState().equals("aktivan"))
-					stateImage.setImage(new Image("/resources/images/circle_blue.png"));
-				else stateImage.setImage(new Image("/resources/images/circle_red.png"));
-			});
-			MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
-		} else {
-			user.setState(oldState);
-			MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
+		try {
+			String oldState = user.getState();
+			if(user.getState().equals("zauzet"))
+				throw new MessageException("Zauzeto stanje se ne moze mijenjati");
+			if(user.getState().equals("neaktivan")) {
+				user.setState("aktivan");
+				Platform.runLater( () -> {
+					Thread thread = new Thread(handler);
+					thread.start();
+				});
+			}
+			else
+				user.setState("neaktivan");
+			ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
+			if (reply.get(0).equals("CHANGE STATE OK")) {
+				Platform.runLater( () -> {
+					session.getEventList().add(new Event("Korisnik" + user.getName() + " " + user.getLastName() +
+							" je promijenio stanje u " + user.getState()));
+					stateLabel.setText("Stanje: " + user.getState());
+					if(user.getState().equals("aktivan"))
+						stateImage.setImage(new Image("/resources/images/circle_blue.png"));
+					else stateImage.setImage(new Image("/resources/images/circle_red.png"));
+				});
+				MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
+			} else {
+				user.setState(oldState);
+				MessageBox.displayMessage("Greska", "Greska pri promjeni stanja");
+			}
+		} catch (MessageException e) {
+			MessageBox.displayMessage("Greska", e.toString());
 		}
 	}
 
 	public void interventionAlert(Intervention intervention) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
-			loader.setControllerFactory(
-					e -> new InterventionAlertController(intervention, screenWidth * 0.3, screenHeight * 0.2));
-			Parent interventionAlert = loader.load();
-			optionsAnchor.getChildren().add(interventionAlert);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Platform.runLater( () -> {
+			try {
+				FXMLLoader loader = new FXMLLoader(
+						getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
+				loader.setControllerFactory(
+						e -> new InterventionAlertController(intervention, screenWidth * 0.3, screenHeight * 0.2));
+				Parent interventionAlert = loader.load();
+				optionsAnchor.getChildren().add(interventionAlert);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
-	public void checkOpenedIntervention(ActionEvent event) {
-		ArrayList<String> reply = clientComm.checkOpenedIntervention(user.getId());
-		if (reply.get(0).equals("CHECK FIELD TECHNICIAN INTERVENTION OK")) {
+	public void checkOpenedIntervention(ArrayList<String> reply) {
+		Platform.runLater(() -> {
 			user.setState("zauzet");
+			session.getEventList().add(new Event("Korisnik" + user.getName() + " " + user.getLastName() +
+					" je promijenio stanje u " + user.getState()));
+			stateLabel.setText("Stanje: " + user.getState());
+			stateImage.setImage(new Image("/resources/images/circle_red.png"));
 			intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
-					reply.get(6), reply.get(7), reply.get(8), reply.get(9),
-					TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",
-					LocalDateTime.now(), "", "", "", LocalDateTime.now());
-			interventionAlert(intervention);
-		} else {
-			MessageBox.displayMessage("Greska", reply.get(1));
-		}
+				reply.get(6), reply.get(7), reply.get(8), reply.get(9),
+				TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",
+				LocalDateTime.now(), "", "", "", LocalDateTime.now());
+				interventionAlert(intervention);
+		});
 	}
 
 	public void close() {
