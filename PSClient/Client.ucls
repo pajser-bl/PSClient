@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="model.Session" project="PSClient" file="/PSClient/src/model/Session.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="6529" y="3437"/>    
+    <position height="-1" width="-1" x="6535" y="3562"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </class>  
   <class id="24" language="java" name="model.FieldTechnician" project="PSClient" 
     file="/PSClient/src/model/FieldTechnician.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="6527" y="4768"/>    
+    <position height="-1" width="-1" x="6533" y="4594"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -292,7 +292,7 @@
   </class>  
   <class id="33" language="java" name="controller.operater.FieldTechnicianTableController" project="PSClient" 
     file="/PSClient/src/controller/operater/FieldTechnicianTableController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="6502" y="5288"/>    
+    <position height="-1" width="-1" x="6535" y="5307"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -314,10 +314,10 @@
   <association id="37">    
     <end type="SOURCE" refId="23" navigable="false">      
       <attribute id="38" name="session">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </attribute>      
       <multiplicity id="39" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
@@ -338,10 +338,10 @@
   <association id="43">    
     <end type="SOURCE" refId="4" navigable="false">      
       <attribute id="44" name="session">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </attribute>      
       <multiplicity id="45" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
@@ -350,10 +350,10 @@
   <association id="46">    
     <end type="SOURCE" refId="32" navigable="false">      
       <attribute id="47" name="session">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </attribute>      
       <multiplicity id="48" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
@@ -410,10 +410,10 @@
   <association id="61">    
     <end type="SOURCE" refId="26" navigable="false">      
       <attribute id="62" name="user">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </attribute>      
       <multiplicity id="63" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
@@ -662,10 +662,10 @@
   <association id="124">    
     <end type="SOURCE" refId="33" navigable="false">      
       <attribute id="125" name="technicians">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </attribute>      
       <multiplicity id="126" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
@@ -674,10 +674,10 @@
   <association id="127">    
     <end type="SOURCE" refId="14" navigable="false">      
       <attribute id="128" name="technicians">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </attribute>      
       <multiplicity id="129" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-3352" y="3804"/>      
+        <position height="0" width="0" x="-3346" y="3630"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
@@ -710,10 +710,10 @@
   <association id="136">    
     <end type="SOURCE" refId="14" navigable="false">      
       <attribute id="137" name="session">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </attribute>      
       <multiplicity id="138" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
@@ -734,10 +734,10 @@
   <association id="142">    
     <end type="SOURCE" refId="26" navigable="false">      
       <attribute id="143" name="session">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </attribute>      
       <multiplicity id="144" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-635" y="2545"/>      
+        <position height="0" width="0" x="-629" y="2670"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
