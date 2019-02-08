@@ -259,9 +259,9 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> deleteClient(String client_Id) {
+	public ArrayList<String> deleteClient(String clientId) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(client_Id);
+		arguments.add(clientId);
 		Request request = new Request("DELETE CLIENT", arguments);
 		return sendRequest(request);
 	}
@@ -299,9 +299,15 @@ public class ClientCommunication {
 		Request request = new Request("DELETE SUBSCRIPTION", arguments);
 		return sendRequest(request);
 	}
-
-	public Socket getSocket() {
-		return socket;
+	
+	public ArrayList<String> viewActiveUsers() {
+		Request request = new Request("VIEW ACTIVE USERS", null);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> viewSessions() {
+		Request request = new Request("VIEW SESSIONS", null);
+		return sendRequest(request);
 	}
 
 	public ArrayList<String> changeState(String userId, String state) {
@@ -310,5 +316,9 @@ public class ClientCommunication {
 		arguments.add(state);
 		Request request = new Request("CHANGE STATE FIELD TECHNICIAN", arguments);
 		return sendRequest(request);
+	}
+	
+	public Socket getSocket() {
+		return socket;
 	}
 }

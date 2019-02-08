@@ -1,11 +1,7 @@
 .stanjebutton{ 
 	-fx-background-radius: 5em; 
-	-fx-min-width:303px;
 	-fx-background-color: transparent;
 	-fx-background-image: url("/resources/images/field_techician_state_default.png");
-	-fx-min-height: 101px;
-	-fx-max-width: 303px;
-	-fx-max-height: 101px;
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 100% 100%

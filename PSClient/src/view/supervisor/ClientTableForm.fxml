@@ -20,8 +20,8 @@
 			<children>
 				<TableView fx:id="clientTable"
 					tableMenuButtonVisible="true" AnchorPane.bottomAnchor="5.0"
-					AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-					AnchorPane.topAnchor="20.0">
+					AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+					AnchorPane.topAnchor="5.0">
 					<stylesheets>
 						<URL value="@../../css/table.css" />
 						<URL value="@../../css/table_menu.css" />
@@ -58,7 +58,7 @@
 					<children>
 						<Button fx:id="createClientButton" mnemonicParsing="false"
 							onAction="#createClient" styleClass="commonbutton"
-							stylesheets="@../../css/common_button.css" text="Azuriraj"
+							stylesheets="@../../css/common_button.css" text="Novi klijent"
 							textAlignment="CENTER" wrapText="true">
 							<font>
 								<Font size="20.0" />
