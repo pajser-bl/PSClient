@@ -43,7 +43,7 @@ public class InterventionAlertController {
 			Stage interventionStage = new Stage();
 			interventionStage.setResizable(false);
 			interventionStage.initModality(Modality.APPLICATION_MODAL);
-			interventionStage.setScene(new Scene(root, stageWidth * 1, stageHeight * 2.3));
+			interventionStage.setScene(new Scene(root, stageWidth * 1, stageHeight * 1.7));
 			interventionStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,10 +51,10 @@ public class InterventionAlertController {
 	}
 	
 	public void resize() {
-		mainAnchor.setPrefSize(stageWidth, stageHeight);
+		mainAnchor.setPrefSize(stageWidth * 0.7, stageHeight * 0.5);
 		AnchorPane.setLeftAnchor(optionsBox, stageWidth * 0.5);
 		upperEdge.setFitWidth(stageWidth);
 		lowerEdge.setFitWidth(stageWidth);
-		viewButton.setPrefSize(stageWidth * 0.3, stageHeight * 0.3);
+		viewButton.setPrefSize(stageWidth * 0.3, stageHeight * 0.2);
 	}
 }

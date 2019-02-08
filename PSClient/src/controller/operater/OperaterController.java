@@ -99,21 +99,6 @@ public class OperaterController {
 		}
 	}
 	
-	public void showSession(ActionEvent event) {
-		if(!workspaceAnchor.getChildren().isEmpty())
-			workspaceAnchor.getChildren().clear();
-		TextArea sessionTextArea = new TextArea();
-		sessionTextArea.setText(session.toString());
-		AnchorPane.setBottomAnchor(sessionTextArea, 0.0);
-		AnchorPane.setTopAnchor(sessionTextArea, 0.0);
-		AnchorPane.setLeftAnchor(sessionTextArea, 0.0);
-		AnchorPane.setRightAnchor(sessionTextArea, 0.0);
-		sessionTextArea.getStylesheets().add("@../../css/background.css");
-		sessionTextArea.getStyleClass().add("root9");
-		sessionTextArea.setStyle("root9");
-		workspaceAnchor.getChildren().add(sessionTextArea);
-	}
-	
 	public void showFieldTechnicians(ActionEvent event) {
 		Request request = new Request("VIEW FIELD TECHNICIANS", new ArrayList<String>());
 		ArrayList<String> reply = clientComm.sendRequest(request);
@@ -139,6 +124,21 @@ public class OperaterController {
 	}
 	
 	public void showMap(ActionEvent event) {}
+	
+	public void showSession(ActionEvent event) {
+		if(!workspaceAnchor.getChildren().isEmpty())
+			workspaceAnchor.getChildren().clear();
+		TextArea sessionTextArea = new TextArea();
+		sessionTextArea.setText(session.toString());
+		AnchorPane.setBottomAnchor(sessionTextArea, 5.0);
+		AnchorPane.setTopAnchor(sessionTextArea, 5.0);
+		AnchorPane.setLeftAnchor(sessionTextArea, 5.0);
+		AnchorPane.setRightAnchor(sessionTextArea, 5.0);
+		sessionTextArea.setText(session.toString());
+		sessionTextArea.setEditable(false);
+		sessionTextArea.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
+		workspaceAnchor.getChildren().add(sessionTextArea);
+	}
 	
 	public void logout(ActionEvent logout) {
 		close();

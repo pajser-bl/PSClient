@@ -16,8 +16,8 @@
 	fx:controller="controller.operater.FieldTechnicianTableController">
 	<children>
 		<TableView fx:id="FieldTechnicianTable"
-			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
+			AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+			AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" >
 			<stylesheets>
 						<URL value="@../../css/table.css" />
 						<URL value="@../../css/table_menu.css" />

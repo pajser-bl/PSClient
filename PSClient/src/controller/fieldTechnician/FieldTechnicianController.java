@@ -36,7 +36,7 @@ public class FieldTechnicianController {
 	private double screenHeight;
 	private double screenWidth;
 	private FieldTechnician user;
-	private Intervention intervention = null;
+	private Intervention intervention;
 	private Session session;
 	private Stage mainStage;
 	private InterventionHandler handler;
@@ -78,26 +78,16 @@ public class FieldTechnicianController {
 		this.user = user;
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
-		this.session = new Session();
-		session.getEventList()
-				.add(new Event("Korisnik " + user.getName() + " " + user.getLastName() + " se prijavio na sistem"));
-		handler = new InterventionHandler(clientComm, user, this);
-	}
-
-	public void showSession(ActionEvent event) {
-		if (!workspaceAnchor.getChildren().isEmpty())
-			workspaceAnchor.getChildren().clear();
-		TextArea sessionTextArea = new TextArea();
-		sessionTextArea.setText(session.toString());
-		workspaceAnchor.getChildren().add(sessionTextArea);
+		this.session = new Session(user.getName() + " " + user.getLastName());
+		session.userLogged();
 	}
 
 	public void newFieldReport(ActionEvent event) {
 		if (intervention != null) {
 			Stage reportStage = new Stage();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/field_technician/RoadReportForm.fxml"));
-			loader.setControllerFactory(e -> new RoadReportController(reportStage, clientComm, optionsAnchor, intervention,
-					screenWidth * 0.3, screenHeight * 0.3));
+			loader.setControllerFactory(e -> new RoadReportController(reportStage, this, clientComm, user, session, optionsAnchor,
+					intervention, stateLabel, screenWidth * 0.3, screenHeight * 0.3));
 			try {
 				Parent root = loader.load();
 				reportStage.setResizable(false);
@@ -114,26 +104,28 @@ public class FieldTechnicianController {
 	public void changeState(ActionEvent event) {
 		try {
 			String oldState = user.getState();
-			if(user.getState().equals("zauzet"))
+			if (user.getState().equals("zauzet"))
 				throw new MessageException("Zauzeto stanje se ne moze mijenjati");
-			if(user.getState().equals("neaktivan")) {
+			if (user.getState().equals("neaktivan")) {
 				user.setState("aktivan");
-				Platform.runLater( () -> {
+				Platform.runLater(() -> {
+					handler = new InterventionHandler(clientComm, this, user, session, intervention, optionsAnchor, stateLabel, stateImage,
+							screenWidth, screenHeight);
 					Thread thread = new Thread(handler);
+					thread.setDaemon(true);
 					thread.start();
 				});
-			}
-			else
+			} else
 				user.setState("neaktivan");
 			ArrayList<String> reply = clientComm.changeState(user.getId(), user.getState());
 			if (reply.get(0).equals("CHANGE STATE OK")) {
-				Platform.runLater( () -> {
-					session.getEventList().add(new Event("Korisnik" + user.getName() + " " + user.getLastName() +
-							" je promijenio stanje u " + user.getState()));
+				Platform.runLater(() -> {
+					session.changeState(user.getState());
 					stateLabel.setText("Stanje: " + user.getState());
-					if(user.getState().equals("aktivan"))
+					if (user.getState().equals("aktivan"))
 						stateImage.setImage(new Image("/resources/images/circle_blue.png"));
-					else stateImage.setImage(new Image("/resources/images/circle_red.png"));
+					else
+						stateImage.setImage(new Image("/resources/images/circle_red.png"));
 				});
 				MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
 			} else {
@@ -144,35 +136,23 @@ public class FieldTechnicianController {
 			MessageBox.displayMessage("Greska", e.toString());
 		}
 	}
-
-	public void interventionAlert(Intervention intervention) {
-		Platform.runLater( () -> {
-			try {
-				FXMLLoader loader = new FXMLLoader(
-						getClass().getResource("/view/field_technician/InterventionAlertForm.fxml"));
-				loader.setControllerFactory(
-						e -> new InterventionAlertController(intervention, screenWidth * 0.3, screenHeight * 0.2));
-				Parent interventionAlert = loader.load();
-				optionsAnchor.getChildren().add(interventionAlert);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+	
+	public void showSession(ActionEvent event) {
+		if (!workspaceAnchor.getChildren().isEmpty())
+			workspaceAnchor.getChildren().clear();
+		TextArea sessionTextArea = new TextArea();
+		AnchorPane.setBottomAnchor(sessionTextArea, 5.0);
+		AnchorPane.setTopAnchor(sessionTextArea, 5.0);
+		AnchorPane.setLeftAnchor(sessionTextArea, 5.0);
+		AnchorPane.setRightAnchor(sessionTextArea, 5.0);
+		sessionTextArea.setText(session.toString());
+		sessionTextArea.setEditable(false);
+		sessionTextArea.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
+		workspaceAnchor.getChildren().add(sessionTextArea);
 	}
-
-	public void checkOpenedIntervention(ArrayList<String> reply) {
-		Platform.runLater(() -> {
-			user.setState("zauzet");
-			session.getEventList().add(new Event("Korisnik" + user.getName() + " " + user.getLastName() +
-					" je promijenio stanje u " + user.getState()));
-			stateLabel.setText("Stanje: " + user.getState());
-			stateImage.setImage(new Image("/resources/images/circle_red.png"));
-			intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
-				reply.get(6), reply.get(7), reply.get(8), reply.get(9),
-				TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",
-				LocalDateTime.now(), "", "", "", LocalDateTime.now());
-				interventionAlert(intervention);
-		});
+	
+	public void setIntervention(Intervention intervention) {
+		this.intervention = intervention;
 	}
 
 	public void close() {

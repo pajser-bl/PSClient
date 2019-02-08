@@ -61,6 +61,10 @@ public class Intervention {
 		this.fieldTechnician = fieldTechnician;
 		this.state = state;
 	}
+	
+	public String toString() {
+		return id + " " + userOpened + " " + fieldTechnician;
+	}
 
 	public String getId() {
 		return id;

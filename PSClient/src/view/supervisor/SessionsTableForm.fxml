@@ -16,8 +16,8 @@
 	fx:controller="controller.supervisor.SessionsTableController">
 	<children>
 		<TableView fx:id="sessionsTable"
-			tableMenuButtonVisible="true" AnchorPane.leftAnchor="5.0"
-			AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+			tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0"
+			AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 			<stylesheets>
 				<URL value="@../../css/table.css" />
 				<URL value="@../../css/table_menu.css" />

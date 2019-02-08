@@ -7,7 +7,7 @@
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #164E5B;
-    -fx-font-size: 20px;
+    -fx-font-size: 12.5px;
 }
 .combo-box-popup .list-view{
     -fx-background-color: #263238;  /*pozadina pop-up liste */

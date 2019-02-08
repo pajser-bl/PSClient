@@ -4,11 +4,10 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -84,6 +83,25 @@ public class InterventionController {
 		}
 	}
 	
+	public void showRoadReport(ActionEvent event) {
+		TextArea roadReport = new TextArea();
+		roadReport.appendText(intervention.getFieldReport());
+		roadReport.setEditable(false);
+		roadReport.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
+		AnchorPane.setBottomAnchor(roadReport, 5.0);
+		AnchorPane.setTopAnchor(roadReport, 5.0);
+		AnchorPane.setLeftAnchor(roadReport, 5.0);
+		AnchorPane.setRightAnchor(roadReport, 5.0);
+		
+		AnchorPane anchor = new AnchorPane();
+		anchor.getChildren().add(roadReport);
+		Stage stage = new Stage();
+		stage.setTitle("Terenski izvjestaj");
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
+		stage.show();
+	}
+	
 	public void setInfo() {
 		interventionId.setText(intervention.getId());
 		date.setText(intervention.getOpenedOn().format(DateTimeFormatter.ISO_LOCAL_DATE));
@@ -100,22 +118,6 @@ public class InterventionController {
 			service.setText(intervention.getService());
 			serviceTime.setText(TimeUtility.localDateTimeToString(intervention.getServiceTime()));
 		}
-	}
-	
-	public void showRoadReport(ActionEvent event) {
-		AnchorPane anchor = new AnchorPane();
-		TextField roadReport = new TextField();
-		roadReport.appendText(intervention.getFieldReport());
-		AnchorPane.setBottomAnchor(roadReport, 0.0);
-		AnchorPane.setTopAnchor(roadReport, 0.0);
-		AnchorPane.setLeftAnchor(roadReport, 0.0);
-		AnchorPane.setRightAnchor(roadReport, 0.0);
-		roadReport.setEditable(false);
-		anchor.getChildren().add(roadReport);
-		Stage stage = new Stage();
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
-		stage.show();
 	}
 	
 	public void resize() {

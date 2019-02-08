@@ -17,6 +17,12 @@ public class Session {
 		eventList = new ArrayList<Event>();
 	}
 	
+	public Session(String user) {
+		this.user = user;
+		sessionId = "0";
+		eventList = new ArrayList<>();
+	}
+	
 	public Session(String sessionId, String userId, String user, String start, String end) {
 		this.sessionId = sessionId;
 		this.userId = userId;
@@ -30,6 +36,30 @@ public class Session {
 			this.eventList = eventList;
 			start = null;
 			end = null;
+	}
+	
+	public void userLogged() {
+		eventList.add(new Event("Korisnik " + user + " se prijavio na sistem"));
+	}
+	
+	public void changeState(String state) {
+		eventList.add(new Event("Korisnik " + user + " je promjenio stanje u " + state));
+	}
+	
+	public void receiveIntervention(String interventionId) {
+		eventList.add(new Event("Korisnik " + user + " je dobio novu intervenciju(Id:" + interventionId + ")"));
+	}
+	
+	public void newIntervention() {
+		eventList.add(new Event("Korisnik " + user + " je otvorio novu intervenciju"));
+	}
+	
+	public void closeIntervention(String interventionId) {
+		eventList.add(new Event("Korisnik " + user + " je zatvorio intervenciju(Id:" + interventionId + ")"));
+	}
+	
+	public void newFieldReport(String interventionId) {
+		eventList.add(new Event("Korisnik " + user + " je poslao ternski izvjestaj za intervenciju(Id:" + interventionId + ")"));
 	}
 	
 	public String toString() {
