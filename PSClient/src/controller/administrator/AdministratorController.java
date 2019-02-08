@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -82,6 +83,7 @@ public class AdministratorController {
 			loader.setControllerFactory(e -> new AddNewUserController(addNewUserStage, clientComm, users, false, screenWidth * 0.3,
 					screenHeight * 0.75));
 			Parent addNewUserView = loader.load();
+			addNewUserStage.getIcons().add(new Image("/resources/images/logo.png"));
 			addNewUserStage.setScene(new Scene(addNewUserView, screenWidth * 0.3, screenHeight * 0.75));
 			addNewUserStage.initModality(Modality.APPLICATION_MODAL);
 			addNewUserStage.show();

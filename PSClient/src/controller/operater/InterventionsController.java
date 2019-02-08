@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,6 +37,7 @@ public class InterventionsController {
 	private Stage mainStage;
 	private User user;
 	private Session session;
+	private Intervention intervention = null;
 	@FXML AnchorPane tableAnchor;
 	@FXML AnchorPane optionsAnchor;
 	@FXML Button openNewInterventionButton;
@@ -90,6 +92,7 @@ public class InterventionsController {
 				loader.setControllerFactory(e -> new NewInterventionController(newInterventionStage, clientComm, user,
 						fieldTechnicians, session, screenWidth * 0.27, screenHeight * 0.7));
 				Parent newInterventionView = loader.load();
+				newInterventionStage.getIcons().add(new Image("/resources/images/logo.png"));
 				Scene addNewUserScene = new Scene(newInterventionView, screenWidth * 0.27, screenHeight * 0.7);
 				newInterventionStage.setScene(addNewUserScene);
 				newInterventionStage.setResizable(false);
@@ -110,7 +113,14 @@ public class InterventionsController {
 			String interventionId = interventionsTable.getSelectionModel().getSelectedItem().getId();
 			ArrayList<String> reply = clientComm.viewOpenedIntervention(interventionId);
 			if(reply.get(0).equals("VIEW INTERVENTION OK")) {
-				Intervention intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
+				if(reply.get(11).equals("otvorena"))
+					intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
+							reply.get(6), reply.get(7), reply.get(8), reply.get(9),
+							TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", 
+							LocalDateTime.now(), "", "",
+							LocalDateTime.now(), "", "", "", LocalDateTime.now());
+				else
+					intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
 						reply.get(6), reply.get(7), reply.get(8), reply.get(9),
 						TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), reply.get(12), 
 						TimeUtility.stringToLocalDateTime(reply.get(13)), reply.get(14), "",
@@ -121,6 +131,7 @@ public class InterventionsController {
 				Parent root = loader.load();
 				Stage interventionStage = new Stage();
 				interventionStage.setResizable(false);
+				interventionStage.getIcons().add(new Image("/resources/images/logo.png"));
 				interventionStage.initModality(Modality.APPLICATION_MODAL);
 				interventionStage.setScene(new Scene(root, screenWidth * 0.25, screenHeight * 0.6));
 				interventionStage.show();
@@ -141,6 +152,7 @@ public class InterventionsController {
 			if(!interventionsTable.getSelectionModel().getSelectedItem().getState().equals("terenski izvjestaj"))
 				throw new MessageException("Intervencija nema terenski izvjestaj");
 			Stage reportStage = new Stage();
+			reportStage.getIcons().add(new Image("/resources/images/logo.png"));
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/CloseInterventionForm.fxml"));
 			loader.setControllerFactory(e -> new CloseInterventionController(reportStage, clientComm, user, session, interventions, 
 					interventionsTable.getSelectionModel().getSelectedItem()));

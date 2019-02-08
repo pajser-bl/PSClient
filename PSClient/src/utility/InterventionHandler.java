@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import model.Event;
 import model.FieldTechnician;
 import model.Intervention;
@@ -46,8 +47,6 @@ public class InterventionHandler extends Task<Void> {
 		this.session = session;
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
-		if(intervention == null)
-			System.out.println("Intervencija je null 1");
 	}
 
 	protected Void call() throws Exception {
@@ -66,7 +65,8 @@ public class InterventionHandler extends Task<Void> {
 			user.setState("zauzet");
 			session.changeState(user.getState());
 			stateLabel.setText("Stanje: " + user.getState());
-			stateImage.setImage(new Image("/resources/images/circle_red.png"));
+			stateLabel.textFillProperty().setValue(Paint.valueOf("ce1919"));
+			stateImage.setImage(new Image("/resources/images/red_circle_not_available.png"));
 			intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
 					reply.get(6), reply.get(7), reply.get(8), reply.get(9),
 					TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", LocalDateTime.now(), "", "",

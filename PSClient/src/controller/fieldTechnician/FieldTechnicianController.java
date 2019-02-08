@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Event;
@@ -91,6 +92,7 @@ public class FieldTechnicianController {
 			try {
 				Parent root = loader.load();
 				reportStage.setResizable(false);
+				reportStage.getIcons().add(new Image("/resources/images/logo.png"));
 				reportStage.initModality(Modality.APPLICATION_MODAL);
 				reportStage.setScene(new Scene(root, screenWidth * 0.3, screenHeight * 0.3));
 				reportStage.show();
@@ -122,10 +124,14 @@ public class FieldTechnicianController {
 				Platform.runLater(() -> {
 					session.changeState(user.getState());
 					stateLabel.setText("Stanje: " + user.getState());
-					if (user.getState().equals("aktivan"))
-						stateImage.setImage(new Image("/resources/images/circle_blue.png"));
-					else
-						stateImage.setImage(new Image("/resources/images/circle_red.png"));
+					if (user.getState().equals("aktivan")) {
+						stateImage.setImage(new Image("/resources/images/green_circle_available.png"));
+						stateLabel.textFillProperty().setValue(Paint.valueOf("7db028"));
+					}
+					else {
+						stateImage.setImage(new Image("/resources/images/red_circle_not_available.png"));
+						stateLabel.textFillProperty().setValue(Paint.valueOf("ce1919"));
+					}
 				});
 				MessageBox.displayMessage("Potvrda", "Stanje uspjesno promjenjeno");
 			} else {
@@ -141,10 +147,10 @@ public class FieldTechnicianController {
 		if (!workspaceAnchor.getChildren().isEmpty())
 			workspaceAnchor.getChildren().clear();
 		TextArea sessionTextArea = new TextArea();
-		AnchorPane.setBottomAnchor(sessionTextArea, 5.0);
-		AnchorPane.setTopAnchor(sessionTextArea, 5.0);
-		AnchorPane.setLeftAnchor(sessionTextArea, 5.0);
-		AnchorPane.setRightAnchor(sessionTextArea, 5.0);
+		AnchorPane.setBottomAnchor(sessionTextArea, 10.0);
+		AnchorPane.setTopAnchor(sessionTextArea, 10.0);
+		AnchorPane.setLeftAnchor(sessionTextArea, 10.0);
+		AnchorPane.setRightAnchor(sessionTextArea, 10.0);
 		sessionTextArea.setText(session.toString());
 		sessionTextArea.setEditable(false);
 		sessionTextArea.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
@@ -183,6 +189,8 @@ public class FieldTechnicianController {
 		AnchorPane.setLeftAnchor(stateAnchor, screenWidth * 0.01);
 		avatar.setFitHeight(screenHeight * 0.2);
 		avatar.setFitWidth(screenWidth * 0.1);
+		stateImage.setFitHeight(screenHeight * 0.1);
+		stateImage.setFitWidth(screenWidth * 0.05);
 		stateButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		mapButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		reportButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);

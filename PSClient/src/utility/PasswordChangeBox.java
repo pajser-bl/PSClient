@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -20,6 +21,7 @@ public class PasswordChangeBox {
 	
 	public static void passwordChange(String userId, ClientCommunication clientComm) {
 		Stage window = new Stage();
+		window.getIcons().add(new Image("/resources/images/logo.png"));
 		window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Promjena lozinke");
 		window.setResizable(false);

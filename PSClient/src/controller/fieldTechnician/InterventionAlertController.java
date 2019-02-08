@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -41,6 +42,7 @@ public class InterventionAlertController {
 		try {
 			Parent root = loader.load();
 			Stage interventionStage = new Stage();
+			interventionStage.getIcons().add(new Image("/resources/images/logo.png"));
 			interventionStage.setResizable(false);
 			interventionStage.initModality(Modality.APPLICATION_MODAL);
 			interventionStage.setScene(new Scene(root, stageWidth * 1, stageHeight * 1.7));

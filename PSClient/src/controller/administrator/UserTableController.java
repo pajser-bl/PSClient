@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -76,6 +77,7 @@ public class UserTableController {
 			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.3,
 					screenHeight * 0.5));
 			Parent profileView = loader.load();
+			profileWindow.getIcons().add(new Image("/resources/images/logo.png"));
 			profileWindow.setScene(new Scene(profileView, screenWidth * 0.3, screenHeight * 0.5));
 			profileWindow.initModality(Modality.APPLICATION_MODAL);
 			profileWindow.show();

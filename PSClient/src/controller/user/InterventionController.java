@@ -64,7 +64,7 @@ public class InterventionController {
 	}
 	
 	public void setStage() {
-		if(user.equals("Operater") || user.equals("Field technician")) {
+		if(intervention.getState().equals("otvorena") || intervention.getState().equals("terenski izvjestaj")) {
 			reportsBox.getChildren().remove(supervisorReportButton);
 			reportsBox.getChildren().remove(operaterReportButton);
 			infoBox.getChildren().remove(supervisor);
@@ -74,7 +74,7 @@ public class InterventionController {
 			infoLabelsBox.getChildren().remove(operaterLabel);
 			infoLabelsBox.getChildren().remove(closedLabel);
 		}
-		if(user.equals("Field technician")) {
+		if(intervention.getState().equals("otvorena")) {
 			reportsBox.getChildren().remove(fieldReportButton);
 			infoBox.getChildren().remove(serviceTime);
 			infoBox.getChildren().remove(service);
@@ -94,6 +94,8 @@ public class InterventionController {
 		AnchorPane.setRightAnchor(roadReport, 5.0);
 		
 		AnchorPane anchor = new AnchorPane();
+		anchor.getStylesheets().add(getClass().getResource("/css/background.css").toExternalForm());
+		anchor.setStyle("root2");
 		anchor.getChildren().add(roadReport);
 		Stage stage = new Stage();
 		stage.setTitle("Terenski izvjestaj");

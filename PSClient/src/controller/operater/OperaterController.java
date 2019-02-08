@@ -130,10 +130,10 @@ public class OperaterController {
 			workspaceAnchor.getChildren().clear();
 		TextArea sessionTextArea = new TextArea();
 		sessionTextArea.setText(session.toString());
-		AnchorPane.setBottomAnchor(sessionTextArea, 5.0);
-		AnchorPane.setTopAnchor(sessionTextArea, 5.0);
-		AnchorPane.setLeftAnchor(sessionTextArea, 5.0);
-		AnchorPane.setRightAnchor(sessionTextArea, 5.0);
+		AnchorPane.setBottomAnchor(sessionTextArea, 10.0);
+		AnchorPane.setTopAnchor(sessionTextArea, 10.0);
+		AnchorPane.setLeftAnchor(sessionTextArea, 10.0);
+		AnchorPane.setRightAnchor(sessionTextArea, 10.0);
 		sessionTextArea.setText(session.toString());
 		sessionTextArea.setEditable(false);
 		sessionTextArea.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
