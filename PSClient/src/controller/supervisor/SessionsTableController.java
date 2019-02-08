@@ -44,7 +44,7 @@ public class SessionsTableController {
 	public void showSession(ActionEvent event) {}
 	
 	public void resize() {
-		AnchorPane.setBottomAnchor(sessionsTable, screenHeight * 0.2);
+		AnchorPane.setBottomAnchor(sessionsTable, screenHeight * 0.8);
 		showSessionButton.setPrefSize(screenWidth * 0.75, screenHeight * 0.1);
 	}
 }

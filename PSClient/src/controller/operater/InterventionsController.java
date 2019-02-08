@@ -117,8 +117,7 @@ public class InterventionsController {
 					intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
 							reply.get(6), reply.get(7), reply.get(8), reply.get(9),
 							TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), "", 
-							LocalDateTime.now(), "", "",
-							LocalDateTime.now(), "", "", "", LocalDateTime.now());
+							LocalDateTime.now(), "", "", LocalDateTime.now(), "", "", "", LocalDateTime.now());
 				else
 					intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
 						reply.get(6), reply.get(7), reply.get(8), reply.get(9),

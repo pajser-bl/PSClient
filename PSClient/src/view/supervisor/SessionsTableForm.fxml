@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane AnchorPane.bottomAnchor="0.0"
@@ -16,8 +15,9 @@
 	fx:controller="controller.supervisor.SessionsTableController">
 	<children>
 		<TableView fx:id="sessionsTable"
-			tableMenuButtonVisible="true" AnchorPane.leftAnchor="10.0"
-			AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+			tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0"
+			AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+			AnchorPane.topAnchor="10.0">
 			<stylesheets>
 				<URL value="@../../css/table.css" />
 				<URL value="@../../css/table_menu.css" />
@@ -44,9 +44,9 @@
 		</TableView>
 		<Button fx:id="showSessionButton" mnemonicParsing="false"
 			onAction="#showSession" styleClass="commonbutton"
-			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 			stylesheets="@../../css/common_button.css" text="Izbriši nalog"
-			textAlignment="CENTER">
+			textAlignment="CENTER" AnchorPane.bottomAnchor="10.0"
+			AnchorPane.leftAnchor="10.0">
 			<font>
 				<Font size="20.0" />
 			</font>

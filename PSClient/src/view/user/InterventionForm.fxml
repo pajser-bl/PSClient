@@ -26,7 +26,6 @@
 				<Label fx:id="serviceTimeLabel" text="Vrijeme usluge:" textFill="#21947b" />
 				<Label fx:id="closedLabel" text="Vrijeme zatvaranja:" textFill="#21947b" />
 				<Label fx:id="operaterLabel" text="Operater:" textFill="#21947b" />
-				<Label fx:id="supervisorLabel" text="Supervizor:" textFill="#21947b" />
 			</children>
 			<padding>
 				<Insets left="20.0" />
@@ -49,7 +48,6 @@
 				<Label fx:id="serviceTime" textFill="#21947b" />
 				<Label fx:id="closedTime" textFill="#21947b" />
 				<Label fx:id="operaterClosed" textFill="#21947b" />
-				<Label fx:id="supervisor" textFill="#21947b" />
 			</children>
 			<padding>
 				<Insets left="20.0" />
@@ -58,8 +56,7 @@
 		<HBox fx:id="reportsBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 			<children>
 				<Button fx:id="fieldReportButton" mnemonicParsing="false" onAction="#showRoadReport" styleClass="commonbutton" stylesheets="@../../css/common_button.css" text="Terenski izvjestaj" />
-				<Button fx:id="operaterReportButton" mnemonicParsing="false" styleClass="commonbutton" stylesheets="@../../css/common_button.css" text="Button" />
-				<Button fx:id="supervisorReportButton" mnemonicParsing="false" styleClass="commonbutton" stylesheets="@../../css/common_button.css" text="Button" />
+				<Button fx:id="operaterReportButton" mnemonicParsing="false" onAction="#showOpraterReport" styleClass="commonbutton" stylesheets="@../../css/common_button.css" text="Operaterski izvjestaj" />
 			</children>
          <padding>
             <Insets left="10.0" />

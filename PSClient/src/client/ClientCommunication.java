@@ -133,10 +133,10 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> viewIntervention(String intervention_Id) {
+	public ArrayList<String> viewIntervention(String interventionId) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(intervention_Id);
-		Request request = new Request("VIEW INTERVENTION", arguments);
+		arguments.add(interventionId);
+		Request request = new Request("VIEW CLOSED INTERVENTION", arguments);
 		return sendRequest(request);
 	}
 
@@ -160,6 +160,16 @@ public class ClientCommunication {
 	public ArrayList<String> showOpenedInterventions() {
 		ArrayList<String> arguments = new ArrayList<>();
 		Request request = new Request("VIEW OPENED INTERVENTIONS", arguments);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> closeIntervention(String interventionId, String userId, String time, String report){
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(interventionId);
+		arguments.add(userId);
+		arguments.add(time);
+		arguments.add(report);
+		Request request = new Request("CLOSE INTERVENTION", arguments);
 		return sendRequest(request);
 	}
 
@@ -187,14 +197,8 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> closeIntervention(String interventionId, String operaterId, String closedOn,
-			String operaterReport) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(interventionId);
-		arguments.add(operaterId);
-		arguments.add(closedOn);
-		arguments.add(operaterReport);
-		Request request = new Request("CLOSE INTERVENTION", arguments);
+	public ArrayList<String> closedInterventions() {
+		Request request = new Request("VIEW CLOSED INTERVENTIONS", null);
 		return sendRequest(request);
 	}
 
@@ -307,6 +311,16 @@ public class ClientCommunication {
 	
 	public ArrayList<String> viewSessions() {
 		Request request = new Request("VIEW SESSIONS", null);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> newReport(String interventionId, String supervisorId, String supervisorReport, String reportTime) {
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(interventionId);
+		arguments.add(supervisorId);
+		arguments.add(supervisorReport);
+		arguments.add(reportTime);
+		Request request = new Request("NEW REPORT", arguments);
 		return sendRequest(request);
 	}
 

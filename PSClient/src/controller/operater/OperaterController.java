@@ -46,7 +46,6 @@ public class OperaterController {
 	@FXML Button vehiclesButton;
 	@FXML Button helpButton;
 	@FXML Button logoutButton;
-	@FXML Button refreshButton;
 	@FXML BorderPane mainLayout;
 	@FXML ImageView avatar;
 	@FXML Label name;
@@ -172,7 +171,6 @@ public class OperaterController {
 		sessionButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		vehiclesButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
-		refreshButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}
 }

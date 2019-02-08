@@ -1,8 +1,5 @@
 package controller.supervisor;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-
 import client.ClientCommunication;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -16,11 +13,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Client;
+import model.Intervention;
 import model.Session;
 import model.User;
 import utility.ChoiceBox;
 import utility.MessageBox;
-import utility.TimeUtility;
 
 public class SupervisorController {
 
@@ -39,7 +36,6 @@ public class SupervisorController {
 	@FXML Button sessionsButton;
 	@FXML Button interventionsButton;
 	@FXML Button logoutButton;
-	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML Label name;
 	@FXML Label lastName;
@@ -138,7 +134,31 @@ public class SupervisorController {
 			MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
-	public void showInterventions(ActionEvent event) {}
+	public void showInterventions(ActionEvent event) {
+		ArrayList<String> reply = clientComm.closedInterventions();
+		System.out.println(reply.toString());
+		if(reply.get(0).equals("VIEW CLOSED INTERVENTIONS OK")) {
+			if(workspaceAnchor.getChildren().size() > 0)
+				workspaceAnchor.getChildren().clear();
+			ArrayList<Intervention> interventions = new ArrayList<>();
+			Intervention intervention = null;
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parsed = reply.get(i + 2).split(":");
+				intervention = new Intervention(parsed[0], parsed[1], parsed[2], parsed[3], parsed[4].replace(";", ":"));
+				interventions.add(intervention);
+			}
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/InterventionsTableForm.fxml"));
+			loader.setControllerFactory(e -> new InterventionsController(FXCollections.observableArrayList(interventions), clientComm,
+					screenWidth, screenHeight));
+			try {
+				Parent root = loader.load();
+				workspaceAnchor.getChildren().add(root);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		} else
+			MessageBox.displayMessage("Greska", reply.get(1));
+	}
 	
 	public void logout() {
 		close();
@@ -171,7 +191,6 @@ public class SupervisorController {
 		sessionsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		interventionsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
-		refreshButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}
 }

@@ -24,13 +24,11 @@ public class InterventionController {
 	private String user;
 	@FXML Button fieldReportButton;
 	@FXML Button operaterReportButton;
-	@FXML Button supervisorReportButton;
 	@FXML HBox reportsBox;
 	@FXML Label serviceLabel;
 	@FXML Label serviceTimeLabel;
 	@FXML Label closedLabel;
 	@FXML Label operaterLabel;
-	@FXML Label supervisorLabel;
 	@FXML Label interventionId;
 	@FXML Label date;
 	@FXML Label time;
@@ -65,12 +63,9 @@ public class InterventionController {
 	
 	public void setStage() {
 		if(intervention.getState().equals("otvorena") || intervention.getState().equals("terenski izvjestaj")) {
-			reportsBox.getChildren().remove(supervisorReportButton);
 			reportsBox.getChildren().remove(operaterReportButton);
-			infoBox.getChildren().remove(supervisor);
 			infoBox.getChildren().remove(operaterClosed);
 			infoBox.getChildren().remove(closedTime);
-			infoLabelsBox.getChildren().remove(supervisorLabel);
 			infoLabelsBox.getChildren().remove(operaterLabel);
 			infoLabelsBox.getChildren().remove(closedLabel);
 		}
@@ -104,6 +99,27 @@ public class InterventionController {
 		stage.show();
 	}
 	
+	public void showOpraterReport(ActionEvent event) {
+		TextArea roadReport = new TextArea();
+		roadReport.appendText(intervention.getOperaterReport());
+		roadReport.setEditable(false);
+		roadReport.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
+		AnchorPane.setBottomAnchor(roadReport, 5.0);
+		AnchorPane.setTopAnchor(roadReport, 5.0);
+		AnchorPane.setLeftAnchor(roadReport, 5.0);
+		AnchorPane.setRightAnchor(roadReport, 5.0);
+		
+		AnchorPane anchor = new AnchorPane();
+		anchor.getStylesheets().add(getClass().getResource("/css/background.css").toExternalForm());
+		anchor.setStyle("root2");
+		anchor.getChildren().add(roadReport);
+		Stage stage = new Stage();
+		stage.setTitle("Terenski izvjestaj");
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
+		stage.show();
+	}
+	
 	public void setInfo() {
 		interventionId.setText(intervention.getId());
 		date.setText(intervention.getOpenedOn().format(DateTimeFormatter.ISO_LOCAL_DATE));
@@ -116,9 +132,13 @@ public class InterventionController {
 		vehicleManu.setText(intervention.getVehicleManu());
 		vehicleYear.setText(intervention.getVehicleYear());
 		vehicleLicencePlate.setText(intervention.getVehicleLicencePlate());
-		if(user.equals("Operater") && intervention.getState().equals("terenski izvjestaj")) {
+		if(intervention.getState().equals("terenski izvjestaj") || intervention.getState().equals("zatvorena")) {
 			service.setText(intervention.getService());
 			serviceTime.setText(TimeUtility.localDateTimeToString(intervention.getServiceTime()));
+		}
+		if(intervention.getState().equals("zatvorena")) {
+			closedTime.setText(TimeUtility.localDateTimeToString(intervention.getClosedOn()));
+			operaterClosed.setText(intervention.getUserClosed());
 		}
 	}
 	

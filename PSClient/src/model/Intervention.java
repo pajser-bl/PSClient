@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDateTime;
 
+import utility.TimeUtility;
+
 public class Intervention {
 
 	private LocalDateTime openedOn;
@@ -60,6 +62,14 @@ public class Intervention {
 		this.openedOn = openedOn;
 		this.fieldTechnician = fieldTechnician;
 		this.state = state;
+	}
+	
+	public Intervention(String interventionId, String userOpened, String fieldTechnician, String userClosed, String closedOn) {
+		this.id = interventionId;
+		this.userClosed = userClosed;
+		this.userOpened = userOpened;
+		this.fieldTechnician = fieldTechnician;
+		this.closedOn = TimeUtility.stringToLocalDateTime(closedOn);
 	}
 	
 	public String toString() {
