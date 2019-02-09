@@ -86,8 +86,8 @@
 							stylesheets="@../../css/supervisor_interventions_button.css"
 							mnemonicParsing="false" />
 						<Button fx:id="reportsButton" mnemonicParsing="false"
-							onAction="#viewReports" styleClass="reportbutton"
-							stylesheets="@../../css/field_technician_field_report_button.css" />
+							onAction="#viewReports" styleClass="pregledajizjestajebutton"
+							stylesheets="@../../css/supervisor_view_reports_button.css" />
 					</children>
 				</VBox>
 			</children>

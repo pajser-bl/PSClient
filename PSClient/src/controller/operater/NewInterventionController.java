@@ -1,12 +1,9 @@
 package controller.operater;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import client.ClientCommunication;
 import exception.MessageException;
 import exception.ServerReplyException;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,11 +14,10 @@ import javafx.stage.Stage;
 import model.Event;
 import model.FieldTechnician;
 import model.Intervention;
-import model.Request;
 import model.Session;
 import model.User;
-import utility.TimeUtility;
 import utility.MessageBox;
+import java.time.LocalDateTime;
 
 public class NewInterventionController {
 

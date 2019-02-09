@@ -107,8 +107,7 @@ public class AdministratorController {
 		}
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/administrator/UserTableForm.fxml"));
-			loader.setControllerFactory(e -> new UserTableController(mainStage, clientComm, users, screenWidth,
-					screenHeight));
+			loader.setControllerFactory(e -> new UserTableController(clientComm, users, screenWidth, screenHeight));
 			Parent userTableView = loader.load();
 			if(workspaceAnchor.getChildren().size() != 0)
 				workspaceAnchor.getChildren().remove(0);

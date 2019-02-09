@@ -38,7 +38,7 @@ public class InterventionAlertController {
 	
 	public void openIntervention(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/InterventionForm.fxml"));
-		loader.setControllerFactory(e -> new InterventionController(intervention, "Field technician", stageWidth, stageHeight));
+		loader.setControllerFactory(e -> new InterventionController(intervention, stageWidth, stageHeight));
 		try {
 			Parent root = loader.load();
 			Stage interventionStage = new Stage();

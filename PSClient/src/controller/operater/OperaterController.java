@@ -89,9 +89,8 @@ public class OperaterController {
 			workspaceAnchor.getChildren().clear();
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/InterventionsForm.fxml"));
-			loader.setControllerFactory(e -> new InterventionsController(mainStage, clientComm, user,
-					FXCollections.observableArrayList(interventions), session, screenWidth,
-					screenHeight));
+			loader.setControllerFactory(e -> new InterventionsController(clientComm, user, 
+					FXCollections.observableArrayList(interventions), session, screenWidth, screenHeight));
 			Parent interventionsView = loader.load();
 			workspaceAnchor.getChildren().add(interventionsView);
 		} catch(Exception e) {

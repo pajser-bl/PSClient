@@ -1,11 +1,8 @@
 package controller.supervisor;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import client.ClientCommunication;
-import controller.user.InterventionController;
 import exception.MessageException;
+import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

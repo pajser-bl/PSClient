@@ -7,7 +7,6 @@ import client.ClientCommunication;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,7 +16,6 @@ import javafx.stage.Stage;
 import model.FieldTechnician;
 import model.Intervention;
 import model.Session;
-import model.User;
 import utility.MessageBox;
 
 public class RoadReportController {

@@ -1,14 +1,8 @@
 package controller.supervisor;
 
-import model.Client;
-import model.User;
-import utility.MessageBox;
-
-import java.util.ArrayList;
-
 import client.ClientCommunication;
-import controller.user.InterventionController;
 import exception.MessageException;
+import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Client;
+import utility.MessageBox;
 
 public class ClientTableController {
 

@@ -3,7 +3,6 @@ package controller.supervisor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import client.ClientCommunication;
-import controller.operater.CloseInterventionController;
 import controller.user.InterventionController;
 import exception.MessageException;
 import javafx.collections.ObservableList;
@@ -85,8 +84,7 @@ public class InterventionsController {
 						TimeUtility.stringToLocalDateTime(reply.get(13)), reply.get(14), reply.get(15),
 						TimeUtility.stringToLocalDateTime(reply.get(16)), reply.get(17), "", "", LocalDateTime.now());
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/InterventionForm.fxml"));
-				loader.setControllerFactory(e -> new InterventionController(intervention, null,
-						screenWidth * 0.25, screenHeight * 0.6));
+				loader.setControllerFactory(e -> new InterventionController(intervention, screenWidth * 0.25, screenHeight * 0.6));
 				Parent root = loader.load();
 				Stage interventionStage = new Stage();
 				interventionStage.setResizable(false);

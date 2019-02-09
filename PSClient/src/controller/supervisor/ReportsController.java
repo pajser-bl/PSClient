@@ -86,8 +86,7 @@ public class ReportsController {
 						TimeUtility.stringToLocalDateTime(reply.get(16)), reply.get(17), reply.get(18), reply.get(19),
 						TimeUtility.stringToLocalDateTime(reply.get(20)));
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/InterventionForm.fxml"));
-				loader.setControllerFactory(e -> new InterventionController(intervention, null,
-						screenWidth * 0.28, screenHeight * 0.7));
+				loader.setControllerFactory(e -> new InterventionController(intervention, screenWidth * 0.28, screenHeight * 0.7));
 				Parent root = loader.load();
 				Stage interventionStage = new Stage();
 				interventionStage.setResizable(false);

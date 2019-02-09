@@ -30,7 +30,6 @@ public class UserTableController {
 	private ClientCommunication clientComm;
 	private double screenHeight;
 	private double screenWidth;
-	private Stage mainStage;
 	@FXML AnchorPane tableAnchor;
 	@FXML AnchorPane optionsAnchor;
 	@FXML TableView<User> userTable;
@@ -43,9 +42,8 @@ public class UserTableController {
 		generateTable();
 	}
 	
-	public UserTableController(Stage mainStage, ClientCommunication clientComm, ObservableList<User> users, double screenWidth,
+	public UserTableController(ClientCommunication clientComm, ObservableList<User> users, double screenWidth,
 			double screenHeight) {
-		this.mainStage = mainStage;
 		this.clientComm = clientComm;
 		this.users = users; 
 		this.screenWidth = screenWidth;
@@ -74,8 +72,7 @@ public class UserTableController {
 			LocalDate date = TimeUtility.stringToLocalDate(reply.get(5));
 			User user = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(6), reply.get(7), reply.get(8) , date);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/ProfileForm.fxml"));
-			loader.setControllerFactory(e -> new ProfileController(profileWindow, clientComm, user, screenWidth * 0.3,
-					screenHeight * 0.5));
+			loader.setControllerFactory(e -> new ProfileController(clientComm, user, screenWidth * 0.3, screenHeight * 0.5));
 			Parent profileView = loader.load();
 			profileWindow.getIcons().add(new Image("/resources/images/logo.png"));
 			profileWindow.setScene(new Scene(profileView, screenWidth * 0.3, screenHeight * 0.5));

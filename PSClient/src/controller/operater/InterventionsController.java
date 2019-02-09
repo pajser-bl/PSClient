@@ -6,7 +6,6 @@ import exception.MessageException;
 import exception.ServerReplyException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +33,6 @@ public class InterventionsController {
 	private double screenHeight;
 	private double screenWidth;
 	private ClientCommunication clientComm;
-	private Stage mainStage;
 	private User user;
 	private Session session;
 	private Intervention intervention = null;
@@ -47,27 +45,12 @@ public class InterventionsController {
 
 	@FXML
 	public void initialize() {
+		generateTable();
 		resize();
-		TableColumn<Intervention, String> idColumn = new TableColumn<Intervention, String>("Id");
-		idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-		TableColumn<Intervention, String> clientColumn = new TableColumn<Intervention, String>("Klijent");
-		clientColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
-		TableColumn<Intervention, String> operaterColumn = new TableColumn<Intervention, String>("Operater");
-		operaterColumn.setCellValueFactory(new PropertyValueFactory<>("userOpened"));
-		TableColumn<Intervention, LocalDateTime> openedOnColumn = new TableColumn<Intervention, LocalDateTime>("Vrijeme otvaranja");
-		openedOnColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
-		TableColumn<Intervention, String> fieldTechnicianColumn = new TableColumn<Intervention, String>("Terenski radnik");
-		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("fieldTechnician"));
-		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
-		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-		interventionsTable.getColumns().addAll(idColumn, clientColumn, operaterColumn, openedOnColumn,
-				fieldTechnicianColumn, stateColumn);
-		interventionsTable.setItems(interventions);
 	}
 	
-	public InterventionsController(Stage mainStage, ClientCommunication clientComm, User user, ObservableList<Intervention> interventions,
+	public InterventionsController(ClientCommunication clientComm, User user, ObservableList<Intervention> interventions,
 			Session session, double screenWidth, double screenHeight) {
-		this.mainStage = mainStage;
 		this.clientComm = clientComm;
 		this.user = user;
 		this.interventions = interventions;
@@ -125,8 +108,7 @@ public class InterventionsController {
 						TimeUtility.stringToLocalDateTime(reply.get(13)), reply.get(14), "",
 						LocalDateTime.now(), "", "", "", LocalDateTime.now());
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user/InterventionForm.fxml"));
-				loader.setControllerFactory(e -> new InterventionController(intervention, user.getType(),
-						screenWidth * 0.25, screenHeight * 0.6));
+				loader.setControllerFactory(e -> new InterventionController(intervention, screenWidth * 0.25, screenHeight * 0.6));
 				Parent root = loader.load();
 				Stage interventionStage = new Stage();
 				interventionStage.setResizable(false);
@@ -167,6 +149,23 @@ public class InterventionsController {
 		}
 	}
 	
+	public void generateTable() {
+		TableColumn<Intervention, String> idColumn = new TableColumn<Intervention, String>("Id");
+		idColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
+		TableColumn<Intervention, String> clientColumn = new TableColumn<Intervention, String>("Klijent");
+		clientColumn.setCellValueFactory(new PropertyValueFactory<>("client"));
+		TableColumn<Intervention, String> operaterColumn = new TableColumn<Intervention, String>("Operater");
+		operaterColumn.setCellValueFactory(new PropertyValueFactory<>("userOpened"));
+		TableColumn<Intervention, LocalDateTime> openedOnColumn = new TableColumn<Intervention, LocalDateTime>("Vrijeme otvaranja");
+		openedOnColumn.setCellValueFactory(new PropertyValueFactory<>("openedOn"));
+		TableColumn<Intervention, String> fieldTechnicianColumn = new TableColumn<Intervention, String>("Terenski radnik");
+		fieldTechnicianColumn.setCellValueFactory(new PropertyValueFactory<>("fieldTechnician"));
+		TableColumn<Intervention, String> stateColumn = new TableColumn<Intervention, String>("Stanje");
+		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+		interventionsTable.getColumns().addAll(idColumn, clientColumn, operaterColumn, openedOnColumn,
+				fieldTechnicianColumn, stateColumn);
+		interventionsTable.setItems(interventions);
+	}
 
 	public void resize() {
 		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);

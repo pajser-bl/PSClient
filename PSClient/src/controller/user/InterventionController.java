@@ -1,18 +1,13 @@
 package controller.user;
 
 import java.time.format.DateTimeFormatter;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.Intervention;
 import utility.ReportBox;
 import utility.TimeUtility;
@@ -22,7 +17,6 @@ public class InterventionController {
 	private Intervention intervention;
 	private double stageHeight;
 	private double stageWidth;
-	private String user;
 	@FXML Button fieldReportButton;
 	@FXML Button operaterReportButton;
 	@FXML Button supervisorReportButton;
@@ -59,11 +53,10 @@ public class InterventionController {
 		resize();
 	}
 	
-	public InterventionController(Intervention intervention, String user, double stageWidth, double stageHeight) {
+	public InterventionController(Intervention intervention, double stageWidth, double stageHeight) {
 		this.intervention = intervention;
 		this.stageHeight = stageHeight;
 		this.stageWidth = stageWidth;
-		this.user = user;
 	}
 	
 	public void setStage() {

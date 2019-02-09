@@ -2,10 +2,7 @@ package controller.fieldTechnician;
 
 import client.ClientCommunication;
 import exception.MessageException;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Event;
 import model.FieldTechnician;
 import model.Intervention;
 import model.Session;
@@ -30,7 +26,6 @@ import utility.ChoiceBox;
 import utility.InterventionHandler;
 import utility.MessageBox;
 import utility.PdfManager;
-import utility.TimeUtility;
 
 public class FieldTechnicianController {
 

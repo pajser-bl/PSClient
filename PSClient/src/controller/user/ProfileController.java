@@ -26,7 +26,6 @@ public class ProfileController {
 	private User user;
 	private double stageHeight;
 	private double stageWidth;
-	private Stage profileStage;
 	@FXML Button updateUserButton;
 	@FXML HBox avatarBox;
 	@FXML HBox infoBox;
@@ -52,8 +51,7 @@ public class ProfileController {
 		qualification.setText("Kvalifikacjia:        " + user.getQualification());
 	}
 	
-	public ProfileController(Stage profileStage, ClientCommunication clientComm, User user, double stageWidth, double stageHeight) {
-		this.profileStage = profileStage;
+	public ProfileController(ClientCommunication clientComm, User user, double stageWidth, double stageHeight) {
 		this.clientComm = clientComm;
 		this.user = user;
 		this.stageWidth = stageWidth;
