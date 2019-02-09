@@ -9,13 +9,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Event;
 import model.FieldTechnician;
@@ -122,7 +127,18 @@ public class OperaterController {
 		} else MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
-	public void showMap(ActionEvent event) {}
+	public void showMap(ActionEvent event) {
+		Stage mapStage = new Stage();
+		mapStage.getIcons().add(new Image("/resources/images/logo.png"));
+		mapStage.initModality(Modality.APPLICATION_MODAL);
+		mapStage.setMaximized(true);
+		mapStage.setResizable(false);
+		WebView browser = new WebView();
+		WebEngine  webEngine = browser.getEngine();
+		webEngine.load("https://www.google.com/");
+		mapStage.setScene(new Scene(browser));
+		mapStage.show();
+	}
 	
 	public void showSession(ActionEvent event) {
 		if(!workspaceAnchor.getChildren().isEmpty())

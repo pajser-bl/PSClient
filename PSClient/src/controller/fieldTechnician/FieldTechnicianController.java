@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.FieldTechnician;
@@ -155,6 +157,19 @@ public class FieldTechnicianController {
 	
 	public void setIntervention(Intervention intervention) {
 		this.intervention = intervention;
+	}
+	
+	public void showMap(ActionEvent event) {
+		Stage mapStage = new Stage();
+		mapStage.getIcons().add(new Image("/resources/images/logo.png"));
+		mapStage.initModality(Modality.APPLICATION_MODAL);
+		mapStage.setMaximized(true);
+		mapStage.setResizable(false);
+		WebView browser = new WebView();
+		WebEngine  webEngine = browser.getEngine();
+		webEngine.load("https://www.google.com/");
+		mapStage.setScene(new Scene(browser));
+		mapStage.show();
 	}
 	
 	public void showHelp(ActionEvent event) {
