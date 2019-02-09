@@ -6,7 +6,11 @@ import controller.fieldTechnician.FieldTechnicianController;
 import controller.operater.OperaterController;
 import controller.supervisor.SupervisorController;
 import exception.ConnectionTimeoutException;
+
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
@@ -39,7 +43,13 @@ public class LoginController{
 		
 		public void login(ActionEvent loginEvent) {
 			try {
-				clientComm = (new ClientCommunication("192.168.1.3", 9000));
+				Properties property= new Properties();
+				FileInputStream in = new FileInputStream("client.conf");
+				property.load(in);
+				String serverIpAdress= property.getProperty("client.server_ip");
+				int serverPort= Integer.parseInt(property.getProperty("client.server_port"));
+				
+				clientComm = (new ClientCommunication(serverIpAdress, serverPort));
 				ArrayList<String> reply = clientComm.login(username.getText(), password.getText());
 				if(reply.get(0).equals("LOGIN OK")) {
 					user  = new User(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),null, null, null);
