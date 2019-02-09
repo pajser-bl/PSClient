@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Intervention;
+import utility.ReportBox;
 import utility.TimeUtility;
 
 public class InterventionController {
@@ -24,11 +25,14 @@ public class InterventionController {
 	private String user;
 	@FXML Button fieldReportButton;
 	@FXML Button operaterReportButton;
+	@FXML Button supervisorReportButton;
 	@FXML HBox reportsBox;
 	@FXML Label serviceLabel;
 	@FXML Label serviceTimeLabel;
 	@FXML Label closedLabel;
 	@FXML Label operaterLabel;
+	@FXML Label supervisorLabel;
+	@FXML Label reportTimeLabel;
 	@FXML Label interventionId;
 	@FXML Label date;
 	@FXML Label time;
@@ -45,6 +49,7 @@ public class InterventionController {
 	@FXML Label closedTime;
 	@FXML Label operaterClosed;
 	@FXML Label supervisor;
+	@FXML Label reportTime;
 	@FXML VBox infoLabelsBox;
 	@FXML VBox infoBox;
 	
@@ -64,10 +69,15 @@ public class InterventionController {
 	public void setStage() {
 		if(intervention.getState().equals("otvorena") || intervention.getState().equals("terenski izvjestaj")) {
 			reportsBox.getChildren().remove(operaterReportButton);
+			reportsBox.getChildren().remove(supervisorReportButton);
 			infoBox.getChildren().remove(operaterClosed);
 			infoBox.getChildren().remove(closedTime);
+			infoBox.getChildren().remove(supervisor);
+			infoBox.getChildren().remove(reportTime);
 			infoLabelsBox.getChildren().remove(operaterLabel);
 			infoLabelsBox.getChildren().remove(closedLabel);
+			infoLabelsBox.getChildren().remove(supervisorLabel);
+			infoLabelsBox.getChildren().remove(reportTimeLabel);
 		}
 		if(intervention.getState().equals("otvorena")) {
 			reportsBox.getChildren().remove(fieldReportButton);
@@ -79,47 +89,20 @@ public class InterventionController {
 	}
 	
 	public void showRoadReport(ActionEvent event) {
-		TextArea roadReport = new TextArea();
-		roadReport.appendText(intervention.getFieldReport());
-		roadReport.setEditable(false);
-		roadReport.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
-		AnchorPane.setBottomAnchor(roadReport, 5.0);
-		AnchorPane.setTopAnchor(roadReport, 5.0);
-		AnchorPane.setLeftAnchor(roadReport, 5.0);
-		AnchorPane.setRightAnchor(roadReport, 5.0);
-		
-		AnchorPane anchor = new AnchorPane();
-		anchor.getStylesheets().add(getClass().getResource("/css/background.css").toExternalForm());
-		anchor.setStyle("root2");
-		anchor.getChildren().add(roadReport);
-		Stage stage = new Stage();
-		stage.setTitle("Terenski izvjestaj");
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
-		stage.show();
+		ReportBox reportBox = new ReportBox();
+		reportBox.displayReport("Terenski izvjestaj", intervention.getFieldReport(), stageWidth, stageHeight);
 	}
 	
 	public void showOpraterReport(ActionEvent event) {
-		TextArea roadReport = new TextArea();
-		roadReport.appendText(intervention.getOperaterReport());
-		roadReport.setEditable(false);
-		roadReport.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
-		AnchorPane.setBottomAnchor(roadReport, 5.0);
-		AnchorPane.setTopAnchor(roadReport, 5.0);
-		AnchorPane.setLeftAnchor(roadReport, 5.0);
-		AnchorPane.setRightAnchor(roadReport, 5.0);
-		
-		AnchorPane anchor = new AnchorPane();
-		anchor.getStylesheets().add(getClass().getResource("/css/background.css").toExternalForm());
-		anchor.setStyle("root2");
-		anchor.getChildren().add(roadReport);
-		Stage stage = new Stage();
-		stage.setTitle("Terenski izvjestaj");
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setScene(new Scene(anchor, stageWidth, stageHeight * 0.5));
-		stage.show();
+		ReportBox reportBox = new ReportBox();
+		reportBox.displayReport("Terenski izvjestaj", intervention.getOperaterReport(), stageWidth, stageHeight);
 	}
 	
+	public void showSupervizorReport() {
+		ReportBox reportBox = new ReportBox();
+		reportBox.displayReport("Terenski izvjestaj", intervention.getSupervisorReport(), stageWidth, stageHeight);
+	}
+		
 	public void setInfo() {
 		interventionId.setText(intervention.getId());
 		date.setText(intervention.getOpenedOn().format(DateTimeFormatter.ISO_LOCAL_DATE));
@@ -132,13 +115,18 @@ public class InterventionController {
 		vehicleManu.setText(intervention.getVehicleManu());
 		vehicleYear.setText(intervention.getVehicleYear());
 		vehicleLicencePlate.setText(intervention.getVehicleLicencePlate());
-		if(intervention.getState().equals("terenski izvjestaj") || intervention.getState().equals("zatvorena")) {
+		if(intervention.getState().equals("terenski izvjestaj") || intervention.getState().equals("zatvorena") ||
+				intervention.getState().equals("izvjestaj")) {
 			service.setText(intervention.getService());
 			serviceTime.setText(TimeUtility.localDateTimeToString(intervention.getServiceTime()));
 		}
-		if(intervention.getState().equals("zatvorena")) {
+		if(intervention.getState().equals("zatvorena") || intervention.getState().equals("izvjestaj")) {
 			closedTime.setText(TimeUtility.localDateTimeToString(intervention.getClosedOn()));
 			operaterClosed.setText(intervention.getUserClosed());
+		}
+		if(intervention.getState().equals("izvjestaj")) {
+			supervisor.setText(intervention.getSupervisor());
+			reportTime.setText(TimeUtility.localDateTimeToString(intervention.getReportTime()));
 		}
 	}
 	

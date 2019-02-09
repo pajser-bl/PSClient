@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Intervention;
+import model.User;
 import utility.MessageBox;
 import utility.TimeUtility;
 
@@ -30,6 +31,7 @@ public class InterventionsController {
 	private double screenHeight;
 	private double screenWidth;
 	private ObservableList<Intervention> interventionsList;
+	private User user;
 	@FXML AnchorPane tableAnchor;
 	@FXML AnchorPane optionsAnchor;
 	@FXML TableView<Intervention> interventionsTable;
@@ -41,9 +43,10 @@ public class InterventionsController {
 		generateTable();
 	}
 	
-	public InterventionsController(ObservableList<Intervention> interventionsList, ClientCommunication clientComm, double screenWidth,
-			double screenHeight) {
+	public InterventionsController(ObservableList<Intervention> interventionsList, ClientCommunication clientComm, User user,
+			double screenWidth, double screenHeight) {
 		this.clientComm = clientComm;
+		this.user = user;
 		this.screenHeight = screenHeight;
 		this.screenWidth = screenWidth;
 		this.interventionsList = interventionsList;
@@ -55,8 +58,9 @@ public class InterventionsController {
 				throw new MessageException("Odaberite intervenciju");
 			Stage reportStage = new Stage();
 			reportStage.getIcons().add(new Image("/resources/images/logo.png"));
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/operater/CloseInterventionForm.fxml"));
-			loader.setControllerFactory(e -> new ReportController());
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/ReportForm.fxml"));
+			loader.setControllerFactory(e -> new ReportController(clientComm,
+					interventionsTable.getSelectionModel().getSelectedItem().getId(), user.getUserId()));
 			Parent root = loader.load();
 			reportStage.initModality(Modality.APPLICATION_MODAL);
 			reportStage.setResizable(false);

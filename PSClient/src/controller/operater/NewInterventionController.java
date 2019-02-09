@@ -77,6 +77,14 @@ public class NewInterventionController {
 				throw new MessageException("Prezime klijenta mora biti popunjeno");
 			if(phoneNumber.getText().isEmpty())
 				throw new MessageException("Broj telefona klijenta mora biti popunjeno");
+			if(licencePlate.getText().isEmpty())
+				throw new MessageException("Registracija vozila mora biti popunjena");
+			if(model.getText().isEmpty())
+				throw new MessageException("Model vozila mora biti popunjen");
+			if(manufacturer.getText().isEmpty())
+				throw new MessageException("Proizvodjac vozila mora biti popunjen");
+			if(yearMade.getText().isEmpty())
+				throw new MessageException("Godina proizvodnje vozila mora biti popunjen");
 			int year = Integer.parseInt(yearMade.getText());
 			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(": ");
 			Intervention intervention = new Intervention("", name.getText() + " " + lastName.getText(), phoneNumber.getText(),

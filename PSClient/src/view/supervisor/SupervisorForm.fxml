@@ -28,8 +28,7 @@
 							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 							AnchorPane.topAnchor="0.0">
 							<image>
-								<Image
-									url="@../../resources/images/supervisor_avatar.png" />
+								<Image url="@../../resources/images/supervisor_avatar.png" />
 							</image>
 						</ImageView>
 					</children>
@@ -86,6 +85,9 @@
 							onAction="#showInterventions" styleClass="Sintervencijabutton"
 							stylesheets="@../../css/supervisor_interventions_button.css"
 							mnemonicParsing="false" />
+						<Button fx:id="reportsButton" mnemonicParsing="false"
+							onAction="#viewReports" styleClass="reportbutton"
+							stylesheets="@../../css/field_technician_field_report_button.css" />
 					</children>
 				</VBox>
 			</children>

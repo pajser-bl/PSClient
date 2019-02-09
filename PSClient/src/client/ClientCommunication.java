@@ -323,6 +323,11 @@ public class ClientCommunication {
 		Request request = new Request("NEW REPORT", arguments);
 		return sendRequest(request);
 	}
+	
+	public ArrayList<String> viewReports() {
+		Request request = new Request("VIEW REPORTS", null);
+		return sendRequest(request);
+	}
 
 	public ArrayList<String> changeState(String userId, String state) {
 		ArrayList<String> arguments = new ArrayList<>();

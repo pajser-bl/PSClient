@@ -37,6 +37,7 @@ public class SupervisorController {
 	@FXML Button interventionsButton;
 	@FXML Button logoutButton;
 	@FXML Button helpButton;
+	@FXML Button reportsButton;
 	@FXML Label name;
 	@FXML Label lastName;
 	@FXML ImageView avatar;
@@ -134,9 +135,33 @@ public class SupervisorController {
 			MessageBox.displayMessage("Greska", reply.get(1));
 	}
 	
+	public void viewReports(ActionEvent event) {
+		ArrayList<String> reply = clientComm.viewReports();
+		if(reply.get(0).equals("VIEW REPORTS OK")) {
+			if(workspaceAnchor.getChildren().size() > 0)
+				workspaceAnchor.getChildren().clear();
+			ArrayList<Intervention> reports = new ArrayList<>();
+			Intervention report = null;
+			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
+				String[] parsed = reply.get(i + 2).split(":");
+				report = new Intervention(parsed[0], parsed[1], parsed[2], parsed[3].replace(";", ":"));
+				reports.add(report);
+			}
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/ReportsTableForm.fxml"));
+			loader.setControllerFactory(e -> new ReportsController(FXCollections.observableArrayList(reports), clientComm,
+					screenWidth, screenHeight));
+			try {
+				Parent root = loader.load();
+				workspaceAnchor.getChildren().add(root);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		} else
+			MessageBox.displayMessage("Greska", reply.get(1));
+	}
+	
 	public void showInterventions(ActionEvent event) {
 		ArrayList<String> reply = clientComm.closedInterventions();
-		System.out.println(reply.toString());
 		if(reply.get(0).equals("VIEW CLOSED INTERVENTIONS OK")) {
 			if(workspaceAnchor.getChildren().size() > 0)
 				workspaceAnchor.getChildren().clear();
@@ -149,7 +174,7 @@ public class SupervisorController {
 			}
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/InterventionsTableForm.fxml"));
 			loader.setControllerFactory(e -> new InterventionsController(FXCollections.observableArrayList(interventions), clientComm,
-					screenWidth, screenHeight));
+					user, screenWidth, screenHeight));
 			try {
 				Parent root = loader.load();
 				workspaceAnchor.getChildren().add(root);
@@ -190,6 +215,7 @@ public class SupervisorController {
 		clientsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		sessionsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		interventionsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
+		reportsButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		logoutButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 		helpButton.setPrefSize(screenWidth * 0.1, screenHeight * 0.15);
 	}

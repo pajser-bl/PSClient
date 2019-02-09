@@ -72,6 +72,13 @@ public class Intervention {
 		this.closedOn = TimeUtility.stringToLocalDateTime(closedOn);
 	}
 	
+	public Intervention(String interventionId, String client, String supervisor, String closedOn) {
+		this.id = interventionId;
+		this.client = client;
+		this.supervisor = supervisor;
+		this.closedOn = TimeUtility.stringToLocalDateTime(closedOn);
+	}
+	
 	public String toString() {
 		return id + " " + userOpened + " " + fieldTechnician;
 	}
