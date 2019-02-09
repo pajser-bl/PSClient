@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane styleClass="root7"
+	stylesheets="@/css/background.css"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.supervisor.SessionController">
+	<children>
+		<VBox fx:id="labelBox" alignment="CENTER_LEFT" spacing="10.0"
+			AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+			<children>
+				<Label text="Id sesije" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="userLabel" text="Korisnik:" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="startLabel" text="Vrijeme pocetka:"
+					textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="endLabel" text="Vrijeme kraja:"
+					textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+			</children>
+		</VBox>
+		<VBox fx:id="infoBox" spacing="10.0"
+			AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+			<children>
+				<Label fx:id="idLabel" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="userLabel" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="startLabel" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+				<Label fx:id="endLabel" textFill="#21947b">
+					<font>
+						<Font size="20.0" />
+					</font>
+				</Label>
+			</children>
+		</VBox>
+		<TextArea fx:id="sessionsText" styleClass="content" editable="false"
+			stylesheets="@/css/text_area.css" AnchorPane.bottomAnchor="10.0"
+			AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+	</children>
+</AnchorPane>

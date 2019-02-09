@@ -7,15 +7,22 @@ import utility.MessageBox;
 import java.util.ArrayList;
 
 import client.ClientCommunication;
+import controller.user.InterventionController;
 import exception.MessageException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ClientTableController {
 
@@ -26,8 +33,7 @@ public class ClientTableController {
 	@FXML AnchorPane optionsAnchor;
 	@FXML AnchorPane tableAnchor;
 	@FXML Button createClientButton;
-	@FXML Button deleteClientButton;
-	@FXML Button updateClientButton;
+	@FXML Button subscriptionButton;
 	@FXML TableView<Client> clientTable;
 
 	@FXML public void initialize() {
@@ -44,22 +50,31 @@ public class ClientTableController {
 	}
 	
 	public void createClient(ActionEvent event) {
-		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/NewClientForm.fxml"));
+		loader.setControllerFactory(e -> new NewClientController(clientComm, screenWidth * 0.2, screenHeight * 0.3));
+		try {
+			Parent root = loader.load();
+			Stage clientStage = new Stage();
+			clientStage.setResizable(false);
+			clientStage.getIcons().add(new Image("/resources/images/logo.png"));
+			clientStage.initModality(Modality.APPLICATION_MODAL);
+			clientStage.setScene(new Scene(root, screenWidth * 0.2, screenHeight * 0.3));
+			clientStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void updateClient(ActionEvent event) {}
-	
-	public void deleteClient(ActionEvent event) {
+	public void subscribeClient(ActionEvent event) {
 		try {
 			if(clientTable.getSelectionModel().isEmpty())
-				throw new MessageException("Izaberite klijenta");
-			Client client = clientTable.getSelectionModel().getSelectedItem();
-			ArrayList<String> reply = clientComm.deleteClient(client.getId());
-			if(reply.get(0).equals("DELETE CLIENT OK")) {
-				clientList.remove(client);
-				MessageBox.displayMessage("Potvrda", "Klijent uspjesno obrisan");
-			}
-			else
+				throw new MessageException("Odaberite klijenta");
+			if(clientTable.getSelectionModel().getSelectedItem().getSubscription().equals("da"))
+				throw new MessageException("Korisnik je vec pretplacen");
+			ArrayList<String> reply = clientComm.subscribeClient(clientTable.getSelectionModel().getSelectedItem().getId());
+			if(reply.get(0).equals("NEW SUBSCRIPTION OK"))
+				MessageBox.displayMessage("Potvrda", "Preplata uspjesno produzena");
+			else 
 				MessageBox.displayMessage("Greska", reply.get(1));
 		} catch (MessageException e) {
 			MessageBox.displayMessage("Greska", e.toString());
@@ -75,7 +90,9 @@ public class ClientTableController {
 		lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		TableColumn<Client, String> phoneNumberColumn = new TableColumn<Client, String>("Broj telefona");
 		phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-		clientTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, phoneNumberColumn);
+		TableColumn<Client, String> subscriptionColumn = new TableColumn<Client, String>("Pretplacen");
+		subscriptionColumn.setCellValueFactory(new PropertyValueFactory<>("subscription"));
+		clientTable.getColumns().addAll(idColumn, nameColumn, lastNameColumn, phoneNumberColumn, subscriptionColumn);
 		clientTable.setItems(clientList);
 	}
 	
@@ -83,7 +100,6 @@ public class ClientTableController {
 		AnchorPane.setBottomAnchor(tableAnchor, screenHeight * 0.1);
 		AnchorPane.setTopAnchor(optionsAnchor, screenHeight * 0.7);
 		createClientButton.setPrefSize(screenHeight * 0.175, screenHeight * 0.75);
-		updateClientButton.setPrefSize(screenHeight * 0.175, screenHeight * 0.75);
-		deleteClientButton.setPrefSize(screenHeight * 0.175, screenHeight * 0.75);
+		subscriptionButton.setPrefSize(screenHeight * 0.175, screenHeight * 0.75);
 	}
 }

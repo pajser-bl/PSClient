@@ -64,17 +64,9 @@
 								<Font size="20.0" />
 							</font>
 						</Button>
-						<Button fx:id="updateClientButton" mnemonicParsing="false"
-							onAction="#updateClient" styleClass="commonbutton"
-							stylesheets="@../../css/common_button.css" text="Azuriraj"
-							textAlignment="CENTER" wrapText="true">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</Button>
-						<Button fx:id="deleteClientButton" mnemonicParsing="false"
-							onAction="#deleteClient" styleClass="commonbutton"
-							stylesheets="@../../css/common_button.css" text="Obrisi"
+						<Button fx:id="subscriptionButton" mnemonicParsing="false"
+							onAction="#subscribeClient" styleClass="commonbutton"
+							stylesheets="@../../css/common_button.css" text="Pretplati"
 							textAlignment="CENTER" wrapText="true">
 							<font>
 								<Font size="20.0" />

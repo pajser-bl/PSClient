@@ -6,12 +6,14 @@ public class Client {
 	private String name;
 	private String lastName;
 	private String phoneNumber;
+	private String subscription;
 	
-	public Client(String id, String name, String lastName, String phoneNumber) {
+	public Client(String id, String name, String lastName, String phoneNumber, String subscription) {
 		this.id = id;
 		this.name = name;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
+		this.subscription = subscription;
 	}
 
 	public String getId() {
@@ -44,5 +46,13 @@ public class Client {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(String subscription) {
+		this.subscription = subscription;
 	}
 }

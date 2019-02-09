@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Intervention;
 import utility.MessageBox;
+import utility.PdfExporter;
 import utility.TimeUtility;
 
 public class ReportsController {
@@ -48,7 +49,29 @@ public class ReportsController {
 		this.screenWidth = screenWidth;
 	}
 	
-	public void exportReport(ActionEvent event) {}
+	public void exportReport(ActionEvent event) {
+		try {
+			if(reportsTable.getSelectionModel().isEmpty())
+				throw new MessageException("Odaberite izvjestaj");
+			Intervention intervention = null;
+			ArrayList<String> reply = clientComm.viewIntervention(reportsTable.getSelectionModel().getSelectedItem().getId());
+			if(reply.get(0).equals("VIEW INTERVENTION OK")) {
+				intervention = new Intervention(reply.get(1), reply.get(2), reply.get(3), reply.get(4), reply.get(5),
+						reply.get(6), reply.get(7), reply.get(8), reply.get(9),
+						TimeUtility.stringToLocalDateTime(reply.get(10)), reply.get(11), reply.get(12), 
+						TimeUtility.stringToLocalDateTime(reply.get(13)), reply.get(14), reply.get(15),
+						TimeUtility.stringToLocalDateTime(reply.get(16)), reply.get(17), reply.get(18), reply.get(19),
+						TimeUtility.stringToLocalDateTime(reply.get(20)));
+				if(PdfExporter.exportPDF(intervention)) {
+					MessageBox.displayMessage("Potvrda", "Intervencija je uspjesno eksportovana");
+				} else
+					MessageBox.displayMessage("Greska", "Eksportovanje nije uspjelo");
+			} else
+				MessageBox.displayMessage("Greska", reply.get(1));
+		} catch (MessageException e) {
+			MessageBox.displayMessage("Greska", e.toString());
+		}
+	}
 	
 	public void viewReport(ActionEvent event) {
 		try {

@@ -126,13 +126,6 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> viewSessions(String userId) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(userId);
-		Request request = new Request("VIEW SESSIONS", arguments);
-		return sendRequest(request);
-	}
-
 	public ArrayList<String> viewIntervention(String interventionId) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(interventionId);
@@ -253,16 +246,6 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> updateClient(String client_Id, String name, String lastName, String phone_number) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(client_Id);
-		arguments.add(name);
-		arguments.add(lastName);
-		arguments.add(phone_number);
-		Request request = new Request("UPDATE CLIENT", arguments);
-		return sendRequest(request);
-	}
-
 	public ArrayList<String> deleteClient(String clientId) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(clientId);
@@ -270,37 +253,10 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> viewSubscription(String subscription_Id) {
+	public ArrayList<String> subscribeClient(String clientId) {
 		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(subscription_Id);
-		Request request = new Request("VIEW SUBSCRIPTION", arguments);
-		return sendRequest(request);
-	}
-
-	public ArrayList<String> newSubscription(String client_Id, String start_date, String end_date) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(client_Id);
-		arguments.add(start_date);
-		arguments.add(end_date);
-		Request request = new Request("NEW SUBSCRIPTION", arguments);
-		return sendRequest(request);
-	}
-
-	public ArrayList<String> updateSubscription(String subscription_Id, String client_Id, String start_date,
-			String end_date) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(subscription_Id);
-		arguments.add(client_Id);
-		arguments.add(start_date);
-		arguments.add(end_date);
-		Request request = new Request("UPDATE SUBSCRIPTION", arguments);
-		return sendRequest(request);
-	}
-
-	public ArrayList<String> deleteSubscription(String subscription_Id) {
-		ArrayList<String> arguments = new ArrayList<>();
-		arguments.add(subscription_Id);
-		Request request = new Request("DELETE SUBSCRIPTION", arguments);
+		arguments.add(clientId);
+		Request request = new Request("SUBSCRIBE CLIENT", arguments);
 		return sendRequest(request);
 	}
 	
@@ -311,6 +267,13 @@ public class ClientCommunication {
 	
 	public ArrayList<String> viewSessions() {
 		Request request = new Request("VIEW SESSIONS", null);
+		return sendRequest(request);
+	}
+	
+	public ArrayList<String> viewSession(String sessionId){
+		ArrayList<String> arguments = new ArrayList<>();
+		arguments.add(sessionId);
+		Request request = new Request("VIEW USER SESSION", arguments);
 		return sendRequest(request);
 	}
 	

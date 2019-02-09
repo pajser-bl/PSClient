@@ -92,7 +92,7 @@ public class SupervisorController {
 				workspaceAnchor.getChildren().clear();
 			for(int i = 0; i < Integer.parseInt(reply.get(1)); i++) {
 				String[] parsed = reply.get(i + 2).split(":");
-				Client client = new Client(parsed[0], parsed[1], parsed[2], parsed[3]);
+				Client client = new Client(parsed[0], parsed[1], parsed[2], parsed[3], parsed[4]);
 				clientList.add(client);
 			}
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/ClientTableForm.fxml"));
@@ -112,7 +112,6 @@ public class SupervisorController {
 	public void showSessions(ActionEvent event) {
 		ArrayList<String> reply = clientComm.viewSessions();
 		ArrayList<Session> sessions = new ArrayList<>();
-		System.out.println(reply.toString());
 		if(reply.get(0).equals("VIEW SESSIONS OK")) {
 			if(workspaceAnchor.getChildren().size() > 0)
 				workspaceAnchor.getChildren().clear();
@@ -123,8 +122,8 @@ public class SupervisorController {
 				sessions.add(session);
 			}
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/SessionsTableForm.fxml"));
-			loader.setControllerFactory(e -> new SessionsTableController(FXCollections.observableArrayList(sessions), screenWidth,
-					screenHeight));
+			loader.setControllerFactory(e -> new SessionsTableController(FXCollections.observableArrayList(sessions), clientComm,
+					screenWidth, screenHeight));
 			try {
 				Parent root = loader.load();
 				workspaceAnchor.getChildren().add(root);
