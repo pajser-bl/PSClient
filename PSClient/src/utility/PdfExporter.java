@@ -3,6 +3,8 @@ package utility;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,8 +21,11 @@ public class PdfExporter {
 	public static boolean exportPDF(Intervention intervention) {
 		try {
 			Document document = new Document();
-			String reportName=TimeUtility.localDateToString(intervention.getReportTime().toLocalDate())+"izvjestaj-"+intervention.getId()+".pdf";
-			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(makeFolder()+File.separator+reportName));
+			String reportName=makeFolder()+File.separator+TimeUtility.localDateToString(intervention.getReportTime().toLocalDate())+"izvjestaj-"+intervention.getId()+".pdf";
+			File file = new File(reportName);
+			if(file.exists())
+				return false;
+			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(reportName));
 			document.open();
 			Paragraph naslov = new Paragraph(
 					new Phrase(5, "Izvjestaj " + intervention.getId(), FontFactory.getFont(FontFactory.COURIER, 15)));
@@ -98,13 +103,13 @@ public class PdfExporter {
 	}
 	
 	
-//	public static void main (String[]args) {
-//		Intervention i = new Intervention("1", "Pavle Peric", "555-333", "43532", "bembara",
-//				"bwm", "2222", "Operater otvorenko", "radnik teren", LocalDateTime.now(),
-//				"bilo sta", "slepanje", LocalDateTime.now(), "popeo se autom na sljivu", "zatvorenko",
-//				LocalDateTime.now(), "Umro na suvozacevom mjestu", "Supervizor supervizor", "ovi moji idioti",
-//				LocalDateTime.now());
-//		System.out.println(makeFolder());
-//		PdfExporter.exportPDF(i);
-//	}
+	//public static void main (String[]args) {
+	//	Intervention i = new Intervention("2", "Pavle Peric", "555-333", "43532", "bembara",
+	//			"bwm", "2222", "Operater otvorenko", "radnik teren", LocalDateTime.now(),
+		//		"bilo sta", "slepanje", LocalDateTime.now(), "popeo se autom na sljivu", "zatvorenko",
+		//		LocalDateTime.now(), "Umro na suvozacevom mjestu", "Supervizor supervizor", "ovi moji idioti",
+		//		LocalDateTime.now());
+	//	System.out.println(makeFolder());
+		//PdfExporter.exportPDF(i);
+	//}
 }
