@@ -21,7 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Intervention;
 import utility.MessageBox;
-import utility.PdfExporter;
+import utility.PdfManager;
 import utility.TimeUtility;
 
 public class ReportsController {
@@ -62,7 +62,7 @@ public class ReportsController {
 						TimeUtility.stringToLocalDateTime(reply.get(13)), reply.get(14), reply.get(15),
 						TimeUtility.stringToLocalDateTime(reply.get(16)), reply.get(17), reply.get(18), reply.get(19),
 						TimeUtility.stringToLocalDateTime(reply.get(20)));
-				if(PdfExporter.exportPDF(intervention)) {
+				if(PdfManager.exportPDF(intervention)) {
 					MessageBox.displayMessage("Potvrda", "Intervencija je uspjesno eksportovana");
 				} else
 					MessageBox.displayMessage("Greska", "Eksportovanje nije uspjelo");
