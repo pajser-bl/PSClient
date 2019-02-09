@@ -102,8 +102,33 @@ public class PdfExporter {
 		return f.getAbsolutePath();
 	}
 	
+public static boolean readHelp() {
+	//String path = System.getProperty("user.home");
+	 try {
+		 	String s="help.pdf";
+		 	System.out.println(s);
+			if ((new File(s)).exists()) {
+				Process p = Runtime
+				   .getRuntime()
+				   .exec("rundll32 url.dll,FileProtocolHandler "+s);
+				p.waitFor();
+					
+			} else {
+				System.out.println("File is not exists");
+				return false;
+			}
+			
+			System.out.println("Done");
+
+	  	  } catch (Exception ex) {
+			ex.printStackTrace();
+		  }
+	 return true;
+}
 	
-	//public static void main (String[]args) {
+public static void main (String[]args) {
+	
+		PdfExporter.readHelp();
 	//	Intervention i = new Intervention("2", "Pavle Peric", "555-333", "43532", "bembara",
 	//			"bwm", "2222", "Operater otvorenko", "radnik teren", LocalDateTime.now(),
 		//		"bilo sta", "slepanje", LocalDateTime.now(), "popeo se autom na sljivu", "zatvorenko",
@@ -111,5 +136,5 @@ public class PdfExporter {
 		//		LocalDateTime.now());
 	//	System.out.println(makeFolder());
 		//PdfExporter.exportPDF(i);
-	//}
+	}
 }
