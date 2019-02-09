@@ -18,6 +18,7 @@ import model.Session;
 import model.User;
 import utility.ChoiceBox;
 import utility.MessageBox;
+import utility.PdfManager;
 
 public class SupervisorController {
 
@@ -182,6 +183,11 @@ public class SupervisorController {
 			}
 		} else
 			MessageBox.displayMessage("Greska", reply.get(1));
+	}
+	
+	public void showHelp(ActionEvent event) {
+		if(!PdfManager.readHelp())
+			MessageBox.displayMessage("Greska", "Help.pdf nije pronadjen");
 	}
 	
 	public void logout() {

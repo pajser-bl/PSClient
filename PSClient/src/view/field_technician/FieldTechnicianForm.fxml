@@ -121,7 +121,7 @@
 						<Button fx:id="logoutButton" mnemonicParsing="false"
 							onAction="#logout" styleClass="exitbutton"
 							stylesheets="@../../css/exit_button.css" />
-						<Button fx:id="helpButton" mnemonicParsing="false"
+						<Button fx:id="helpButton" onAction="#showHelp" mnemonicParsing="false"
 							styleClass="helpbutton" stylesheets="@../../css/help_button.css" />
 					</children>
 				</VBox>

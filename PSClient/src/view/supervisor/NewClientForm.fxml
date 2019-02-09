@@ -31,7 +31,7 @@
 					stylesheets="@../../css/text_field.css" />
 			</children>
 		</VBox>
-		<Button fx:id="createButton" mnemonicParsing="false"
+		<Button fx:id="createButton" mnemonicParsing="false" defaultButton="true"
 			onAction="#createNewClient" styleClass="commonbutton"
 			stylesheets="@../../css/common_button.css" text="Napravi"
 			AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />

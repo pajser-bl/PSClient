@@ -237,11 +237,11 @@ public class ClientCommunication {
 		return sendRequest(request);
 	}
 
-	public ArrayList<String> newClient(String name, String lastName, String phone_number) {
+	public ArrayList<String> newClient(String name, String lastName, String phoneNumber) {
 		ArrayList<String> arguments = new ArrayList<>();
 		arguments.add(name);
 		arguments.add(lastName);
-		arguments.add(phone_number);
+		arguments.add(phoneNumber);
 		Request request = new Request("NEW CLIENT", arguments);
 		return sendRequest(request);
 	}

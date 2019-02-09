@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import model.User;
 import utility.ChoiceBox;
 import utility.MessageBox;
+import utility.PdfManager;
 
 public class AdministratorController {
 
@@ -115,6 +116,11 @@ public class AdministratorController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void showHelp(ActionEvent event) {
+		if(!PdfManager.readHelp())
+			MessageBox.displayMessage("Greska", "Help.pdf nije pronadjen");
 	}
 
 	public void logout(ActionEvent event) {

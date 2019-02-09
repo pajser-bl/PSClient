@@ -29,6 +29,7 @@ import model.Session;
 import utility.ChoiceBox;
 import utility.InterventionHandler;
 import utility.MessageBox;
+import utility.PdfManager;
 import utility.TimeUtility;
 
 public class FieldTechnicianController {
@@ -159,6 +160,11 @@ public class FieldTechnicianController {
 	
 	public void setIntervention(Intervention intervention) {
 		this.intervention = intervention;
+	}
+	
+	public void showHelp(ActionEvent event) {
+		if(!PdfManager.readHelp())
+			MessageBox.displayMessage("Greska", "Help.pdf nije pronadjen");
 	}
 
 	public void close() {

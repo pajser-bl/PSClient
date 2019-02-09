@@ -50,11 +50,12 @@ public class ClientTableController {
 	}
 	
 	public void createClient(ActionEvent event) {
+		Stage clientStage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supervisor/NewClientForm.fxml"));
-		loader.setControllerFactory(e -> new NewClientController(clientComm, screenWidth * 0.2, screenHeight * 0.3));
+		loader.setControllerFactory(e -> new NewClientController(clientStage, clientComm, clientList, screenWidth * 0.2,
+				screenHeight * 0.3));
 		try {
 			Parent root = loader.load();
-			Stage clientStage = new Stage();
 			clientStage.setResizable(false);
 			clientStage.getIcons().add(new Image("/resources/images/logo.png"));
 			clientStage.initModality(Modality.APPLICATION_MODAL);
@@ -72,8 +73,10 @@ public class ClientTableController {
 			if(clientTable.getSelectionModel().getSelectedItem().getSubscription().equals("da"))
 				throw new MessageException("Korisnik je vec pretplacen");
 			ArrayList<String> reply = clientComm.subscribeClient(clientTable.getSelectionModel().getSelectedItem().getId());
-			if(reply.get(0).equals("NEW SUBSCRIPTION OK"))
+			if(reply.get(0).equals("NEW SUBSCRIPTION OK")) {
+				clientTable.getSelectionModel().getSelectedItem().setSubscription("da");
 				MessageBox.displayMessage("Potvrda", "Preplata uspjesno produzena");
+			}
 			else 
 				MessageBox.displayMessage("Greska", reply.get(1));
 		} catch (MessageException e) {

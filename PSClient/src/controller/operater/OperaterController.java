@@ -26,6 +26,7 @@ import model.User;
 import utility.ChoiceBox;
 import utility.TimeUtility;
 import utility.MessageBox;
+import utility.PdfManager;
 
 public class OperaterController {
 
@@ -137,6 +138,11 @@ public class OperaterController {
 		sessionTextArea.setEditable(false);
 		sessionTextArea.getStylesheets().add(getClass().getResource("/css/text_area.css").toExternalForm());
 		workspaceAnchor.getChildren().add(sessionTextArea);
+	}
+	
+	public void showHelp(ActionEvent event) {
+		if(!PdfManager.readHelp())
+			MessageBox.displayMessage("Greska", "Help.pdf nije pronadjen");
 	}
 	
 	public void logout(ActionEvent logout) {
