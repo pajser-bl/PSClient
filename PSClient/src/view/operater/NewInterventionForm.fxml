@@ -19,7 +19,7 @@
 			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 			AnchorPane.topAnchor="0.0">
 			<children>
-				<Label text="Informacije o klijentu" textFill="2a90a8"
+				<Label text="Informacije o klijentu:" textFill="2a90a8"
 					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 					AnchorPane.topAnchor="0.0">
 					<padding>
