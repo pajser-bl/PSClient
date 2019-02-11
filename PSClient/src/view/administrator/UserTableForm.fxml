@@ -55,14 +55,6 @@
 					AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0"
 					AnchorPane.topAnchor="0.0">
 					<children>
-						<Button fx:id="profileButton" mnemonicParsing="false"
-							onAction="#showUser" styleClass="commonbutton"
-							stylesheets="@../../css/common_button.css" text="Pregledaj"
-							textAlignment="CENTER" wrapText="true">
-							<font>
-								<Font size="20.0" />
-							</font>
-						</Button>
 						<Button fx:id="changePasswordButton"
 							mnemonicParsing="false" onAction="#passwordChange"
 							styleClass="commonbutton"
