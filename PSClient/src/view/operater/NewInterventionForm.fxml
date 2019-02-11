@@ -81,6 +81,9 @@
 					<padding>
 						<Insets left="10.0" />
 					</padding>
+					<font>
+						<Font size="15"/>
+					</font>
 				</Label>
 				<AnchorPane fx:id="vehicleInformationAnchor"
 					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
