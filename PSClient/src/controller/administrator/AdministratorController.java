@@ -41,7 +41,6 @@ public class AdministratorController {
 	@FXML Button addNewUserButton;
 	@FXML Button showUsersButton;
 	@FXML Button logoutButton;
-	@FXML Button refreshButton;
 	@FXML Button helpButton;
 	@FXML HBox profileHBox;
 	@FXML ImageView avatar;
@@ -163,7 +162,6 @@ public class AdministratorController {
 		addNewUserButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		showUsersButton.setPrefSize(screenWidth * 0.2, screenHeight * 0.1125);
 		logoutButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
-		refreshButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
 		helpButton.setPrefSize(screenWidth * 0.095, screenHeight * 0.14);
 	}
 }
