@@ -80,8 +80,10 @@ public class NewInterventionController {
 			if(manufacturer.getText().isEmpty())
 				throw new MessageException("Proizvodjac vozila mora biti popunjen");
 			if(yearMade.getText().isEmpty())
-				throw new MessageException("Godina proizvodnje vozila mora biti popunjen");
+				throw new MessageException("Godina proizvodnje mora biti popunjena");
 			int year = Integer.parseInt(yearMade.getText());
+			if(year < 1950 || year > 2050)
+				throw new MessageException("Godina proizvodnje mora biti izmedji 1950 i 2050");
 			String[] fieldTechnician = fieldTechniciansBox.getSelectionModel().getSelectedItem().split(": ");
 			Intervention intervention = new Intervention("", name.getText() + " " + lastName.getText(), phoneNumber.getText(),
 					licencePlate.getText(), model.getText(), manufacturer.getText(), yearMade.getText(), user.getUserId(),
@@ -110,7 +112,7 @@ public class NewInterventionController {
 		AnchorPane.setTopAnchor(clientInformationInput, 0.0);
 		AnchorPane.setLeftAnchor(clientInformationInput, stageWidth * 0.5);
 		AnchorPane.setTopAnchor(vehicleAnchor, stageHeight * 0.4);
-		AnchorPane.setTopAnchor(vehicleInformationAnchor, 0.5);
+		AnchorPane.setTopAnchor(vehicleInformationAnchor, 0.55);
 		AnchorPane.setBottomAnchor(vehicleInformationAnchor, 0.1);
 		AnchorPane.setTopAnchor(vehicleInformationLabels, stageHeight * 0.0125);
 		AnchorPane.setRightAnchor(vehicleInformationLabels, stageWidth * 0.5);
