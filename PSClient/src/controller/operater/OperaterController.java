@@ -128,16 +128,15 @@ public class OperaterController {
 	}
 	
 	public void showMap(ActionEvent event) {
-		Stage mapStage = new Stage();
-		mapStage.getIcons().add(new Image("/resources/images/logo.png"));
-		mapStage.initModality(Modality.APPLICATION_MODAL);
-		mapStage.setMaximized(true);
-		mapStage.setResizable(false);
 		WebView browser = new WebView();
+		AnchorPane.setBottomAnchor(browser, 10.0);
+		AnchorPane.setTopAnchor(browser, 10.0);
+		AnchorPane.setLeftAnchor(browser, 10.0);
+		AnchorPane.setRightAnchor(browser, 10.0);
 		WebEngine  webEngine = browser.getEngine();
-		webEngine.load("https://www.google.com/");
-		mapStage.setScene(new Scene(browser));
-		mapStage.show();
+		webEngine.load("http://umap.openstreetmap.fr/en/map/rhmap_261394#8/44.015/17.501");
+		workspaceAnchor.getChildren().clear();
+		workspaceAnchor.getChildren().add(browser);
 	}
 	
 	public void showSession(ActionEvent event) {
